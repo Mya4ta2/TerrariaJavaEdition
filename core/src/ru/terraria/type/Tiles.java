@@ -25,4 +25,8 @@ public class Tiles {
             array[i] = new Tile(new Vector2(i % width, i / width));
         }
     }
+
+    public Tile[] getArray() {
+        return array;
+    }
 }
