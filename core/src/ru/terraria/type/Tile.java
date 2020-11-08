@@ -5,7 +5,7 @@ import com.badlogic.gdx.math.Vector2;
 
 public class Tile {
     private Vector2 position;
-    private Rectangle bounds;
+    private Rectangle bounds = new Rectangle();
     private Block block;
     private Floor floor;
 
