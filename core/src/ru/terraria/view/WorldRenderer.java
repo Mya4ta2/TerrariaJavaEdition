@@ -65,9 +65,13 @@ public class WorldRenderer {
         Tile[] arr = world.getTiles().getArray();
 
         for (int i = 0; i < arr.length; i++) {
-            batch.draw(textures.get("air"),
-                1,
-                1);
+            if (arr[i].getBlock() != null) {
+                batch.draw(textures.get("air"),
+                        1,
+                        1,
+                        arr[i].getBlock().getWIDTH() * 32,
+                        arr[i].getBlock().getHEIGHT() * 32);
+            }
         }
     }
 }

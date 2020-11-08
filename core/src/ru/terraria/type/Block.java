@@ -7,6 +7,9 @@ import ru.terraria.ctype.MappableContent;
 public class Block extends MappableContent {
     private final String name;
 
+    private float WIDTH;
+    private float HEIGHT;
+
     private Vector2 position;
     private Rectangle bounds;
 
@@ -28,5 +31,21 @@ public class Block extends MappableContent {
 
     public String getName() {
         return name;
+    }
+
+    public float getWIDTH() {
+        return WIDTH;
+    }
+
+    public void setWIDTH(float WIDTH) {
+        this.WIDTH = WIDTH;
+    }
+
+    public float getHEIGHT() {
+        return HEIGHT;
+    }
+
+    public void setHEIGHT(float HEIGHT) {
+        this.HEIGHT = HEIGHT;
     }
 }

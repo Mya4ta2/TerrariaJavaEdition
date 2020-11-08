@@ -10,6 +10,9 @@ public class Player extends MappableContent {
     private Vector2 position;
     private Rectangle bounds;
 
+    private float WIDTH;
+    private float HEIGHT;
+
     public Player(String name) {
         this.position = Vector2.Zero;
         this.name = name;
@@ -30,5 +33,21 @@ public class Player extends MappableContent {
 
     public void setBounds(Rectangle bounds) {
         this.bounds = bounds;
+    }
+
+    public float getWIDTH() {
+        return WIDTH;
+    }
+
+    public void setWIDTH(float WIDTH) {
+        this.WIDTH = WIDTH;
+    }
+
+    public float getHEIGHT() {
+        return HEIGHT;
+    }
+
+    public void setHEIGHT(float HEIGHT) {
+        this.HEIGHT = HEIGHT;
     }
 }

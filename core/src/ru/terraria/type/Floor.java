@@ -10,6 +10,25 @@ public class Floor extends MappableContent {
     private Vector2 position;
     private Rectangle bounds;
 
+    private float WIDTH;
+    private float HEIGHT;
+
+    public float getWIDTH() {
+        return WIDTH;
+    }
+
+    public void setWIDTH(float WIDTH) {
+        this.WIDTH = WIDTH;
+    }
+
+    public float getHEIGHT() {
+        return HEIGHT;
+    }
+
+    public void setHEIGHT(float HEIGHT) {
+        this.HEIGHT = HEIGHT;
+    }
+
     public Floor(String name) {
         this.name = name;
     }
