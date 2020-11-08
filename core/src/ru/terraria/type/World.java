@@ -18,6 +18,6 @@ public class World {
 
     /* i need this only for test, after i delete this */
     public void createWorld() {
-        Player = new Player(Vector2.Zero);
+        player = new Player("player", Vector2.Zero);
     }
 }
