@@ -7,7 +7,7 @@ import ru.terraria.ctype.MappableContent;
 public class Floor extends MappableContent {
     private final String name;
 
-    private Vector2 position;
+    private Vector2 position = new Vector2();
     private Rectangle bounds;
 
     private float WIDTH;
@@ -44,4 +44,5 @@ public class Floor extends MappableContent {
     public void setBounds(Rectangle bounds) {
         this.bounds = bounds;
     }
+
 }

@@ -29,6 +29,8 @@ public class WorldRenderer {
         this.world = world;
 
         camera = new OrthographicCamera(Vars.CAMERA_WIDTH, Vars.CAMERA_HEIGHT);
+        camera.position.set(64,100 * 32,0);
+        camera.zoom = 2f;
         batch = new SpriteBatch();
         batch.setProjectionMatrix(camera.combined);
         viewport = new ScreenViewport(camera);
@@ -48,12 +50,13 @@ public class WorldRenderer {
         Gdx.gl20.glClear(GL20.GL_COLOR_BUFFER_BIT);
         Gdx.gl20.glClearColor(1, 1, 1, 1f);
 
+        batch.setProjectionMatrix(camera.combined);
         batch.begin();
         drawWorld(batch);
         batch.end();
 
-        camera.update();
         viewport.apply();
+        camera.update();
     }
 
     public void resize(int width, int height) {
@@ -67,10 +70,10 @@ public class WorldRenderer {
         for (int i = 0; i < arr.length; i++) {
             if (arr[i].getBlock() != null) {
                 batch.draw(textures.get("air"),
-                        1,
-                        1,
-                        arr[i].getBlock().getWIDTH() * 32,
-                        arr[i].getBlock().getHEIGHT() * 32);
+                        arr[i].getPosition().x * Vars.TILE_SIZE,
+                        arr[i].getPosition().y * Vars.TILE_SIZE,
+                        arr[i].getBlock().getWIDTH() * Vars.TILE_SIZE,
+                        arr[i].getBlock().getHEIGHT() * Vars.TILE_SIZE);
             }
         }
     }

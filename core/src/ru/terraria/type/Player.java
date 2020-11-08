@@ -7,7 +7,7 @@ import ru.terraria.ctype.MappableContent;
 public class Player extends MappableContent {
     private final String name;
 
-    private Vector2 position;
+    private Vector2 position = new Vector2();
     private Rectangle bounds;
 
     private float WIDTH;

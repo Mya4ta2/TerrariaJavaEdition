@@ -10,6 +10,8 @@ public class Tiles {
         this.array = new Tile[width * height];
         this.width = width;
         this.height = height;
+
+        fill();
     }
 
     public Tile get(int y, int x) {

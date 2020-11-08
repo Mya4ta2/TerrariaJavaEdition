@@ -10,7 +10,7 @@ public class Block extends MappableContent {
     private float WIDTH;
     private float HEIGHT;
 
-    private Vector2 position;
+    private Vector2 position = new Vector2();
     private Rectangle bounds;
 
     public Block(String name) {

@@ -11,7 +11,8 @@ public class Blocks implements ContentList {
     public void load() {
         air = new Block("air") {
             {
-
+                setHEIGHT(1);
+                setWIDTH(1);
             }
         };
     }

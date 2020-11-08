@@ -20,9 +20,12 @@ public class World {
     /* i need this only for test, after i delete this */
     public void createWorld() {
         player = new Player("player", Vector2.Zero);
-        tiles.fill();
-        for (Tile tile : tiles.getArray()) {
-            tile.setBlock(Blocks.air);
+
+        for (int i = 0; i < 100; i++) { // just testing world
+            for (int j = 0; j < 100; j++) {
+                tiles.get(j,i).setBlock(Blocks.air);
+                tiles.get(j,i).setPosition(new Vector2(i,j));
+            }
         }
     }
 
