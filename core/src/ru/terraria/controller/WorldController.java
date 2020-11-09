@@ -3,6 +3,8 @@ package ru.terraria.controller;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.InputProcessor;
+import ru.terraria.content.Blocks;
+import ru.terraria.type.Tile;
 import ru.terraria.type.World;
 
 public class WorldController implements InputProcessor {
@@ -16,6 +18,7 @@ public class WorldController implements InputProcessor {
         world.getPlayer().update(delta);
 
         processInput();
+        checkPlayerGrounded();
     }
 
     public void processInput() {
@@ -27,12 +30,22 @@ public class WorldController implements InputProcessor {
             world.getPlayer().getVelocity().x -= world.getPlayer().getSpeed();
         }
 
-        if (Gdx.input.isKeyPressed(Input.Keys.W)) {
-            world.getPlayer().getVelocity().y += world.getPlayer().getSpeed();
+        if (Gdx.input.isKeyJustPressed(Input.Keys.SPACE) && world.getPlayer().isGrounded()) {
+            world.getPlayer().jump();
+        }
+    }
+
+    public void checkPlayerGrounded() {
+        Tile downTile = world.getTiles().get(
+                (int) world.getPlayer().getPosition().x,
+                (int) world.getPlayer().getPosition().y - 1);
+
+        if (downTile.getBlock() == Blocks.air) {
+            world.getPlayer().setGrounded(false);
         }
 
-        if (Gdx.input.isKeyPressed(Input.Keys.S)) {
-            world.getPlayer().getVelocity().y -= world.getPlayer().getSpeed();
+        if (downTile.getBlock() != Blocks.air) {
+            world.getPlayer().setGrounded(true);
         }
     }
 

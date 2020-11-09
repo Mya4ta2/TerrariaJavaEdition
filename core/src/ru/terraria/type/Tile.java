@@ -2,16 +2,19 @@ package ru.terraria.type;
 
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector2;
+import ru.terraria.Vars;
 import ru.terraria.content.Blocks;
 
 public class Tile {
     private Vector2 position = new Vector2();
     private Rectangle bounds = new Rectangle();
-    private Block block;
+    private Block block = Blocks.air;
     private Floor wall;
 
     public Tile(Vector2 position) {
         this.position = position;
+        bounds.x = position.x;
+        bounds.y = position.y;
     }
 
     public Tile() {
@@ -57,5 +60,7 @@ public class Tile {
         if (wall != null) {
             wall.getPosition().set(position);
         }
+        bounds.x = position.x;
+        bounds.y = position.y;
     }
 }

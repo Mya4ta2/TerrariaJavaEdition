@@ -2,6 +2,7 @@ package ru.terraria.type;
 
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector2;
+import ru.terraria.Vars;
 import ru.terraria.ctype.MappableContent;
 
 public class Player extends MappableContent {
@@ -11,18 +12,30 @@ public class Player extends MappableContent {
 
     private Vector2 position = new Vector2();
     private Vector2 velocity = new Vector2();
-    private Rectangle bounds;
+    private Rectangle bounds = new Rectangle();
 
-    private float speed = 65;
+    private float speed = 8;
+    private float jumpHeight = 24;
+    private boolean grounded;
 
     public Player(String name) {
         this.position = Vector2.Zero;
         this.name = name;
+
+        bounds.x = 0;
+        bounds.y = 0;
+        bounds.width = WIDTH * Vars.TILE_SIZE;
+        bounds.height = HEIGHT * Vars.TILE_SIZE;
     }
 
     public Player(String name, Vector2 position) {
         this.position = position;
         this.name = name;
+
+        bounds.x = position.x;
+        bounds.y = position.y;
+        bounds.width = WIDTH * Vars.TILE_SIZE;
+        bounds.height = HEIGHT * Vars.TILE_SIZE;
     }
 
     public Vector2 getPosition() {
@@ -55,6 +68,9 @@ public class Player extends MappableContent {
 
     public void update(float delta) {
         position.add(velocity.scl(delta));
+
+        bounds.x = position.x;
+        bounds.y = position.y;
     }
 
     public Vector2 getVelocity() {
@@ -71,5 +87,29 @@ public class Player extends MappableContent {
 
     public float getSpeed() {
         return speed;
+    }
+
+    public void setSpeed(float speed) {
+        this.speed = speed;
+    }
+
+    public float getJumpHeight() {
+        return jumpHeight;
+    }
+
+    public void setJumpHeight(float jumpHeight) {
+        this.jumpHeight = jumpHeight;
+    }
+
+    public boolean isGrounded() {
+        return grounded;
+    }
+
+    public void setGrounded(boolean grounded) {
+        this.grounded = grounded;
+    }
+
+    public void jump() {
+        velocity.y += jumpHeight;
     }
 }

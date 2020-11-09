@@ -2,6 +2,7 @@ package ru.terraria.type;
 
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector2;
+import ru.terraria.Vars;
 import ru.terraria.ctype.MappableContent;
 
 public class Floor extends MappableContent {

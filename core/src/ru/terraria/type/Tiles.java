@@ -23,7 +23,7 @@ public class Tiles {
     }
 
     public void fill(){
-        for(int i = 0; i < array.length; i++){
+        for (int i = 0; i < array.length; i++){
             array[i] = new Tile(new Vector2(i % width, i / width));
         }
     }

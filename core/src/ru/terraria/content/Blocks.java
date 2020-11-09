@@ -5,7 +5,7 @@ import ru.terraria.type.Block;
 
 public class Blocks implements ContentList {
 
-    public static Block air;
+    public static Block air, dirt;
 
     @Override
     public void load() {
@@ -15,5 +15,13 @@ public class Blocks implements ContentList {
                 setWIDTH(1);
             }
         };
+
+        dirt = new Block("dirt") {
+            {
+                setHEIGHT(1);
+                setWIDTH(1);
+            }
+        };
+
     }
 }

@@ -42,7 +42,7 @@ public class WorldRenderer {
         TextureRegion[][] textureRegions = TextureRegion.split(texture, Vars.TILE_SIZE, Vars.TILE_SIZE);
 
         textures.put("player", textureRegions[0][1]);
-        textures.put("air", textureRegions[0][0]);
+        textures.put("dirt", textureRegions[0][0]);
     }
 
     public void render(float deltaTime) {
@@ -67,8 +67,8 @@ public class WorldRenderer {
         Tile[] arr = world.getTiles().getArray();
 
         for (int i = 0; i < arr.length; i++) {
-            if (arr[i].getBlock() != null) {
-                batch.draw(textures.get("air"),
+            if (arr[i].getBlock() != null && arr[i].getBlock() != Blocks.air) {
+                batch.draw(textures.get(arr[i].getBlock().getName()),
                         arr[i].getPosition().x * Vars.TILE_SIZE,
                         arr[i].getPosition().y * Vars.TILE_SIZE,
                         arr[i].getBlock().getWIDTH() * Vars.TILE_SIZE,
@@ -77,8 +77,8 @@ public class WorldRenderer {
         }
 
         batch.draw(textures.get("player"),
-                world.getPlayer().getPosition().x,
-                world.getPlayer().getPosition().y,
+                world.getPlayer().getPosition().x * Vars.TILE_SIZE,
+                world.getPlayer().getPosition().y * Vars.TILE_SIZE,
                 world.getPlayer().getWIDTH() * Vars.TILE_SIZE,
                 world.getPlayer().getHEIGHT() * Vars.TILE_SIZE);
     }

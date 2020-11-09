@@ -2,6 +2,7 @@ package ru.terraria.type;
 
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector2;
+import ru.terraria.Vars;
 import ru.terraria.ctype.MappableContent;
 
 public class Block extends MappableContent {
@@ -11,7 +12,7 @@ public class Block extends MappableContent {
     private float HEIGHT;
 
     private Vector2 position = new Vector2();
-    private Rectangle bounds;
+    private Rectangle bounds = new Rectangle();
 
     public Block(String name) {
         this.name = name;
@@ -47,5 +48,9 @@ public class Block extends MappableContent {
 
     public void setHEIGHT(float HEIGHT) {
         this.HEIGHT = HEIGHT;
+    }
+
+    public void setPosition(Vector2 position) {
+        this.position = position;
     }
 }

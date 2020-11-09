@@ -19,13 +19,12 @@ public class World {
 
     /* i need this only for test, after i delete this */
     public void createWorld() {
-        player = new Player("player", Vector2.Zero);
+        player = new Player("player", new Vector2(0,1));
 
         for (int i = 0; i < 100; i++) { // just testing world
-            for (int j = 0; j < 100; j++) {
-                tiles.get(j,i).setBlock(Blocks.air);
-                tiles.get(j,i).setPosition(new Vector2(i,j));
-            }
+            if (i == 3 || i == 4) continue;
+            tiles.get(0,i).setBlock(Blocks.dirt);
+            tiles.get(0,i).setPosition(new Vector2(i,0));
         }
     }
 
