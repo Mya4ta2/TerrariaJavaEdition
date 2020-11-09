@@ -56,6 +56,9 @@ public class WorldRenderer {
 
         viewport.apply();
         camera.update();
+        camera.position.set(
+                world.getPlayer().getPosition().x * Vars.TILE_SIZE,
+                world.getPlayer().getPosition().y * Vars.TILE_SIZE, 0);
     }
 
     public void resize(int width, int height) {
