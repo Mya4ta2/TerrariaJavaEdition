@@ -5,7 +5,7 @@ import com.badlogic.gdx.math.Vector2;
 import ru.terraria.Vars;
 import ru.terraria.ctype.MappableContent;
 
-public class Floor extends MappableContent {
+public class Wall extends MappableContent {
     private final String name;
 
     private Vector2 position = new Vector2();
@@ -30,7 +30,7 @@ public class Floor extends MappableContent {
         this.HEIGHT = HEIGHT;
     }
 
-    public Floor(String name) {
+    public Wall(String name) {
         this.name = name;
     }
 
@@ -46,4 +46,7 @@ public class Floor extends MappableContent {
         this.bounds = bounds;
     }
 
+    public String getName() {
+        return name;
+    }
 }

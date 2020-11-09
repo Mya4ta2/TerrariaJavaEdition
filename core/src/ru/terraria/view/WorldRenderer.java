@@ -11,6 +11,7 @@ import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.utils.viewport.ScreenViewport;
 import ru.terraria.Vars;
 import ru.terraria.content.Blocks;
+import ru.terraria.content.Walls;
 import ru.terraria.ctype.MappableContent;
 import ru.terraria.type.Tile;
 import ru.terraria.type.Tiles;
@@ -49,6 +50,7 @@ public class WorldRenderer {
 
         textures.put("player", textureRegions[0][1]);
         textures.put("dirt", textureRegions[0][0]);
+        textures.put("dirtWall", textureRegions[1][0]);
     }
 
     public void render(float deltaTime) {
@@ -76,6 +78,14 @@ public class WorldRenderer {
         Tile[] arr = world.getTiles().getArray();
 
         for (int i = 0; i < arr.length; i++) {
+            if (arr[i].getWall() != null && arr[i].getWall() != Walls.air) {
+                batch.draw(textures.get(arr[i].getWall().getName()),
+                        arr[i].getPosition().x * Vars.TILE_SIZE,
+                        arr[i].getPosition().y * Vars.TILE_SIZE,
+                        arr[i].getWall().getWIDTH() * Vars.TILE_SIZE,
+                        arr[i].getWall().getHEIGHT() * Vars.TILE_SIZE);
+            }
+
             if (arr[i].getBlock() != null && arr[i].getBlock() != Blocks.air) {
                 batch.draw(textures.get(arr[i].getBlock().getName()),
                         arr[i].getPosition().x * Vars.TILE_SIZE,
