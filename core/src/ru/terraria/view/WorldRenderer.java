@@ -8,11 +8,13 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
+import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.utils.viewport.ScreenViewport;
 import ru.terraria.Vars;
 import ru.terraria.content.Blocks;
 import ru.terraria.content.Walls;
 import ru.terraria.ctype.MappableContent;
+import ru.terraria.gameui.SpriteBar;
 import ru.terraria.type.Tile;
 import ru.terraria.type.Tiles;
 import ru.terraria.type.World;
@@ -24,7 +26,12 @@ public class WorldRenderer {
 
     private SpriteBatch batch;
     private OrthographicCamera camera;
+    private OrthographicCamera UICamera;
     private ScreenViewport viewport;
+    private ScreenViewport UIViewport;
+
+    private Stage stage;
+    private SpriteBar healthBar;
 
     private ShapeRenderer renderer;
 
@@ -34,10 +41,18 @@ public class WorldRenderer {
         this.world = world;
 
         camera = new OrthographicCamera(Vars.CAMERA_WIDTH, Vars.CAMERA_HEIGHT);
-        //camera.position.set(1024,100 * 16,0);
+        UICamera = new OrthographicCamera(Vars.CAMERA_WIDTH, Vars.CAMERA_HEIGHT);
         batch = new SpriteBatch();
         batch.setProjectionMatrix(camera.combined);
         viewport = new ScreenViewport(camera);
+        UIViewport = new ScreenViewport(UICamera);
+        stage = new Stage();
+        stage.setViewport(UIViewport);
+
+        healthBar = new SpriteBar(0,100, new Texture("health.png"));
+        healthBar.setScale(1.5f);
+        healthBar.setInverseDraw(true);
+        stage.addActor(healthBar);
 
         renderer = new ShapeRenderer();
 
@@ -62,8 +77,11 @@ public class WorldRenderer {
         drawWorld(batch);
         batch.end();
 
+        stage.act();
+        stage.draw();
+
         //debug
-        drawHitBoxes();
+        //drawHitBoxes();
         //
 
         viewport.apply();
@@ -71,10 +89,17 @@ public class WorldRenderer {
         camera.position.set(
                 world.getPlayer().getPosition().x * Vars.TILE_SIZE,
                 world.getPlayer().getPosition().y * Vars.TILE_SIZE, 0);
+
+        // update UI
+        UICamera.update();
+        UIViewport.apply();
+        healthBar.setValue(10);
     }
 
     public void resize(int width, int height) {
+        healthBar.setPosition(width / 3 + width / 8, height / 3 + height / 8);
         viewport.update(width,height);
+        UIViewport.update(width, height);
     }
 
     public void drawHitBoxes() {

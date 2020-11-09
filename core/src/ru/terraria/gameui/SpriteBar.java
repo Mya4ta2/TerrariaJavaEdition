@@ -9,8 +9,10 @@ public class SpriteBar extends Actor {
     private Texture texture;
     private int max;
     private int min;
+    private boolean inverseDraw;
+    private float scale = 1;
     private int value = 2;
-    private  int spriteSize;
+    private int spriteSize;
 
     public SpriteBar(float min, float max, Texture texture) {
         this.min = (int) min;
@@ -38,8 +40,14 @@ public class SpriteBar extends Actor {
 
         if (value > max) value = max;
 
-        for (int i = 0; i < value; i++) {
-            batch.draw(texture, getX() + i * spriteSize, getY(), spriteSize, spriteSize);
+        if (!inverseDraw) {
+            for (int i = 0; i < value; i++) {
+                batch.draw(texture, getX() + i * spriteSize * scale, getY(), spriteSize * scale, spriteSize * scale);
+            }
+        } else {
+            for (int i = 0; i < value; i++) {
+                batch.draw(texture, getX() - i * spriteSize * scale, getY(), spriteSize * scale, spriteSize * scale);
+            }
         }
     }
 
@@ -57,5 +65,21 @@ public class SpriteBar extends Actor {
 
     public void setValue(int value) {
         this.value = value;
+    }
+
+    public float getScale() {
+        return scale;
+    }
+
+    public void setScale(float scale) {
+        this.scale = scale;
+    }
+
+    public boolean isInverseDraw() {
+        return inverseDraw;
+    }
+
+    public void setInverseDraw(boolean inverseDraw) {
+        this.inverseDraw = inverseDraw;
     }
 }
