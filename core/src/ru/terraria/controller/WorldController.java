@@ -20,6 +20,7 @@ public class WorldController implements InputProcessor {
         processInput();
         checkPlayerGrounded();
         processGravity();
+        processCollisions();
     }
 
     public void processInput() {
@@ -45,6 +46,18 @@ public class WorldController implements InputProcessor {
             world.getPlayer().setGrounded(false);
         } else if (downTile.getBlock() != Blocks.air) {
             world.getPlayer().setGrounded(true);
+        }
+    }
+
+    public void processCollisions() {
+        for (int i = 0; i < world.getTiles().getArray().length; i++) {
+            if (
+                world.getTiles().getArray()[i].getBounds().overlaps(world.getPlayer().getBounds()) &&
+                world.getTiles().getArray()[i].getBlock() != Blocks.air)
+            {
+                System.out.println(world.getTiles().getArray()[i].getBlock().getName());
+                world.getPlayer().getPosition().set(world.getPlayer().getOldPosition());
+            }
         }
     }
 

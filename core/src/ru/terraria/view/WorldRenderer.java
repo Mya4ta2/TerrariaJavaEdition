@@ -62,6 +62,10 @@ public class WorldRenderer {
         drawWorld(batch);
         batch.end();
 
+        //debug
+        drawHitBoxes();
+        //
+
         viewport.apply();
         camera.update();
         camera.position.set(
@@ -71,6 +75,29 @@ public class WorldRenderer {
 
     public void resize(int width, int height) {
         viewport.update(width,height);
+    }
+
+    public void drawHitBoxes() {
+        renderer.setProjectionMatrix(camera.combined);
+        renderer.begin(ShapeRenderer.ShapeType.Line);
+        for (int i = 0; i < world.getTiles().getArray().length; i++) {
+            if (world.getTiles().getArray()[i].getBlock() != Blocks.air) {
+                renderer.rect(
+                        world.getTiles().getArray()[i].getPosition().x * Vars.TILE_SIZE,
+                        world.getTiles().getArray()[i].getPosition().y * Vars.TILE_SIZE,
+                        world.getTiles().getArray()[i].getBounds().width * Vars.TILE_SIZE,
+                        world.getTiles().getArray()[i].getBounds().height * Vars.TILE_SIZE);
+            }
+        }
+
+        renderer.rect(
+                world.getPlayer().getPosition().x * Vars.TILE_SIZE,
+                world.getPlayer().getPosition().y * Vars.TILE_SIZE,
+                world.getPlayer().getBounds().width * Vars.TILE_SIZE,
+                world.getPlayer().getBounds().height * Vars.TILE_SIZE);
+
+        renderer.end();
+        renderer.setColor(Color.RED);
     }
 
     public void drawWorld(SpriteBatch batch) {

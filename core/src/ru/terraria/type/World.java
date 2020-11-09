@@ -24,12 +24,9 @@ public class World {
 
         for (int i = 0; i < 100; i++) {
             if (i >= 15 && i <= 20) continue;
-            tiles.get(20,i).setBlock(Blocks.dirt);
-        }
-
-        for (int i = 0; i < 100; i++) {
-            if (i >= 15 && i <= 20) continue;
-            tiles.get(19,i).setBlock(Blocks.dirt);
+            for (int j = 0; j < 21; j++) {
+                tiles.get(j,i).setBlock(Blocks.dirt);
+            }
         }
 
         for (int i = 0; i < 100; i++) {

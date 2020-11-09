@@ -9,7 +9,7 @@ public class Wall extends MappableContent {
     private final String name;
 
     private Vector2 position = new Vector2();
-    private Rectangle bounds;
+    private Rectangle bounds = new Rectangle();
 
     private float WIDTH;
     private float HEIGHT;
@@ -32,6 +32,8 @@ public class Wall extends MappableContent {
 
     public Wall(String name) {
         this.name = name;
+        bounds.width = WIDTH;
+        bounds.height = HEIGHT;
     }
 
     public Vector2 getPosition() {

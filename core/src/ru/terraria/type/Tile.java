@@ -11,10 +11,14 @@ public class Tile {
     private Block block = Blocks.air;
     private Wall wall = Walls.air;
 
+    private final int WIDTH = 1, HEIGHT = 1;
+
     public Tile(Vector2 position) {
         this.position = position;
         bounds.x = position.x;
         bounds.y = position.y;
+        bounds.height = HEIGHT;
+        bounds.width = WIDTH;
     }
 
     public Tile() {

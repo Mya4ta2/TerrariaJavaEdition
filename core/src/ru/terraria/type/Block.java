@@ -16,6 +16,8 @@ public class Block extends MappableContent {
 
     public Block(String name) {
         this.name = name;
+        bounds.width = WIDTH;
+        bounds.height = HEIGHT;
     }
 
     public Vector2 getPosition() {
