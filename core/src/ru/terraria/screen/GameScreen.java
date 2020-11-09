@@ -1,6 +1,7 @@
 package ru.terraria.screen;
 
 import com.badlogic.gdx.Game;
+import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
 import ru.terraria.controller.WorldController;
 import ru.terraria.type.World;
@@ -22,11 +23,14 @@ public class GameScreen implements Screen {
         world = new World(100, 100); // test world
         controller = new WorldController(world);
         renderer = new WorldRenderer(world);
+
+        Gdx.input.setInputProcessor(controller);
     }
 
     @Override
     public void render(float delta) {
         renderer.render(delta);
+        controller.update(delta);
     }
 
     @Override

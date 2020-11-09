@@ -29,7 +29,7 @@ public class WorldRenderer {
         this.world = world;
 
         camera = new OrthographicCamera(Vars.CAMERA_WIDTH, Vars.CAMERA_HEIGHT);
-        camera.position.set(1024,100 * 16,0);
+        //camera.position.set(1024,100 * 16,0);
         batch = new SpriteBatch();
         batch.setProjectionMatrix(camera.combined);
         viewport = new ScreenViewport(camera);
@@ -41,7 +41,7 @@ public class WorldRenderer {
         Texture texture = new Texture("atlas.png");
         TextureRegion[][] textureRegions = TextureRegion.split(texture, Vars.TILE_SIZE, Vars.TILE_SIZE);
 
-        //textures.put("player", textureRegions[0][0]);
+        textures.put("player", textureRegions[0][1]);
         textures.put("air", textureRegions[0][0]);
     }
 
@@ -75,5 +75,11 @@ public class WorldRenderer {
                         arr[i].getBlock().getHEIGHT() * Vars.TILE_SIZE);
             }
         }
+
+        batch.draw(textures.get("player"),
+                world.getPlayer().getPosition().x,
+                world.getPlayer().getPosition().y,
+                world.getPlayer().getWIDTH() * Vars.TILE_SIZE,
+                world.getPlayer().getHEIGHT() * Vars.TILE_SIZE);
     }
 }

@@ -6,12 +6,14 @@ import ru.terraria.ctype.MappableContent;
 
 public class Player extends MappableContent {
     private final String name;
+    private float WIDTH = 1; // need merge to Content/unit
+    private float HEIGHT = 2;
 
     private Vector2 position = new Vector2();
+    private Vector2 velocity = new Vector2();
     private Rectangle bounds;
 
-    private float WIDTH;
-    private float HEIGHT;
+    private float speed = 65;
 
     public Player(String name) {
         this.position = Vector2.Zero;
@@ -49,5 +51,25 @@ public class Player extends MappableContent {
 
     public void setHEIGHT(float HEIGHT) {
         this.HEIGHT = HEIGHT;
+    }
+
+    public void update(float delta) {
+        position.add(velocity.scl(delta));
+    }
+
+    public Vector2 getVelocity() {
+        return velocity;
+    }
+
+    public void setVelocity(Vector2 velocity) {
+        this.velocity = velocity;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public float getSpeed() {
+        return speed;
     }
 }
