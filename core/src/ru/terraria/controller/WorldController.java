@@ -8,4 +8,12 @@ public class WorldController {
     public WorldController(World world) {
         this.world = world;
     }
+
+    public void update() {
+
+    }
+
+    public void processInput() {
+
+    }
 }

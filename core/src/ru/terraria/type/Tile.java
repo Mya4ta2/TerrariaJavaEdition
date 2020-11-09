@@ -8,7 +8,7 @@ public class Tile {
     private Vector2 position = new Vector2();
     private Rectangle bounds = new Rectangle();
     private Block block;
-    private Floor floor;
+    private Floor wall;
 
     public Tile(Vector2 position) {
         this.position = position;
@@ -40,11 +40,11 @@ public class Tile {
     }
 
     public Floor getFloor() {
-        return floor;
+        return wall;
     }
 
     public void setFloor(Floor floor) {
-        this.floor = floor;
+        this.wall = floor;
         floor.getPosition().set(getPosition());
     }
 
@@ -54,8 +54,8 @@ public class Tile {
             block.getPosition().set(position);
         }
 
-        if (floor != null) {
-            floor.getPosition().set(position);
+        if (wall != null) {
+            wall.getPosition().set(position);
         }
     }
 }
