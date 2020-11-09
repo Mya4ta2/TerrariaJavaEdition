@@ -53,13 +53,6 @@ public class Tile {
 
     public void setPosition(Vector2 position) {
         this.position = position;
-        if (block != null) {
-            block.getPosition().set(position);
-        }
-
-        if (wall != null) {
-            wall.getPosition().set(position);
-        }
         bounds.x = position.x;
         bounds.y = position.y;
     }

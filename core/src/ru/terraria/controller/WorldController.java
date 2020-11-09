@@ -19,6 +19,7 @@ public class WorldController implements InputProcessor {
 
         processInput();
         checkPlayerGrounded();
+        processGravity();
     }
 
     public void processInput() {
@@ -37,15 +38,19 @@ public class WorldController implements InputProcessor {
 
     public void checkPlayerGrounded() {
         Tile downTile = world.getTiles().get(
-                (int) world.getPlayer().getPosition().x,
-                (int) world.getPlayer().getPosition().y - 1);
+                (int) world.getPlayer().getPosition().y,
+                (int) world.getPlayer().getPosition().x - 1);
 
         if (downTile.getBlock() == Blocks.air) {
             world.getPlayer().setGrounded(false);
-        }
-
-        if (downTile.getBlock() != Blocks.air) {
+        } else if (downTile.getBlock() != Blocks.air) {
             world.getPlayer().setGrounded(true);
+        }
+    }
+
+    public void processGravity() {
+        if (!world.getPlayer().isGrounded()) {
+            world.getPlayer().getPosition().y -= 0.5f;
         }
     }
 

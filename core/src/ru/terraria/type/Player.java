@@ -15,7 +15,7 @@ public class Player extends MappableContent {
     private Rectangle bounds = new Rectangle();
 
     private float speed = 8;
-    private float jumpHeight = 24;
+    private float jumpHeight = 256;
     private boolean grounded;
 
     public Player(String name) {

@@ -1,11 +1,13 @@
 package ru.terraria.view;
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
+import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.utils.viewport.ScreenViewport;
 import ru.terraria.Vars;
 import ru.terraria.content.Blocks;
@@ -23,6 +25,8 @@ public class WorldRenderer {
     private OrthographicCamera camera;
     private ScreenViewport viewport;
 
+    private ShapeRenderer renderer;
+
     private HashMap<String, TextureRegion> textures = new HashMap<>();
 
     public WorldRenderer(World world) {
@@ -33,6 +37,8 @@ public class WorldRenderer {
         batch = new SpriteBatch();
         batch.setProjectionMatrix(camera.combined);
         viewport = new ScreenViewport(camera);
+
+        renderer = new ShapeRenderer();
 
         loadTextures();
     }
