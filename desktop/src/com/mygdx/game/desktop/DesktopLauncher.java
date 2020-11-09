@@ -1,5 +1,6 @@
 package com.mygdx.game.desktop;
 
+import com.badlogic.gdx.Files;
 import com.badlogic.gdx.backends.lwjgl.LwjglApplication;
 import com.badlogic.gdx.backends.lwjgl.LwjglApplicationConfiguration;
 import ru.terraria.MainActivity;
@@ -12,6 +13,8 @@ public class DesktopLauncher {
 			{
 				config.width = 1020;
 				config.height = 720;
+				config.title = "Terraria Java Edition";
+				config.addIcon("icon.png", Files.FileType.Internal);
 			}
 		};
 	}
