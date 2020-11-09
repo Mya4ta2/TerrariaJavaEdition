@@ -12,10 +12,12 @@ public class Player extends MappableContent {
 
     private Vector2 position = new Vector2();
     private Vector2 velocity = new Vector2();
+    private Vector2 jumpVelocity = new Vector2();
     private Rectangle bounds = new Rectangle();
 
     private float speed = 8;
-    private float jumpHeight = 256;
+    private float jumpHeight = 1000;
+    private float jumpNum;
     private boolean grounded;
 
     public Player(String name) {
@@ -69,6 +71,11 @@ public class Player extends MappableContent {
     public void update(float delta) {
         position.add(velocity.scl(delta));
 
+        if (jumpNum > 0) {
+            jumpNum -= jumpHeight/24;
+            velocity.y += jumpHeight/24;
+        }
+
         bounds.x = position.x;
         bounds.y = position.y;
     }
@@ -110,6 +117,6 @@ public class Player extends MappableContent {
     }
 
     public void jump() {
-        velocity.y += jumpHeight;
+        jumpNum += jumpHeight;
     }
 }
