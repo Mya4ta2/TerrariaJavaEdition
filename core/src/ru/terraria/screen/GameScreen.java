@@ -14,6 +14,8 @@ public class GameScreen implements Screen {
     private WorldController controller;
     private WorldRenderer renderer;
 
+    public boolean inventory;
+
     public GameScreen(Game game) {
         this.game = game;
     }
@@ -21,8 +23,8 @@ public class GameScreen implements Screen {
     @Override
     public void show() {
         world = new World(500, 500); // test world
-        controller = new WorldController(world);
-        renderer = new WorldRenderer(world);
+        controller = new WorldController(world, this);
+        renderer = new WorldRenderer(world, this);
 
         Gdx.input.setInputProcessor(controller);
     }

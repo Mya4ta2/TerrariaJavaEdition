@@ -3,15 +3,19 @@ package ru.terraria.controller;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.InputProcessor;
+import com.badlogic.gdx.Screen;
 import ru.terraria.content.Blocks;
+import ru.terraria.screen.GameScreen;
 import ru.terraria.type.Tile;
 import ru.terraria.type.World;
 
 public class WorldController implements InputProcessor {
     private World world;
+    private GameScreen screen;
 
-    public WorldController(World world) {
+    public WorldController(World world, GameScreen screen) {
         this.world = world;
+        this.screen = screen;
     }
 
     public void update(float delta) {
@@ -34,6 +38,10 @@ public class WorldController implements InputProcessor {
 
         if (Gdx.input.isKeyJustPressed(Input.Keys.SPACE) && world.getPlayer().isGrounded()) {
             world.getPlayer().jump();
+        }
+
+        if (Gdx.input.isKeyJustPressed(Input.Keys.ESCAPE)) {
+            screen.inventory = !screen.inventory;
         }
     }
 

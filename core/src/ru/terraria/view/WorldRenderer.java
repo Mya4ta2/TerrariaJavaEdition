@@ -1,6 +1,7 @@
 package ru.terraria.view;
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
@@ -14,13 +15,12 @@ import ru.terraria.Vars;
 import ru.terraria.content.Blocks;
 import ru.terraria.content.Items;
 import ru.terraria.content.Walls;
-import ru.terraria.ctype.MappableContent;
-import ru.terraria.gameui.ItemSlot;
+import ru.terraria.gameui.ItemPanel;
 import ru.terraria.gameui.ItemSlots;
 import ru.terraria.gameui.SpriteBar;
+import ru.terraria.screen.GameScreen;
 import ru.terraria.type.ItemStack;
 import ru.terraria.type.Tile;
-import ru.terraria.type.Tiles;
 import ru.terraria.type.World;
 
 import java.util.Arrays;
@@ -28,6 +28,7 @@ import java.util.HashMap;
 
 public class WorldRenderer {
     private World world;
+    private GameScreen screen;
 
     private SpriteBatch batch;
     private OrthographicCamera camera;
@@ -37,14 +38,16 @@ public class WorldRenderer {
 
     private Stage stage;
     private SpriteBar healthBar;
-    private ItemSlots slot;
+    private ItemPanel inventory;
+    private ItemSlots fastSlotBar;
 
     private ShapeRenderer renderer;
 
     private HashMap<String, TextureRegion> textures = new HashMap<>();
 
-    public WorldRenderer(World world) {
+    public WorldRenderer(World world, GameScreen screen) {
         this.world = world;
+        this.screen = screen;
 
         camera = new OrthographicCamera(Vars.CAMERA_WIDTH, Vars.CAMERA_HEIGHT);
         UICamera = new OrthographicCamera(Vars.CAMERA_WIDTH, Vars.CAMERA_HEIGHT);
@@ -60,12 +63,17 @@ public class WorldRenderer {
         healthBar.setInverseDraw(true);
         stage.addActor(healthBar);
 
-        slot = new ItemSlots(10, new Texture("slot.png"));
+        inventory = new ItemPanel(10, 6, new Texture("slot.png"));
+        fastSlotBar = new ItemSlots(10, new Texture("slot.png"));
         ItemStack stack = new ItemStack();
         Arrays.fill(stack.getItems(), Items.test);
         stack.setItemType(Items.test);
-        slot.getSlots()[0].setItemStack(stack);
-        stage.addActor(slot);
+        inventory.getSlots()[0][0].setItemStack(stack);
+        inventory.getSlots()[1][0].setItemStack(stack);
+        inventory.getSlots()[2][0].setItemStack(stack);
+        fastSlotBar.getSlots()[0].setItemStack(stack);
+        stage.addActor(inventory);
+        stage.addActor(fastSlotBar);
 
         renderer = new ShapeRenderer();
 
@@ -103,6 +111,8 @@ public class WorldRenderer {
         //drawHitBoxes();
         //
 
+        inventory.setVisible(screen.inventory);
+
         viewport.apply();
         camera.update();
         camera.position.set(
@@ -117,7 +127,8 @@ public class WorldRenderer {
 
     public void resize(int width, int height) {
         healthBar.setPosition(width / 3f + width / 8f, height / 3f + height / 8f);
-        slot.setPosition(-width / 2f, height / 3f + height / 9f - 10);
+        fastSlotBar.setPosition(-width / 2f + 10, height / 3f + height / 9f - 10);
+        inventory.setPosition(-width / 2f + 10, height / 3f + height / 22f - 10);
         viewport.update(width,height);
         UIViewport.update(width, height);
     }

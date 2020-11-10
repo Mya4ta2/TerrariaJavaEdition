@@ -3,42 +3,51 @@ package ru.terraria.gameui;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.scenes.scene2d.Actor;
-import ru.terraria.Vars;
 
-public class ItemSlots extends Actor {
-    private final int size;
+import java.util.Arrays;
+
+public class ItemPanel extends Actor {
+    private final int width;
+    private final int height;
     private final Texture slotTexture;
 
-    private ItemSlot[] slots;
+    private ItemSlot[][] slots;
 
-    public ItemSlots(int size, Texture slotTexture) {
-        this.size = size;
+    public ItemPanel(int width, int height, Texture slotTexture) {
+        this.width = width;
+        this.height = height;
         this.slotTexture = slotTexture;
 
-        slots = new ItemSlot[size];
+        slots = new ItemSlot[width][height];
 
         fill();
-        setSlotsPosition();
         setDefaultPos();
         setDefaultSize();
+        setSlotsPosition();
     }
 
     @Override
     public void draw(Batch batch, float parentAlpha) {
-        for (int i = 0; i < slots.length; i++) {
-            slots[i].draw(batch,parentAlpha);
+        for (int i = 0; i < width; i++) {
+            for (int j = 0; j < height; j++) {
+                slots[i][j].draw(batch,parentAlpha);
+            }
         }
     }
 
     public void fill() {
-        for (int i = 0; i < slots.length; i++) {
-            slots[i] = new ItemSlot(slotTexture);
+        for (int i = 0; i < height; i++) {
+            for (int j = 0; j < width; j++) {
+                slots[j][i] = new ItemSlot(slotTexture);
+            }
         }
     }
 
     public void setSlotsPosition() {
-        for (int i = 0; i < slots.length; i++) {
-            slots[i].setPosition(getX() + i * (slots[i].getWidth() + 4) ,getY());
+        for (int i = 0; i < height; i++) {
+            for (int j = 0; j < width; j++) {
+                slots[j][i].setPosition(getX() + j * (slots[j][i].getWidth() + 4) ,getY() - i * (slots[j][i].getHeight() + 4));
+            }
         }
     }
 
@@ -89,14 +98,14 @@ public class ItemSlots extends Actor {
     }
 
     public int getSize() {
-        return size;
+        return width * height;
     }
 
-    public ItemSlot[] getSlots() {
+    public ItemSlot[][] getSlots() {
         return slots;
     }
 
-    public void setSlots(ItemSlot[] slots) {
+    public void setSlots(ItemSlot[][] slots) {
         this.slots = slots;
     }
 }
