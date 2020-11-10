@@ -12,12 +12,13 @@ import ru.terraria.type.ItemStack;
 public class ItemSlot extends Actor {
     private final Texture slot;
 
-    private Item item = Items.air;
     private ItemStack items;
     private BitmapFont font;
 
     public ItemSlot(Texture slot) {
         this.slot = slot;
+        items = new ItemStack();
+        font = new BitmapFont();
 
         setDefaultPos();
         setDefaultSize();
@@ -53,7 +54,7 @@ public class ItemSlot extends Actor {
     }
 
     public void setItem(Item item) {
-        this.item = item;
+        this.items.setItemType(item);
     }
 
     public ItemStack getItemStack() {
