@@ -20,7 +20,7 @@ public class GameScreen implements Screen {
 
     @Override
     public void show() {
-        world = new World(100, 100); // test world
+        world = new World(500, 500); // test world
         controller = new WorldController(world);
         renderer = new WorldRenderer(world);
 

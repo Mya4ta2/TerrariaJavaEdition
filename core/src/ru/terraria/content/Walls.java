@@ -5,7 +5,7 @@ import ru.terraria.type.Block;
 import ru.terraria.type.Wall;
 
 public class Walls implements ContentList {
-    public static Wall air, dirt;
+    public static Wall air, dirt, stone;
 
     @Override
     public void load() {
@@ -16,6 +16,12 @@ public class Walls implements ContentList {
             }
         };
 
+        stone = new Wall("stoneWall") {
+            {
+                setHEIGHT(1);
+                setWIDTH(1);
+            }
+        };
 
         dirt = new Wall("dirtWall") {
             {

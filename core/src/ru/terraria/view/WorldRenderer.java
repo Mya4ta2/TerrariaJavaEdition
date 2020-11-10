@@ -63,9 +63,12 @@ public class WorldRenderer {
         Texture texture = new Texture("atlas.png");
         TextureRegion[][] textureRegions = TextureRegion.split(texture, Vars.TILE_SIZE, Vars.TILE_SIZE);
 
-        textures.put("player", textureRegions[0][1]);
         textures.put("dirt", textureRegions[0][0]);
+        textures.put("grass", textureRegions[0][1]);
         textures.put("dirtWall", textureRegions[1][0]);
+        textures.put("player", textureRegions[1][1]);
+        textures.put("stone", textureRegions[0][2]);
+        textures.put("stoneWall", textureRegions[1][2]);
     }
 
     public void render(float deltaTime) {
