@@ -69,6 +69,7 @@ public class WorldRenderer {
         textures.put("player", textureRegions[1][1]);
         textures.put("stone", textureRegions[0][2]);
         textures.put("stoneWall", textureRegions[1][2]);
+        textures.put("ironOre", textureRegions[0][3]);
     }
 
     public void render(float deltaTime) {

@@ -4,16 +4,22 @@ import com.badlogic.gdx.math.Vector2;
 import ru.terraria.content.Blocks;
 import ru.terraria.content.Walls;
 
+import java.util.Random;
+
 public class World {
     final int width, height;
 
     private Tiles tiles;
     private Player player;
 
+    private Random random; // for test, in after updates its has been deleted
+
     public World(int width, int height) {
         tiles = new Tiles(width, height);
         this.width = width;
         this.height = height;
+
+        random = new Random();
 
         createWorld();
     }
@@ -52,6 +58,25 @@ public class World {
                 tiles.get(j, i).setWall(Walls.stone);
             }
         }
+
+        //spawn ore
+        int s = 0;
+
+        for (int i = 0; i < height; i++) {
+
+            int y = i + random(0, 10);
+
+            for (int j = 0; j < width; j++) {
+                if (j >= width/2 - 20 && j <= width/2 - 10) continue;
+                if (y < height/2 - 10) {
+                    s++;
+                    if (s >= Blocks.ironOre.getSpawnRate()) {
+                        s = 0;
+                        tiles.get(y ,j).setBlock(Blocks.ironOre);
+                    };
+                }
+            }
+        }
     }
 
     public Tiles getTiles() {
@@ -72,5 +97,9 @@ public class World {
 
     public int getHeight() {
         return height;
+    }
+
+    public int random(int min, int max) {
+        return (int) ((Math.random() * ((max - min) + 1)) + min);
     }
 }
