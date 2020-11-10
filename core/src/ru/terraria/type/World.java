@@ -29,7 +29,6 @@ public class World {
         player = new Player("player", new Vector2(width/2,height/2 + 1));
 
         for (int i = 0; i < width; i++) {
-            if (i >= width/2 - 20 && i <= width/2 - 10) continue;
             for (int j = 0; j < height/2; j++) {
                 tiles.get(j,i).setBlock(Blocks.dirt);
             }
@@ -42,12 +41,10 @@ public class World {
         }
 
         for (int i = 0; i < width; i++) {
-            if (i >= width/2 - 20 && i <= width/2 - 10) continue;
             tiles.get(width/2, i).setBlock(Blocks.grass);
         }
 
         for (int i = 0; i < width; i++) {
-            if (i >= width/2 - 20 && i <= width/2 - 10) continue;
             for (int j = 0; j < height/2 - 10; j++) {
                 tiles.get(j, i).setBlock(Blocks.stone);
             }
@@ -67,14 +64,22 @@ public class World {
             int y = i + random(0, 10);
 
             for (int j = 0; j < width; j++) {
-                if (j >= width/2 - 20 && j <= width/2 - 10) continue;
-                if (y < height/2 - 10) {
+
+                int x = j + random(0, 10);
+                if (y < height/2 - 10 && x < width) {
                     s++;
                     if (s >= Blocks.ironOre.getSpawnRate()) {
                         s = 0;
-                        tiles.get(y ,j).setBlock(Blocks.ironOre);
+                        tiles.get(y , x).setBlock(Blocks.ironOre);
                     };
                 }
+            }
+        }
+
+        //make hole
+        for (int i = width/2 - 20; i <= width/2 - 10; i++) {
+            for (int j = 0; j < height; j++) {
+                tiles.get(j,i).setBlock(Blocks.air);
             }
         }
     }

@@ -44,7 +44,7 @@ public class Blocks implements ContentList {
             {
                 setWIDTH(1);
                 setHEIGHT(1);
-                setSpawnRate(100);
+                setSpawnRate(200);
             }
         };
     }
