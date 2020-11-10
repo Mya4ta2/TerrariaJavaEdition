@@ -14,6 +14,8 @@ import ru.terraria.Vars;
 import ru.terraria.content.Blocks;
 import ru.terraria.content.Walls;
 import ru.terraria.ctype.MappableContent;
+import ru.terraria.gameui.ItemSlot;
+import ru.terraria.gameui.ItemSlots;
 import ru.terraria.gameui.SpriteBar;
 import ru.terraria.type.Tile;
 import ru.terraria.type.Tiles;
@@ -32,6 +34,7 @@ public class WorldRenderer {
 
     private Stage stage;
     private SpriteBar healthBar;
+    private ItemSlots slot;
 
     private ShapeRenderer renderer;
 
@@ -53,6 +56,9 @@ public class WorldRenderer {
         healthBar.setScale(1.5f);
         healthBar.setInverseDraw(true);
         stage.addActor(healthBar);
+
+        slot = new ItemSlots(10, new Texture("slot.png"));
+        stage.addActor(slot);
 
         renderer = new ShapeRenderer();
 
@@ -101,7 +107,8 @@ public class WorldRenderer {
     }
 
     public void resize(int width, int height) {
-        healthBar.setPosition(width / 3 + width / 8, height / 3 + height / 8);
+        healthBar.setPosition(width / 3f + width / 8f, height / 3f + height / 8f);
+        slot.setPosition(-width / 2f, height / 3f + height / 9f);
         viewport.update(width,height);
         UIViewport.update(width, height);
     }
