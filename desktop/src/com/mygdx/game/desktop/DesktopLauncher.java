@@ -11,7 +11,7 @@ public class DesktopLauncher {
 		final LwjglApplicationConfiguration config = new LwjglApplicationConfiguration();
 		new LwjglApplication(new MainActivity(), config){
 			{
-				config.width = 1020;
+				config.width = 1250;
 				config.height = 720;
 				config.title = "Terraria Java Edition";
 				config.addIcon("icon.png", Files.FileType.Internal);

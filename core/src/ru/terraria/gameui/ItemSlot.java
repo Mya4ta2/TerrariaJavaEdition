@@ -2,15 +2,19 @@ package ru.terraria.gameui;
 
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Batch;
+import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import ru.terraria.content.Items;
 import ru.terraria.type.Item;
+import ru.terraria.type.ItemStack;
 
 public class ItemSlot extends Actor {
     private final Texture slot;
 
     private Item item = Items.air;
+    private ItemStack items;
+    private BitmapFont font;
 
     public ItemSlot(Texture slot) {
         this.slot = slot;
@@ -33,20 +37,30 @@ public class ItemSlot extends Actor {
     public void draw(Batch batch, float parentAlpha) {
         batch.draw(slot,getX(),getY(), getWidth(), getHeight());
 
-        if (item != Items.air) {
-            batch.draw(item.getTexture(),
-                    getX() + item.getTexture().getRegionWidth() / 2f,
-                    getY() + item.getTexture().getRegionHeight() / 2f,
-                    getWidth() - item.getTexture().getRegionWidth(),
-                    getHeight() -item.getTexture().getRegionHeight());
+        if (items.getItemType() != Items.air) {
+            batch.draw(items.getItemType().getTexture(),
+                    getX() + items.getItemType().getTexture().getRegionWidth() / 2f,
+                    getY() + items.getItemType().getTexture().getRegionHeight() / 2f,
+                    getWidth() -items.getItemType().getTexture().getRegionWidth(),
+                    getHeight() -items.getItemType().getTexture().getRegionHeight());
+
+            font.draw(batch,String.valueOf(items.getItemsContains()), getX() + 8, getY() + 16);
         }
     }
 
     public Item getItem() {
-        return item;
+        return items.getItemType();
     }
 
     public void setItem(Item item) {
         this.item = item;
+    }
+
+    public ItemStack getItemStack() {
+        return items;
+    }
+
+    public void setItemStack(ItemStack items) {
+        this.items = items;
     }
 }

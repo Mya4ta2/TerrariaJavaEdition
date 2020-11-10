@@ -18,10 +18,12 @@ import ru.terraria.ctype.MappableContent;
 import ru.terraria.gameui.ItemSlot;
 import ru.terraria.gameui.ItemSlots;
 import ru.terraria.gameui.SpriteBar;
+import ru.terraria.type.ItemStack;
 import ru.terraria.type.Tile;
 import ru.terraria.type.Tiles;
 import ru.terraria.type.World;
 
+import java.util.Arrays;
 import java.util.HashMap;
 
 public class WorldRenderer {
@@ -59,9 +61,10 @@ public class WorldRenderer {
         stage.addActor(healthBar);
 
         slot = new ItemSlots(10, new Texture("slot.png"));
-        for (int i = 0; i < slot.getSlots().length; i++) {
-            slot.getSlots()[i].setItem(Items.test);
-        }
+        ItemStack stack = new ItemStack();
+        Arrays.fill(stack.getItems(), Items.test);
+        stack.setItemType(Items.test);
+        slot.getSlots()[0].setItemStack(stack);
         stage.addActor(slot);
 
         renderer = new ShapeRenderer();
