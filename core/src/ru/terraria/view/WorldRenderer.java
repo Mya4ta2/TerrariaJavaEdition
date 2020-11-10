@@ -12,6 +12,7 @@ import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.utils.viewport.ScreenViewport;
 import ru.terraria.Vars;
 import ru.terraria.content.Blocks;
+import ru.terraria.content.Items;
 import ru.terraria.content.Walls;
 import ru.terraria.ctype.MappableContent;
 import ru.terraria.gameui.ItemSlot;
@@ -58,6 +59,9 @@ public class WorldRenderer {
         stage.addActor(healthBar);
 
         slot = new ItemSlots(10, new Texture("slot.png"));
+        for (int i = 0; i < slot.getSlots().length; i++) {
+            slot.getSlots()[i].setItem(Items.test);
+        }
         stage.addActor(slot);
 
         renderer = new ShapeRenderer();
@@ -76,6 +80,8 @@ public class WorldRenderer {
         textures.put("stone", textureRegions[0][2]);
         textures.put("stoneWall", textureRegions[1][2]);
         textures.put("ironOre", textureRegions[0][3]);
+
+        Items.test.setTexture(textures.get(Items.test.getName()));
     }
 
     public void render(float deltaTime) {
@@ -108,7 +114,7 @@ public class WorldRenderer {
 
     public void resize(int width, int height) {
         healthBar.setPosition(width / 3f + width / 8f, height / 3f + height / 8f);
-        slot.setPosition(-width / 2f, height / 3f + height / 9f);
+        slot.setPosition(-width / 2f, height / 3f + height / 9f - 10);
         viewport.update(width,height);
         UIViewport.update(width, height);
     }

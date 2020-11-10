@@ -38,7 +38,7 @@ public class ItemSlots extends Actor {
 
     public void setSlotsPosition() {
         for (int i = 0; i < slots.length; i++) {
-            slots[i].setPosition(getX() + i * slotTexture.getWidth() + 5 ,getY());
+            slots[i].setPosition(getX() + i * slots[i].getWidth() + 5 ,getY());
         }
     }
 
