@@ -69,10 +69,12 @@ public class WorldRenderer {
         fastSlotBar = new ItemSlots(10, new Texture("slot.png"));
         ItemStack stack = new ItemStack();
         Arrays.fill(stack.getItems(), Items.test);
+        stack.setItemType(Items.test);
         inventory.getSlots()[0][0].setItemStack(stack);
         inventory.getSlots()[1][0].setItemStack(stack);
         inventory.getSlots()[2][0].setItemStack(stack);
         fastSlotBar.getSlots()[0].setItemStack(stack);
+
         stage.addActor(inventory);
         stage.addActor(fastSlotBar);
 

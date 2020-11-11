@@ -45,8 +45,8 @@ public class ItemSlot extends Actor {
             batch.draw(items.getItemType().getTexture(),
                     getX() + items.getItemType().getTexture().getRegionWidth() / 2f,
                     getY() + items.getItemType().getTexture().getRegionHeight() / 2f,
-                    getWidth() -items.getItemType().getTexture().getRegionWidth(),
-                    getHeight() -items.getItemType().getTexture().getRegionHeight());
+                    getWidth() - items.getItemType().getTexture().getRegionWidth(),
+                    getHeight() - items.getItemType().getTexture().getRegionHeight());
 
             font.draw(batch,String.valueOf(items.getItemsContains()), getX() + 8, getY() + 16);
         }

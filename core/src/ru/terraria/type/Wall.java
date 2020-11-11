@@ -6,6 +6,8 @@ import com.badlogic.gdx.math.Vector2;
 import ru.terraria.Vars;
 import ru.terraria.ctype.MappableContent;
 
+import java.util.Arrays;
+
 public class Wall extends MappableContent {
     private final String name;
 
@@ -38,6 +40,8 @@ public class Wall extends MappableContent {
         this.name = name;
         bounds.width = WIDTH;
         bounds.height = HEIGHT;
+
+        Arrays.fill(texture, new TextureRegion(Vars.ERROR_TEXTURE));
     }
 
     public Vector2 getPosition() {
