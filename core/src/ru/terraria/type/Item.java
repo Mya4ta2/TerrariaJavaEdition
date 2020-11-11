@@ -7,7 +7,7 @@ import org.w3c.dom.Text;
 public class Item {
     private final String name;
 
-    private TextureRegion texture;
+    private TextureRegion texture = new TextureRegion();
 
     public Item(String name) {
         this.name = name;

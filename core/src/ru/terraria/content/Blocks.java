@@ -10,6 +10,7 @@ public class Blocks implements ContentList {
     //ore
     public static Ore ironOre;
 
+
     @Override
     public void load() {
         air = new Block("air") {

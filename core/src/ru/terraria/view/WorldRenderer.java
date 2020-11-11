@@ -2,6 +2,7 @@ package ru.terraria.view;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
+import com.badlogic.gdx.assets.AssetManager;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
@@ -25,6 +26,7 @@ import ru.terraria.type.World;
 
 import java.util.Arrays;
 import java.util.HashMap;
+import java.util.Map;
 
 public class WorldRenderer {
     private World world;
@@ -43,7 +45,7 @@ public class WorldRenderer {
 
     private ShapeRenderer renderer;
 
-    private HashMap<String, TextureRegion> textures = new HashMap<>();
+    private TextureRegion playerTexture = TextureRegion.split(new Texture("atlas.png"), Vars.TILE_SIZE, Vars.TILE_SIZE)[1][2];
 
     public WorldRenderer(World world, GameScreen screen) {
         this.world = world;
@@ -67,7 +69,6 @@ public class WorldRenderer {
         fastSlotBar = new ItemSlots(10, new Texture("slot.png"));
         ItemStack stack = new ItemStack();
         Arrays.fill(stack.getItems(), Items.test);
-        stack.setItemType(Items.test);
         inventory.getSlots()[0][0].setItemStack(stack);
         inventory.getSlots()[1][0].setItemStack(stack);
         inventory.getSlots()[2][0].setItemStack(stack);
@@ -76,23 +77,6 @@ public class WorldRenderer {
         stage.addActor(fastSlotBar);
 
         renderer = new ShapeRenderer();
-
-        loadTextures();
-    }
-
-    public void loadTextures() {
-        Texture texture = new Texture("atlas.png");
-        TextureRegion[][] textureRegions = TextureRegion.split(texture, Vars.TILE_SIZE, Vars.TILE_SIZE);
-
-        textures.put("dirt", textureRegions[0][0]);
-        textures.put("grass", textureRegions[0][1]);
-        textures.put("dirtWall", textureRegions[1][0]);
-        textures.put("player", textureRegions[1][2]);
-        textures.put("stone", textureRegions[0][2]);
-        textures.put("stoneWall", textureRegions[1][3]);
-        textures.put("ironOre", textureRegions[0][3]);
-
-        Items.test.setTexture(textures.get(Items.test.getName()));
     }
 
     public void render(float deltaTime) {
@@ -162,7 +146,7 @@ public class WorldRenderer {
 
         for (int i = 0; i < arr.length; i++) {
             if (arr[i].getWall() != null && arr[i].getWall() != Walls.air) {
-                batch.draw(textures.get(arr[i].getWall().getName()),
+                batch.draw(arr[i].getWall().getTexture()[arr[i].getVariant()],
                         arr[i].getPosition().x * Vars.TILE_SIZE,
                         arr[i].getPosition().y * Vars.TILE_SIZE,
                         arr[i].getWall().getWIDTH() * Vars.TILE_SIZE,
@@ -170,7 +154,7 @@ public class WorldRenderer {
             }
 
             if (arr[i].getBlock() != null && arr[i].getBlock() != Blocks.air) {
-                batch.draw(textures.get(arr[i].getBlock().getName()),
+                batch.draw(arr[i].getBlock().getTexture()[arr[i].getVariant()],
                         arr[i].getPosition().x * Vars.TILE_SIZE,
                         arr[i].getPosition().y * Vars.TILE_SIZE,
                         arr[i].getBlock().getWIDTH() * Vars.TILE_SIZE,
@@ -178,7 +162,7 @@ public class WorldRenderer {
             }
         }
 
-        batch.draw(textures.get("player"),
+        batch.draw(playerTexture,
                 world.getPlayer().getPosition().x * Vars.TILE_SIZE,
                 world.getPlayer().getPosition().y * Vars.TILE_SIZE,
                 world.getPlayer().getWIDTH() * Vars.TILE_SIZE,

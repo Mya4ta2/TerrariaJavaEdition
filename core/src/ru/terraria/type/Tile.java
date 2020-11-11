@@ -12,6 +12,7 @@ public class Tile {
     private Wall wall = Walls.air;
 
     private final int WIDTH = 1, HEIGHT = 1;
+    private int spriteVariant = 1;
 
     public Tile(Vector2 position) {
         this.position = position;
@@ -19,6 +20,8 @@ public class Tile {
         bounds.y = position.y;
         bounds.height = HEIGHT;
         bounds.width = WIDTH;
+
+        spriteVariant = (int) ((Math.random() * ((2 - 0) + 0)) + 0);
     }
 
     public Tile() {
@@ -57,5 +60,13 @@ public class Tile {
         this.position = position;
         bounds.x = position.x;
         bounds.y = position.y;
+    }
+
+    public int getVariant() {
+        return spriteVariant;
+    }
+
+    public void setVariant(int spriteVariant) {
+        this.spriteVariant = spriteVariant;
     }
 }

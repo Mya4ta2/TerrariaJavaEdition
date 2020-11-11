@@ -1,5 +1,6 @@
 package ru.terraria.type;
 
+import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector2;
 import ru.terraria.Vars;
@@ -10,6 +11,9 @@ public class Block extends MappableContent {
 
     private float WIDTH;
     private float HEIGHT;
+
+    private int variants = 3;
+    private TextureRegion[] texture = new TextureRegion[variants];
 
     private Vector2 position = new Vector2();
     private Rectangle bounds = new Rectangle();
@@ -54,5 +58,13 @@ public class Block extends MappableContent {
 
     public void setPosition(Vector2 position) {
         this.position = position;
+    }
+
+    public void setTexture(TextureRegion[] texture) {
+        this.texture = texture;
+    }
+
+    public TextureRegion[] getTexture() {
+        return texture;
     }
 }
