@@ -9,7 +9,7 @@ public class Vars {
 
     public static final int TILE_SIZE = 16;
 
-    public static final int STACK_SIZE = 64;
+    public static final int STACK_SIZE = 999;
 
     public static final Texture ERROR_TEXTURE = new Texture("error.png");
 
