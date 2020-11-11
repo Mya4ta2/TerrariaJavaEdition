@@ -27,38 +27,38 @@ public class MainActivity extends Game {
 
         TextureRegion[] dirt = {
                 textureRegions[0][0],
-                textureRegions[0][0],
-                textureRegions[0][0],
+                textureRegions[1][0],
+                textureRegions[2][0],
         };
 
         TextureRegion[] grass = {
                 textureRegions[0][1],
-                textureRegions[0][1],
-                textureRegions[0][1],
+                textureRegions[1][1],
+                textureRegions[2][1],
         };
 
         TextureRegion[] stone = {
                 textureRegions[0][2],
-                textureRegions[0][2],
-                textureRegions[0][2],
+                textureRegions[1][2],
+                textureRegions[2][2],
         };
 
         TextureRegion[] ironOre = {
                 textureRegions[0][3],
-                textureRegions[0][3],
-                textureRegions[0][3],
+                textureRegions[1][3],
+                textureRegions[2][3],
         };
 
         TextureRegion[] dirtWall = {
-                textureRegions[1][0],
-                textureRegions[1][0],
-                textureRegions[1][0],
+                textureRegions[0][5],
+                textureRegions[1][5],
+                textureRegions[2][5],
         };
 
         TextureRegion[] stoneWall = {
-                textureRegions[1][3],
-                textureRegions[1][3],
-                textureRegions[1][3],
+                textureRegions[0][4],
+                textureRegions[1][4],
+                textureRegions[2][4],
         };
 
         Blocks.dirt.setTexture(dirt);

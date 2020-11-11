@@ -45,7 +45,7 @@ public class WorldRenderer {
 
     private ShapeRenderer renderer;
 
-    private TextureRegion playerTexture = TextureRegion.split(new Texture("atlas.png"), Vars.TILE_SIZE, Vars.TILE_SIZE)[1][2];
+    private TextureRegion playerTexture = TextureRegion.split(new Texture("atlas.png"), Vars.TILE_SIZE, Vars.TILE_SIZE)[0][6];
 
     public WorldRenderer(World world, GameScreen screen) {
         this.world = world;
