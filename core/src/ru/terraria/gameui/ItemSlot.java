@@ -48,7 +48,7 @@ public class ItemSlot extends Actor {
                     getWidth() -items.getItemType().getTexture().getRegionWidth(),
                     getHeight() -items.getItemType().getTexture().getRegionHeight());
 
-            font.draw(batch,String.valueOf(Gdx.graphics.getFramesPerSecond()), getX() + 8, getY() + 16);
+            font.draw(batch,String.valueOf(items.getItemsContains()), getX() + 8, getY() + 16);
         }
     }
 
