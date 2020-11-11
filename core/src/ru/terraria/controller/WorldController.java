@@ -63,7 +63,6 @@ public class WorldController implements InputProcessor {
                 world.getTiles().getArray()[i].getBounds().overlaps(world.getPlayer().getBounds()) &&
                 world.getTiles().getArray()[i].getBlock() != Blocks.air)
             {
-                System.out.println(world.getTiles().getArray()[i].getBlock().getName());
                 world.getPlayer().getPosition().set(world.getPlayer().getOldPosition());
             }
         }

@@ -184,4 +184,8 @@ public class WorldRenderer {
                 world.getPlayer().getWIDTH() * Vars.TILE_SIZE,
                 world.getPlayer().getHEIGHT() * Vars.TILE_SIZE);
     }
+
+    public Stage getStage() {
+        return stage;
+    }
 }

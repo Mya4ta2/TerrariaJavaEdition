@@ -2,6 +2,7 @@ package ru.terraria.screen;
 
 import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.InputMultiplexer;
 import com.badlogic.gdx.Screen;
 import ru.terraria.controller.WorldController;
 import ru.terraria.type.World;
@@ -26,7 +27,7 @@ public class GameScreen implements Screen {
         controller = new WorldController(world, this);
         renderer = new WorldRenderer(world, this);
 
-        Gdx.input.setInputProcessor(controller);
+        Gdx.input.setInputProcessor(new InputMultiplexer(controller, renderer.getStage()));
     }
 
     @Override
