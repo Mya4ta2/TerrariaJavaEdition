@@ -61,7 +61,6 @@ public class WorldRenderer {
         stage.setViewport(UIViewport);
 
         healthBar = new SpriteBar(0,100, new Texture("health.png"));
-        healthBar.setScale(1.5f);
         healthBar.setInverseDraw(true);
         stage.addActor(healthBar);
 
