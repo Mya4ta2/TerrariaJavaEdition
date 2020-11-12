@@ -1,6 +1,7 @@
 package ru.terraria.type;
 
 import com.badlogic.gdx.math.Vector2;
+import com.badlogic.gdx.physics.bullet.collision._btMprSimplex_t;
 import ru.terraria.content.Blocks;
 import ru.terraria.content.Walls;
 
@@ -26,38 +27,12 @@ public class World {
 
     /* i need this only for test, after i delete this */
     public void createWorld() {
-        player = new Player("player", new Vector2(width/2,height/2 + 1));
+        player = new Player("player", new Vector2(width/2,height-10));
 
-        for (int i = 0; i < width; i++) {
-            for (int j = 0; j < height/2; j++) {
-                tiles.get(j,i).setBlock(Blocks.dirt);
-            }
-        }
-
-        for (int i = 0; i < width; i++) {
-            for (int j = 0; j < height/2; j++) {
-                tiles.get(j,i).setWall(Walls.dirt);
-            }
-        }
-
-        for (int i = 0; i < width; i++) {
-            tiles.get(width/2, i).setBlock(Blocks.grass);
-        }
-
-        for (int i = 0; i < width; i++) {
-            for (int j = 0; j < height/2 - 10; j++) {
-                tiles.get(j, i).setBlock(Blocks.stone);
-            }
-        }
-
-        for (int i = 0; i < width; i++) {
-            for (int j = 0; j < height/2 - 10; j++) {
-                tiles.get(j, i).setWall(Walls.stone);
-            }
-        }
+        generateWorld(555);
 
         //spawn ore
-        int s = 0;
+        /*int s = 0;
 
         for (int i = 0; i < height; i++) {
 
@@ -74,14 +49,7 @@ public class World {
                     };
                 }
             }
-        }
-
-        //make hole
-        for (int i = width/2 - 20; i <= width/2 - 10; i++) {
-            for (int j = 0; j < height; j++) {
-                tiles.get(j,i).setBlock(Blocks.air);
-            }
-        }
+        }*/
     }
 
     public Tiles getTiles() {
@@ -102,6 +70,58 @@ public class World {
 
     public int getHeight() {
         return height;
+    }
+
+    public void generateWorld(int seed) {
+        Random random = seed > 0 ? new Random(seed) : new Random(System.currentTimeMillis());
+
+        int groundLevelMax = random.nextInt(20 + 1 - 10) + 10;
+        int groundLevelMin = groundLevelMax + random.nextInt(20 + 1 - 10) + 10;
+
+        int[] arr = new int[width];
+        for (int i = 0; i < width; i++) {
+            int dir = random.nextInt(2) == 1 ? 1 : -1;
+
+            if (i > 0) {
+                if (arr[i - 1] + dir < groundLevelMax || arr[i - 1] + dir > groundLevelMin) {
+                    dir = -dir;
+                }
+
+                arr[i] = arr[i - 1] + dir;
+            } else {
+                arr[i] = groundLevelMin;
+            }
+        }
+
+        //smooth
+        for (int i = 1; i < width - 5; i++) {
+            float sum = arr[i];
+            int count = 1;
+            for (int j = 1; j <= 5; j++) {
+                int i1 = i - j;
+                int i2 = i + j;
+
+                if (i1 > 0) {
+                    sum += arr[i1];
+                    count++;
+                }
+
+                if (i2 > 0) {
+                    sum += arr[i2];
+                    count++;
+                }
+
+                arr[i] = (int)(sum / count);
+            }
+        }
+
+        // set tiles to world
+        for (int i = 0; i < width; i++) {
+            tiles.get(arr[i], i).setBlock(Blocks.grass);
+            for (int j = 0; j < arr[i]; j++) {
+                tiles.get(j,i).setBlock(Blocks.dirt);
+            }
+        }
     }
 
     public int random(int min, int max) {
