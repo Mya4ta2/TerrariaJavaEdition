@@ -50,8 +50,6 @@ public class WorldController implements InputProcessor {
                 (int) world.getPlayer().getPosition().y,
                 (int)( world.getPlayer().getPosition().x));
 
-       // screen.downTile = downTile; debug
-
         if (downTile.getBlock() == Blocks.air) {
             world.getPlayer().setGrounded(false);
         } else if (downTile.getBlock() != Blocks.air) {

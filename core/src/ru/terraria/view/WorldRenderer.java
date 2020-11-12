@@ -45,7 +45,7 @@ public class WorldRenderer {
 
     private ShapeRenderer renderer;
 
-    private TextureRegion playerTexture = TextureRegion.split(new Texture("atlas.png"), Vars.TILE_SIZE, Vars.TILE_SIZE)[0][6];
+    private TextureRegion playerTexture = TextureRegion.split(new Texture("atlas.png"), Vars.TILE_SIZE, Vars.TILE_SIZE)[0][2];
 
     public WorldRenderer(World world, GameScreen screen) {
         this.world = world;
@@ -87,6 +87,13 @@ public class WorldRenderer {
         batch.setProjectionMatrix(camera.combined);
         batch.begin();
         drawWorld(batch);
+
+        //batch.draw(Blocks.dirt.getTexture()[0][8], world.getPlayer().getPosition().x * Vars.TILE_SIZE, world.getPlayer().getPosition().y * Vars.TILE_SIZE);
+        //batch.draw(Blocks.dirt.getTexture()[0][6], world.getPlayer().getPosition().x * Vars.TILE_SIZE, (world.getPlayer().getPosition().y + 1) * Vars.TILE_SIZE);
+        //batch.draw(Blocks.dirt.getTexture()[0][2], (world.getPlayer().getPosition().x - 1)* Vars.TILE_SIZE, world.getPlayer().getPosition().y * Vars.TILE_SIZE);
+        //batch.draw(Blocks.dirt.getTexture()[0][0], (world.getPlayer().getPosition().x - 1)* Vars.TILE_SIZE, (world.getPlayer().getPosition().y + 1) * Vars.TILE_SIZE);
+
+
         batch.end();
 
         stage.act();
@@ -164,7 +171,7 @@ public class WorldRenderer {
             }
 
             if (arr[i].getBlock() != null && arr[i].getBlock() != Blocks.air) {
-                batch.draw(arr[i].getBlock().getTexture()[arr[i].getVariant()],
+                batch.draw(arr[i].getBlock().getTexture()[arr[i].getVariant()][arr[i].getNeighbourAir().getNum()],
                         arr[i].getPosition().x * Vars.TILE_SIZE,
                         arr[i].getPosition().y * Vars.TILE_SIZE,
                         arr[i].getBlock().getWIDTH() * Vars.TILE_SIZE,

@@ -30,6 +30,12 @@ public class World {
         player = new Player("player", new Vector2(width/2,height-10));
 
         generateWorld(555);
+        setBlocksNeighbourAir();
+
+        tiles.get(height - 5, width/2).setBlock(Blocks.dirt);
+        //tiles.get(height - 6, width/2).setBlock(Blocks.dirt);
+        tiles.get(height - 5, width/2-1).setBlock(Blocks.dirt);
+        //tiles.get(height - 6, width/2-1).setBlock(Blocks.dirt);
 
         //spawn ore
         /*int s = 0;
@@ -117,9 +123,28 @@ public class World {
 
         // set tiles to world
         for (int i = 0; i < width; i++) {
-            tiles.get(arr[i], i).setBlock(Blocks.grass);
+            tiles.get(arr[i], i).setBlock(Blocks.air);
             for (int j = 0; j < arr[i]; j++) {
                 tiles.get(j,i).setBlock(Blocks.dirt);
+            }
+        }
+
+        setBlocksNeighbourAir();
+    }
+
+    public void setBlocksNeighbourAir() {
+        for (int i = 0; i < getTiles().getArray().length; i++) {
+            if (tiles.getArray()[i].getPosition().x > 0 && tiles.getArray()[i].getPosition().y > 0 &&
+                    tiles.getArray()[i].getPosition().x < width - 1 && tiles.getArray()[i].getPosition().y < height - 1) {
+                Tile downTile = tiles.get((int) tiles.getArray()[i].getPosition().y - 1,
+                        (int) tiles.getArray()[i].getPosition().x);
+                Tile upTile = tiles.get((int) tiles.getArray()[i].getPosition().y + 1,
+                        (int) tiles.getArray()[i].getPosition().x);
+                Tile leftTile = tiles.get((int) tiles.getArray()[i].getPosition().y,
+                        (int) tiles.getArray()[i].getPosition().x - 1);
+                Tile rightTile = tiles.get((int) tiles.getArray()[i].getPosition().y,
+                        (int) tiles.getArray()[i].getPosition().x + 1);
+                tiles.getArray()[i].setNeighbourAir(downTile, upTile, rightTile, leftTile);
             }
         }
     }
