@@ -108,7 +108,7 @@ public class WorldRenderer {
         // update UI
         UICamera.update();
         UIViewport.apply();
-        healthBar.setValue(10);
+        healthBar.setValue(world.getPlayer().getHealth() / 20);
     }
 
     public void resize(int width, int height) {

@@ -15,6 +15,9 @@ public class Player extends MappableContent {
     private Vector2 velocity = new Vector2();
     private Rectangle bounds = new Rectangle();
 
+    private int MaxHealth = 100;
+    private int health;
+
     private float speed = 8;
     private float jumpHeight = 1000;
     private float jumpNum;
@@ -38,6 +41,8 @@ public class Player extends MappableContent {
         bounds.y = position.y;
         bounds.width = WIDTH;
         bounds.height = HEIGHT;
+
+        heal();
     }
 
     public Vector2 getPosition() {
@@ -127,5 +132,30 @@ public class Player extends MappableContent {
 
     public void jump() {
         jumpNum += jumpHeight;
+    }
+
+    public void heal() {
+        this.health = MaxHealth;
+    }
+
+    public void heal(int health) {
+        this.health += health;
+        if (this.health > MaxHealth) this.health = MaxHealth;
+    }
+
+    public int getMaxHealth() {
+        return MaxHealth;
+    }
+
+    public void setMaxHealth(int maxHealth) {
+        MaxHealth = maxHealth;
+    }
+
+    public int getHealth() {
+        return health;
+    }
+
+    public void setHealth(int health) {
+        this.health = health;
     }
 }
