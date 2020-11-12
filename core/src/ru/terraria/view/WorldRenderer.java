@@ -137,6 +137,15 @@ public class WorldRenderer {
                 world.getPlayer().getBounds().width * Vars.TILE_SIZE,
                 world.getPlayer().getBounds().height * Vars.TILE_SIZE);
 
+        /*if (screen.downTile != null) {
+            renderer.setColor(Color.BLUE);
+            renderer.rect(screen.downTile.getPosition().x * Vars.TILE_SIZE,
+                    screen.downTile.getPosition().y * Vars.TILE_SIZE,
+                    screen.downTile.getBounds().width * Vars.TILE_SIZE,
+                    screen.downTile.getBounds().height * Vars.TILE_SIZE);
+
+        }*/
+
         renderer.end();
         renderer.setColor(Color.RED);
     }

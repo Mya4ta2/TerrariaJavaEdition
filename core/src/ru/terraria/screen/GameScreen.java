@@ -5,6 +5,7 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.InputMultiplexer;
 import com.badlogic.gdx.Screen;
 import ru.terraria.controller.WorldController;
+import ru.terraria.type.Tile;
 import ru.terraria.type.World;
 import ru.terraria.view.WorldRenderer;
 
@@ -14,6 +15,8 @@ public class GameScreen implements Screen {
     private World world;
     private WorldController controller;
     private WorldRenderer renderer;
+
+    //public Tile downTile; debug
 
     public boolean inventory;
 

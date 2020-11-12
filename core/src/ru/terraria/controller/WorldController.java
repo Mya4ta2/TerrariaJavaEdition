@@ -48,7 +48,9 @@ public class WorldController implements InputProcessor {
     public void checkPlayerGrounded() {
         Tile downTile = world.getTiles().get(
                 (int) world.getPlayer().getPosition().y,
-                (int) world.getPlayer().getPosition().x - 1);
+                (int)( world.getPlayer().getPosition().x));
+
+       // screen.downTile = downTile; debug
 
         if (downTile.getBlock() == Blocks.air) {
             world.getPlayer().setGrounded(false);
