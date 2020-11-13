@@ -44,6 +44,7 @@ public class World {
         tiles.get(height - 6, width/2-2).setBlock(Blocks.dirt);
         tiles.get(height - 7, width/2-1).setBlock(Blocks.dirt);
         tiles.get(height - 7, width/2-1).setBlock(Blocks.dirt);
+        setBlocksNeighbourAir();
 
         //spawn ore
         /*int s = 0;

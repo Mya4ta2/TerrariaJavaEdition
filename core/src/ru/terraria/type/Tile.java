@@ -12,6 +12,11 @@ public class Tile {
     private Wall wall = Walls.air;
     private Block.NeighbourAir blockNeighbourAir = Block.NeighbourAir.NONE;
 
+    private Tile downTile;
+    private Tile upTile;
+    private Tile leftTile;
+    private Tile rightTile;
+
     private final int WIDTH = 1, HEIGHT = 1;
     private int spriteVariant = 1;
 
@@ -47,6 +52,8 @@ public class Tile {
 
     public void setBlock(Block block) {
         this.block = block;
+
+        setNeighbourAir(downTile,upTile,rightTile,leftTile);
     }
 
     public Wall getWall() {
@@ -79,29 +86,20 @@ public class Tile {
         this.blockNeighbourAir = blockNeighbourAir;
     }
 
+    public void setTiles(Tile downTile, Tile upTile, Tile rightTile, Tile leftTile) {
+        this.rightTile = rightTile;
+        this.leftTile = leftTile;
+        this.upTile = upTile;
+        this.downTile = downTile;
+    }
+
     public void setNeighbourAir(Tile downTile, Tile upTile, Tile rightTile, Tile leftTile) {
         if (downTile != null && upTile != null && rightTile != null & leftTile != null) {
-            if
-            (
-                    downTile.getBlock() == Blocks.air &&
-                            upTile.getBlock() == Blocks.air &&
-                            rightTile.getBlock() == Blocks.air &&
-                            leftTile.getBlock() == Blocks.air
-            )
-            {
-                blockNeighbourAir = Block.NeighbourAir.NONE;
-            }
 
-            if
-            (
-                    downTile.getBlock() != Blocks.air &&
-                            upTile.getBlock() != Blocks.air &&
-                            rightTile.getBlock() != Blocks.air &&
-                            leftTile.getBlock() != Blocks.air
-            )
-            {
-                blockNeighbourAir = Block.NeighbourAir.ALL;
-            }
+            this.rightTile = rightTile;
+            this.leftTile = leftTile;
+            this.upTile = upTile;
+            this.downTile = downTile;
 
             if
             (
@@ -190,6 +188,28 @@ public class Tile {
             )
             {
                 blockNeighbourAir = Block.NeighbourAir.RIGHT_DOWN;
+            }
+
+            if
+            (
+                    downTile.getBlock() == Blocks.air &&
+                            upTile.getBlock() == Blocks.air &&
+                            rightTile.getBlock() == Blocks.air &&
+                            leftTile.getBlock() == Blocks.air
+            )
+            {
+                blockNeighbourAir = Block.NeighbourAir.NONE;
+            }
+
+            if
+            (
+                    downTile.getBlock() != Blocks.air &&
+                            upTile.getBlock() != Blocks.air &&
+                            rightTile.getBlock() != Blocks.air &&
+                            leftTile.getBlock() != Blocks.air
+            )
+            {
+                blockNeighbourAir = Block.NeighbourAir.ALL;
             }
         }
     }
