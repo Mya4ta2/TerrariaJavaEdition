@@ -75,6 +75,10 @@ public class Tile {
         return blockNeighbourAir;
     }
 
+    public void setBlockNeighbourAir(Block.NeighbourAir blockNeighbourAir) {
+        this.blockNeighbourAir = blockNeighbourAir;
+    }
+
     public void setNeighbourAir(Tile downTile, Tile upTile, Tile rightTile, Tile leftTile) {
         if (downTile != null && upTile != null && rightTile != null & leftTile != null) {
             if

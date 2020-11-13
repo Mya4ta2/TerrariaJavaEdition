@@ -33,9 +33,17 @@ public class World {
         setBlocksNeighbourAir();
 
         tiles.get(height - 5, width/2).setBlock(Blocks.dirt);
-        //tiles.get(height - 6, width/2).setBlock(Blocks.dirt);
+        tiles.get(height - 6, width/2).setBlock(Blocks.dirt);
         tiles.get(height - 5, width/2-1).setBlock(Blocks.dirt);
-        //tiles.get(height - 6, width/2-1).setBlock(Blocks.dirt);
+        tiles.get(height - 6, width/2-1).setBlock(Blocks.dirt);
+        tiles.get(height - 7, width/2).setBlock(Blocks.dirt);
+        tiles.get(height - 5, width/2).setBlock(Blocks.dirt);
+        tiles.get(height - 7, width/2-2).setBlock(Blocks.dirt);
+        tiles.get(height - 5, width/2-2).setBlock(Blocks.dirt);
+        tiles.get(height - 7, width/2-2).setBlock(Blocks.dirt);
+        tiles.get(height - 6, width/2-2).setBlock(Blocks.dirt);
+        tiles.get(height - 7, width/2-1).setBlock(Blocks.dirt);
+        tiles.get(height - 7, width/2-1).setBlock(Blocks.dirt);
 
         //spawn ore
         /*int s = 0;
@@ -145,6 +153,10 @@ public class World {
                 Tile rightTile = tiles.get((int) tiles.getArray()[i].getPosition().y,
                         (int) tiles.getArray()[i].getPosition().x + 1);
                 tiles.getArray()[i].setNeighbourAir(downTile, upTile, rightTile, leftTile);
+            } else if (tiles.getArray()[i].getPosition().y == 0) {
+                tiles.getArray()[i].setBlockNeighbourAir(Block.NeighbourAir.ALL);
+            } else if (tiles.getArray()[i].getPosition().x == 0 || tiles.getArray()[i].getPosition().x == width - 1) {
+                tiles.getArray()[i].setBlockNeighbourAir(Block.NeighbourAir.ALL);
             }
         }
     }

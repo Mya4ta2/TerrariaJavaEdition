@@ -117,6 +117,9 @@ public class MainActivity extends Game {
 
         dirt1[9] = textureRegions[0][3];
 
+        //
+        //  Влад, нужно вернуть все спрайты в игру, и также сделать им по 3 вариаций и по 100 вращений =(
+        //
 
         TextureRegion[][] dirts = {
                 dirt1,
