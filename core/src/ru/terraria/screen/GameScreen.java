@@ -63,4 +63,16 @@ public class GameScreen implements Screen {
     public void dispose() {
 
     }
+
+    public World getWorld() {
+        return world;
+    }
+
+    public WorldController getController() {
+        return controller;
+    }
+
+    public WorldRenderer getRenderer() {
+        return renderer;
+    }
 }

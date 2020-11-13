@@ -87,14 +87,9 @@ public class WorldRenderer {
         batch.setProjectionMatrix(camera.combined);
         batch.begin();
         drawWorld(batch);
-
-        //batch.draw(Blocks.dirt.getTexture()[0][8], world.getPlayer().getPosition().x * Vars.TILE_SIZE, world.getPlayer().getPosition().y * Vars.TILE_SIZE);
-        //batch.draw(Blocks.dirt.getTexture()[0][6], world.getPlayer().getPosition().x * Vars.TILE_SIZE, (world.getPlayer().getPosition().y + 1) * Vars.TILE_SIZE);
-        //batch.draw(Blocks.dirt.getTexture()[0][2], (world.getPlayer().getPosition().x - 1)* Vars.TILE_SIZE, world.getPlayer().getPosition().y * Vars.TILE_SIZE);
-        //batch.draw(Blocks.dirt.getTexture()[0][0], (world.getPlayer().getPosition().x - 1)* Vars.TILE_SIZE, (world.getPlayer().getPosition().y + 1) * Vars.TILE_SIZE);
-
-
         batch.end();
+
+        drawCursorHitbox();
 
         stage.act();
         stage.draw();
@@ -144,17 +139,32 @@ public class WorldRenderer {
                 world.getPlayer().getBounds().width * Vars.TILE_SIZE,
                 world.getPlayer().getBounds().height * Vars.TILE_SIZE);
 
-        /*if (screen.downTile != null) {
-            renderer.setColor(Color.BLUE);
-            renderer.rect(screen.downTile.getPosition().x * Vars.TILE_SIZE,
-                    screen.downTile.getPosition().y * Vars.TILE_SIZE,
-                    screen.downTile.getBounds().width * Vars.TILE_SIZE,
-                    screen.downTile.getBounds().height * Vars.TILE_SIZE);
+        renderer.setColor(Color.BLUE);
 
-        }*/
+        int cX = (int)(Gdx.input.getX() + (camera.position.x - Gdx.graphics.getWidth() / 2));
+        int cY = (int)(Vars.CAMERA_HEIGHT - Gdx.input.getY() + (camera.position.y - Gdx.graphics.getHeight() / 2));
+        renderer.rect(
+                (int) (cX / 16) * 16,
+                (int) (cY / 16) * 16,
+                    Vars.TILE_SIZE,
+                    Vars.TILE_SIZE);
 
         renderer.end();
         renderer.setColor(Color.RED);
+    }
+
+    public void drawCursorHitbox() {
+        renderer.setProjectionMatrix(camera.combined);
+        renderer.begin(ShapeRenderer.ShapeType.Line);
+        renderer.setColor(Color.YELLOW);
+        int cX = (int)(Gdx.input.getX() + (camera.position.x - Gdx.graphics.getWidth() / 2));
+        int cY = (int)(Vars.CAMERA_HEIGHT - Gdx.input.getY() + (camera.position.y - Gdx.graphics.getHeight() / 2));
+        renderer.rect(
+                (int) (cX / 16) * 16,
+                (int) (cY / 16) * 16,
+                Vars.TILE_SIZE,
+                Vars.TILE_SIZE);
+        renderer.end();
     }
 
     public void drawWorld(SpriteBatch batch) {
@@ -188,5 +198,9 @@ public class WorldRenderer {
 
     public Stage getStage() {
         return stage;
+    }
+
+    public OrthographicCamera getCamera() {
+        return camera;
     }
 }
