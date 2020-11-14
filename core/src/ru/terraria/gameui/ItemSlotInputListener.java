@@ -15,8 +15,6 @@ public class ItemSlotInputListener extends InputListener {
 
     @Override
     public boolean touchDown(InputEvent event, float x, float y, int pointer, int button) {
-        slot.setItemStack(new ItemStack());
-        System.out.println("oh");
         return super.touchDown(event, x, y, pointer, button);
     }
 

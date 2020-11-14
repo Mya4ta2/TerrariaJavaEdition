@@ -52,7 +52,7 @@ public class WorldController implements InputProcessor {
         int cY = (int)(Vars.CAMERA_HEIGHT - Gdx.input.getY() + (screen.getRenderer().getCamera().position.y - Gdx.graphics.getHeight() / 2));
 
         if (Gdx.input.isButtonJustPressed(Input.Buttons.LEFT)) {
-            world.getTiles().get(cY / 16 ,cX / 16).setBlock(Blocks.air);
+            world.getTiles().get(cY / 16 ,cX / 16).setBlock(Blocks.air); //add health to block
         }
     }
 
