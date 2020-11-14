@@ -7,8 +7,8 @@ import ru.terraria.ctype.MappableContent;
 
 public class Player extends MappableContent {
     private final String name;
-    private float WIDTH = 1; // need merge to Content/unit
-    private float HEIGHT = 2;
+    private float WIDTH = 1.6f; // need merge to Content/unit
+    private float HEIGHT = 2.6f;
 
     private Vector2 position = new Vector2();
     private Vector2 oldPosition = new Vector2();
@@ -48,7 +48,7 @@ public class Player extends MappableContent {
 
         groundHitBox.x = position.x;
         groundHitBox.y = position.y;
-        groundHitBox.width = 1;
+        groundHitBox.width = WIDTH;
         groundHitBox.height = 1;
 
         heal();
