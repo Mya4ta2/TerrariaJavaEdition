@@ -22,7 +22,7 @@ public class MainActivity extends Game {
     }
 
     public void loadTextures() {
-        Texture texture = new Texture("dirt.png");
+        Texture texture = new Texture("sprite/block/block_0.png");
         TextureRegion[][] textureRegions = TextureRegion.split(texture, Vars.TILE_SIZE, Vars.TILE_SIZE);
 
         TextureRegion[] dirt1 = new TextureRegion[textureRegions.length * textureRegions.length];
@@ -41,7 +41,7 @@ public class MainActivity extends Game {
 
         dirt1[9] = textureRegions[0][3];
 
-        texture = new Texture("grass.png");
+        texture = new Texture("sprite/block/block_3.png");
         textureRegions = TextureRegion.split(texture, Vars.TILE_SIZE, Vars.TILE_SIZE);
 
         TextureRegion[] grass1 = new TextureRegion[textureRegions.length * textureRegions.length];

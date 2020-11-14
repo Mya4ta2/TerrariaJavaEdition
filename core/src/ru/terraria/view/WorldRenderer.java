@@ -45,7 +45,7 @@ public class WorldRenderer {
 
     private ShapeRenderer renderer;
 
-    private TextureRegion playerTexture = TextureRegion.split(new Texture("atlas.png"), Vars.TILE_SIZE, Vars.TILE_SIZE)[0][2];
+    private TextureRegion playerTexture = TextureRegion.split(new Texture("sprite/block/block_0.png"), Vars.TILE_SIZE, Vars.TILE_SIZE)[1][1];
 
     public WorldRenderer(World world, GameScreen screen) {
         this.world = world;
@@ -60,12 +60,12 @@ public class WorldRenderer {
         stage = new Stage();
         stage.setViewport(UIViewport);
 
-        healthBar = new SpriteBar(0,100, new Texture("health.png"));
+        healthBar = new SpriteBar(0,100, new Texture("sprite/ui/health.png"));
         healthBar.setInverseDraw(true);
         stage.addActor(healthBar);
 
-        inventory = new ItemPanel(10, 6, new Texture("slot.png"));
-        fastSlotBar = new ItemSlots(10, new Texture("slot.png"));
+        inventory = new ItemPanel(10, 6, new Texture("sprite/ui/slot.png"));
+        fastSlotBar = new ItemSlots(10, new Texture("sprite/ui/slot.png"));
         ItemStack stack = new ItemStack();
         Arrays.fill(stack.getItems(), Items.test);
         stack.setItemType(Items.test);

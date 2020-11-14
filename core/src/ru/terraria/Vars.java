@@ -12,6 +12,6 @@ public class Vars {
 
     public static final int STACK_SIZE = 999;
 
-    public static final Texture ERROR_TEXTURE = new Texture("error.png");
+    public static final Texture ERROR_TEXTURE = new Texture("sprite/error.png");
 
 }

@@ -4,7 +4,6 @@ import com.badlogic.gdx.Files;
 import com.badlogic.gdx.backends.lwjgl.LwjglApplication;
 import com.badlogic.gdx.backends.lwjgl.LwjglApplicationConfiguration;
 import ru.terraria.MainActivity;
-import jdk.javadoc.internal.tool.Main;
 
 public class DesktopLauncher {
 	public static void main (String[] arg) {
@@ -14,7 +13,7 @@ public class DesktopLauncher {
 				config.width = 1250;
 				config.height = 720;
 				config.title = "Terraria Java Edition";
-				config.addIcon("icon.png", Files.FileType.Internal);
+				config.addIcon("sprite/ui/icon.png", Files.FileType.Internal);
 			}
 		};
 	}
