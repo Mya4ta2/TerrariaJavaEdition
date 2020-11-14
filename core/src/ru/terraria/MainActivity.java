@@ -41,7 +41,26 @@ public class MainActivity extends Game {
 
         dirt1[9] = textureRegions[0][3];
 
-        texture = new Texture("sprite/block/block_3.png");
+        texture = new Texture("sprite/block/block_1.png");
+        textureRegions = TextureRegion.split(texture, Vars.TILE_SIZE, Vars.TILE_SIZE);
+
+        TextureRegion[] stone1 = new TextureRegion[textureRegions.length * textureRegions.length];
+
+        stone1[0] = textureRegions[0][0];
+        stone1[1] = textureRegions[0][1];
+        stone1[2] = textureRegions[0][2];
+
+        stone1[3] = textureRegions[1][0];
+        stone1[4] = textureRegions[1][1];
+        stone1[5] = textureRegions[1][2];
+
+        stone1[6] = textureRegions[2][0];
+        stone1[7] = textureRegions[2][1];
+        stone1[8] = textureRegions[2][2];
+
+        stone1[9] = textureRegions[0][3];
+
+        texture = new Texture("sprite/block/block_2.png");
         textureRegions = TextureRegion.split(texture, Vars.TILE_SIZE, Vars.TILE_SIZE);
 
         TextureRegion[] grass1 = new TextureRegion[textureRegions.length * textureRegions.length];
@@ -70,6 +89,12 @@ public class MainActivity extends Game {
                 dirt1,
         };
 
+        TextureRegion[][] stones = {
+                stone1,
+                stone1,
+                grass1,
+        };
+
         TextureRegion[][] grases = {
                 grass1,
                 grass1,
@@ -77,6 +102,7 @@ public class MainActivity extends Game {
         };
 
         Blocks.dirt.setTexture(dirts);
+        Blocks.stone.setTexture(stones);
         Blocks.grass.setTexture(grases);
 
     }

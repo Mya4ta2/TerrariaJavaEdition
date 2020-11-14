@@ -26,7 +26,7 @@ public class GameScreen implements Screen {
 
     @Override
     public void show() {
-        world = new World(500, 50); // test world
+        world = new World(500, 100); // test world
         controller = new WorldController(world, this);
         renderer = new WorldRenderer(world, this);
 

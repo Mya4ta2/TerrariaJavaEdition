@@ -135,7 +135,11 @@ public class World {
         for (int i = 0; i < width; i++) {
             tiles.get(arr[i], i).setBlock(Blocks.grass);
             for (int j = 0; j < arr[i]; j++) {
-                tiles.get(j,i).setBlock(Blocks.dirt);
+                if (j < height/4) {
+                    tiles.get(j,i).setBlock(Blocks.stone);
+                } else {
+                    tiles.get(j,i).setBlock(Blocks.dirt);
+                }
             }
         }
 
