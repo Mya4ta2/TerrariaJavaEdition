@@ -7,6 +7,7 @@ import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
@@ -37,6 +38,7 @@ public class WorldRenderer {
     private OrthographicCamera UICamera;
     private ScreenViewport viewport;
     private ScreenViewport UIViewport;
+    private BitmapFont font;
 
     private Stage stage;
     private SpriteBar healthBar;
@@ -78,6 +80,7 @@ public class WorldRenderer {
         stage.addActor(fastSlotBar);
 
         renderer = new ShapeRenderer();
+        font = new BitmapFont();
     }
 
     public void render(float deltaTime) {
@@ -87,6 +90,9 @@ public class WorldRenderer {
         batch.setProjectionMatrix(camera.combined);
         batch.begin();
         drawWorld(batch);
+        font.setColor(Color.RED);
+        font.draw(batch, "FPS: " + Gdx.graphics.getFramesPerSecond(),
+                world.getPlayer().getPosition().x * Vars.TILE_SIZE,world.getPlayer().getPosition().y * Vars.TILE_SIZE);
         batch.end();
 
         drawCursorHitbox();

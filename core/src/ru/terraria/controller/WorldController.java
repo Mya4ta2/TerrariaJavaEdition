@@ -64,11 +64,16 @@ public class WorldController implements InputProcessor {
     public void checkPlayerGrounded() {
         int count = 0;
 
-        for (int i = 0; i < world.getTiles().getArray().length; i++) {
+        Vector2 pos = world.getPlayer().getPosition();
 
-            Tile tile = world.getTiles().getArray()[i];
+        Tile[] nearTiles = {
+                world.getTiles().get((int) pos.y, (int) pos.x),
+                world.getTiles().get((int) pos.y, (int) pos.x - 1),
+                world.getTiles().get((int) pos.y, (int) pos.x + 1)
+        };
 
-            if (world.getPlayer().getGroundHitBox().overlaps(tile.getBounds()) && tile.getBlock() != Blocks.air) {
+        for (int i = 0; i < nearTiles.length; i++) {
+            if (world.getPlayer().getGroundHitBox().overlaps(nearTiles[i].getBounds()) && nearTiles[i].getBlock() != Blocks.air) {
                 count += 1;
             }
         }
