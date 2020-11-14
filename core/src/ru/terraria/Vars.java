@@ -5,8 +5,8 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 
 public class Vars {
-    public static final float CAMERA_WIDTH = Gdx.graphics.getWidth();
-    public static final float CAMERA_HEIGHT = Gdx.graphics.getHeight();
+    public static float CAMERA_WIDTH = Gdx.graphics.getWidth();
+    public static float CAMERA_HEIGHT = Gdx.graphics.getHeight();
 
     public static final int TILE_SIZE = 16;
 

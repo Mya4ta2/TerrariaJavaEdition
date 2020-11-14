@@ -132,7 +132,7 @@ public class World {
 
         // set tiles to world
         for (int i = 0; i < width; i++) {
-            tiles.get(arr[i], i).setBlock(Blocks.air);
+            tiles.get(arr[i], i).setBlock(Blocks.grass);
             for (int j = 0; j < arr[i]; j++) {
                 tiles.get(j,i).setBlock(Blocks.dirt);
             }

@@ -118,6 +118,9 @@ public class WorldRenderer {
         inventory.setPosition(-width / 2f + 10, height / 3f + height / 22f - 10);
         viewport.update(width,height);
         UIViewport.update(width, height);
+
+        Vars.CAMERA_WIDTH = Gdx.graphics.getWidth();
+        Vars.CAMERA_HEIGHT = Gdx.graphics.getHeight();
     }
 
     public void drawHitBoxes() {
