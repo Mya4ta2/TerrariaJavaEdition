@@ -14,6 +14,7 @@ public class Player extends MappableContent {
     private Vector2 oldPosition = new Vector2();
     private Vector2 velocity = new Vector2();
     private Rectangle bounds = new Rectangle();
+    private Rectangle groundHitBox = new Rectangle();
 
     private int MaxHealth = 100;
     private int health;
@@ -31,6 +32,9 @@ public class Player extends MappableContent {
         bounds.y = 0;
         bounds.width = WIDTH;
         bounds.height = HEIGHT;
+
+        groundHitBox.width = Vars.TILE_SIZE;
+        groundHitBox.height = Vars.TILE_SIZE;
     }
 
     public Player(String name, Vector2 position) {
@@ -41,6 +45,11 @@ public class Player extends MappableContent {
         bounds.y = position.y;
         bounds.width = WIDTH;
         bounds.height = HEIGHT;
+
+        groundHitBox.x = position.x;
+        groundHitBox.y = position.y;
+        groundHitBox.width = 1;
+        groundHitBox.height = 1;
 
         heal();
     }
@@ -84,6 +93,8 @@ public class Player extends MappableContent {
 
         bounds.x = position.x;
         bounds.y = position.y;
+        groundHitBox.x = position.x;
+        groundHitBox.y = position.y;
     }
 
     public Vector2 getVelocity() {
@@ -157,5 +168,13 @@ public class Player extends MappableContent {
 
     public void setHealth(int health) {
         this.health = health;
+    }
+
+    public Rectangle getGroundHitBox() {
+        return groundHitBox;
+    }
+
+    public void setGroundHitBox(Rectangle groundHitBox) {
+        this.groundHitBox = groundHitBox;
     }
 }

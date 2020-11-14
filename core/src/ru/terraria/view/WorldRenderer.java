@@ -95,7 +95,7 @@ public class WorldRenderer {
         stage.draw();
 
         //debug
-        //drawHitBoxes();
+        drawHitBoxes();
         //
 
         inventory.setVisible(screen.inventory);
@@ -126,7 +126,7 @@ public class WorldRenderer {
     public void drawHitBoxes() {
         renderer.setProjectionMatrix(camera.combined);
         renderer.begin(ShapeRenderer.ShapeType.Line);
-        for (int i = 0; i < world.getTiles().getArray().length; i++) {
+        /*for (int i = 0; i < world.getTiles().getArray().length; i++) {
             if (world.getTiles().getArray()[i].getBlock() != Blocks.air) {
                 renderer.rect(
                         world.getTiles().getArray()[i].getPosition().x * Vars.TILE_SIZE,
@@ -134,7 +134,7 @@ public class WorldRenderer {
                         world.getTiles().getArray()[i].getBounds().width * Vars.TILE_SIZE,
                         world.getTiles().getArray()[i].getBounds().height * Vars.TILE_SIZE);
             }
-        }
+        }*/
 
         renderer.rect(
                 world.getPlayer().getPosition().x * Vars.TILE_SIZE,
@@ -142,18 +142,14 @@ public class WorldRenderer {
                 world.getPlayer().getBounds().width * Vars.TILE_SIZE,
                 world.getPlayer().getBounds().height * Vars.TILE_SIZE);
 
-        renderer.setColor(Color.BLUE);
-
-        int cX = (int)(Gdx.input.getX() + (camera.position.x - Gdx.graphics.getWidth() / 2));
-        int cY = (int)(Vars.CAMERA_HEIGHT - Gdx.input.getY() + (camera.position.y - Gdx.graphics.getHeight() / 2));
+        renderer.setColor(Color.RED);
         renderer.rect(
-                (int) (cX / 16) * 16,
-                (int) (cY / 16) * 16,
-                    Vars.TILE_SIZE,
-                    Vars.TILE_SIZE);
+                world.getPlayer().getGroundHitBox().x * Vars.TILE_SIZE,
+                world.getPlayer().getGroundHitBox().y * Vars.TILE_SIZE,
+                world.getPlayer().getGroundHitBox().width * Vars.TILE_SIZE,
+                world.getPlayer().getGroundHitBox().height * Vars.TILE_SIZE);
 
         renderer.end();
-        renderer.setColor(Color.RED);
     }
 
     public void drawCursorHitbox() {
