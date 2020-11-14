@@ -4,6 +4,9 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.InputProcessor;
 import com.badlogic.gdx.Screen;
+import com.badlogic.gdx.graphics.Color;
+import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
+import com.badlogic.gdx.math.Vector2;
 import ru.terraria.Vars;
 import ru.terraria.content.Blocks;
 import ru.terraria.screen.GameScreen;
@@ -28,7 +31,7 @@ public class WorldController implements InputProcessor {
         processGravity();
         processCollisions();
 
-        world.setBlocksNeighbourAir();
+        //world.setBlocksNeighbourAir();
     }
 
     public void processInput() {
@@ -78,14 +81,37 @@ public class WorldController implements InputProcessor {
     }
 
     public void processCollisions() {
-        for (int i = 0; i < world.getTiles().getArray().length; i++) {
-            if (
-                world.getTiles().getArray()[i].getBounds().overlaps(world.getPlayer().getBounds()) &&
-                world.getTiles().getArray()[i].getBlock() != Blocks.air)
-            {
-                world.getPlayer().getPosition().set(world.getPlayer().getOldPosition());
-            }
+        boolean collision = false;
+
+        Vector2 pos = world.getPlayer().getPosition();
+
+        Tile left1Tile = world.getTiles().get((int) pos.y, (int) pos.x);
+        Tile left2Tile = world.getTiles().get((int) pos.y + 1, (int) pos.x);
+        Tile left3Tile = world.getTiles().get((int) pos.y + 2, (int) pos.x);
+        Tile right1Tile = world.getTiles().get((int) pos.y, (int) pos.x + 1);
+        Tile right2Tile = world.getTiles().get((int) pos.y + 1, (int) pos.x + 1);
+        Tile right3Tile = world.getTiles().get((int) pos.y + 2, (int) pos.x + 1);
+
+        collision =
+        (
+                left1Tile.getBlock() != Blocks.air &&
+                        world.getPlayer().getBounds().overlaps(left1Tile.getBounds()) ||
+                left2Tile.getBlock() != Blocks.air &&
+                        world.getPlayer().getBounds().overlaps(left2Tile.getBounds()) ||
+                left3Tile.getBlock() != Blocks.air &&
+                        world.getPlayer().getBounds().overlaps(left3Tile.getBounds()) ||
+                right1Tile.getBlock() != Blocks.air &&
+                        world.getPlayer().getBounds().overlaps(right1Tile.getBounds()) ||
+                right2Tile.getBlock() != Blocks.air &&
+                        world.getPlayer().getBounds().overlaps(right2Tile.getBounds()) ||
+                right3Tile.getBlock() != Blocks.air &&
+                world.getPlayer().getBounds().overlaps(right3Tile.getBounds())
+        );
+
+        if (collision) {
+            world.getPlayer().getPosition().set(world.getPlayer().getOldPosition());
         }
+
     }
 
     public void processGravity() {

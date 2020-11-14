@@ -50,6 +50,11 @@ public class Block extends MappableContent {
                     new TextureRegion(Vars.ERROR_TEXTURE),
                     new TextureRegion(Vars.ERROR_TEXTURE),
                     new TextureRegion(Vars.ERROR_TEXTURE),
+                    new TextureRegion(Vars.ERROR_TEXTURE),
+                    new TextureRegion(Vars.ERROR_TEXTURE),
+                    new TextureRegion(Vars.ERROR_TEXTURE),
+                    new TextureRegion(Vars.ERROR_TEXTURE),
+                    new TextureRegion(Vars.ERROR_TEXTURE),
             };
 
             texture[i] = region;

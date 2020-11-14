@@ -27,7 +27,7 @@ public class World {
 
     /* i need this only for test, after i delete this */
     public void createWorld() {
-        player = new Player("player", new Vector2(width/2,height-10));
+        player = new Player("player", new Vector2(width/2,height/2));
 
         generateWorld(555);
         setBlocksNeighbourAir();
@@ -90,9 +90,10 @@ public class World {
     public void generateWorld(int seed) {
         Random random = seed > 0 ? new Random(seed) : new Random(System.currentTimeMillis());
 
-        int groundLevelMax = random.nextInt(20 + 1 - 10) + 10;
-        int groundLevelMin = groundLevelMax + random.nextInt(20 + 1 - 10) + 10;
+        int groundLevelMax = random.nextInt(height/3 + 1 - 10) + 10;
+        int groundLevelMin = groundLevelMax + random.nextInt(height/3 + 1 - 10) + 10;
 
+        //grass
         int[] arr = new int[width];
         for (int i = 0; i < width; i++) {
             int dir = random.nextInt(2) == 1 ? 1 : -1;

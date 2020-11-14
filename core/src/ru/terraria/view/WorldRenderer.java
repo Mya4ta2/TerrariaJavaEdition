@@ -43,7 +43,7 @@ public class WorldRenderer {
     private ItemPanel inventory;
     private ItemSlots fastSlotBar;
 
-    private ShapeRenderer renderer;
+    public ShapeRenderer renderer;
 
     private TextureRegion playerTexture = TextureRegion.split(new Texture("sprite/block/block_0.png"), Vars.TILE_SIZE, Vars.TILE_SIZE)[1][1];
 
@@ -95,7 +95,7 @@ public class WorldRenderer {
         stage.draw();
 
         //debug
-        drawHitBoxes();
+        //drawHitBoxes();
         //
 
         inventory.setVisible(screen.inventory);
@@ -126,7 +126,7 @@ public class WorldRenderer {
     public void drawHitBoxes() {
         renderer.setProjectionMatrix(camera.combined);
         renderer.begin(ShapeRenderer.ShapeType.Line);
-        /*for (int i = 0; i < world.getTiles().getArray().length; i++) {
+        for (int i = 0; i < world.getTiles().getArray().length; i++) {
             if (world.getTiles().getArray()[i].getBlock() != Blocks.air) {
                 renderer.rect(
                         world.getTiles().getArray()[i].getPosition().x * Vars.TILE_SIZE,
@@ -134,7 +134,7 @@ public class WorldRenderer {
                         world.getTiles().getArray()[i].getBounds().width * Vars.TILE_SIZE,
                         world.getTiles().getArray()[i].getBounds().height * Vars.TILE_SIZE);
             }
-        }*/
+        }
 
         renderer.rect(
                 world.getPlayer().getPosition().x * Vars.TILE_SIZE,
