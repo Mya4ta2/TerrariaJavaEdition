@@ -14,4 +14,12 @@ public class Vars {
 
     public static final Texture ERROR_TEXTURE = new Texture("sprite/error.png");
 
+    public static final int SMALL_WORLD_HEIGHT = 1200;
+    public static final int SMALL_WORLD_WIDTH = 2400;
+
+    public static final int MEDIUM_WORLD_HEIGHT = 1800;
+    public static final int MEDIUM_WORLD_WIDTH = 6400;
+
+    public static final int BIG_WORLD_HEIGHT = 2400;
+    public static final int BIG_WORLD_WIDTH = 8400;
 }
