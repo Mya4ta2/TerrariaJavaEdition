@@ -1,10 +1,8 @@
 package ru.terraria.gameui;
 
-import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
-import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import ru.terraria.content.Items;
 import ru.terraria.type.Item;
@@ -12,12 +10,15 @@ import ru.terraria.type.ItemStack;
 
 public class ItemSlot extends Actor {
     private final Texture slot;
+    private final Texture activeSlot;
+    private boolean selected;
 
     private ItemStack items;
     private BitmapFont font;
 
-    public ItemSlot(Texture slot) {
+    public ItemSlot(Texture slot, Texture activeSlot) {
         this.slot = slot;
+        this.activeSlot = activeSlot;
         items = new ItemStack();
         font = new BitmapFont();
 
@@ -39,7 +40,11 @@ public class ItemSlot extends Actor {
 
     @Override
     public void draw(Batch batch, float parentAlpha) {
-        batch.draw(slot,getX(),getY(), getWidth(), getHeight());
+        if (selected) {
+            batch.draw(activeSlot,getX(),getY(), getWidth(), getHeight());
+        } else {
+            batch.draw(slot,getX(),getY(), getWidth(), getHeight());
+        }
 
         if (items.getItemType() != Items.air) {
             batch.draw(items.getItemType().getTexture(),
@@ -66,5 +71,13 @@ public class ItemSlot extends Actor {
 
     public void setItemStack(ItemStack items) {
         this.items = items;
+    }
+
+    public boolean isSelected() {
+        return selected;
+    }
+
+    public void setSelected(boolean selected) {
+        this.selected = selected;
     }
 }

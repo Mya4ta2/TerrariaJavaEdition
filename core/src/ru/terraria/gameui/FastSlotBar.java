@@ -3,19 +3,22 @@ package ru.terraria.gameui;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.scenes.scene2d.Actor;
-import ru.terraria.Vars;
 
-public class ItemSlots extends Actor {
+public class FastSlotBar extends Actor {
     private final int size;
     private final Texture slotTexture;
+    private final Texture activeSlotTexture;
 
     private ItemSlot[] slots;
+    private int selectedSlot;
+    private float scroll;
 
-    public ItemSlots(int size, Texture slotTexture) {
+    public FastSlotBar(int size, Texture slotTexture, Texture activeSlotTexture) {
         this.size = size;
         this.slotTexture = slotTexture;
 
         slots = new ItemSlot[size];
+        this.activeSlotTexture = activeSlotTexture;
 
         fill();
         setSlotsPosition();
@@ -30,9 +33,45 @@ public class ItemSlots extends Actor {
         }
     }
 
+    public void setSelectedSlot(int selectedSlot) {
+        for (int i = 0; i < slots.length; i++) {
+            slots[i].setSelected(false);
+        }
+        this.selectedSlot = selectedSlot;
+        slots[selectedSlot].setSelected(true);
+    }
+
+    @Override
+    public void act(float delta) {
+        super.act(delta);
+        if (scroll > 0 && selectedSlot < slots.length-1) {
+            scroll = 0;
+            selectedSlot += 1;
+        } else if (scroll > 0 && selectedSlot < slots.length) {
+            selectedSlot = 0;
+        }
+
+        if (scroll < 0 && selectedSlot > 0) {
+            scroll = 0;
+            selectedSlot -= 1;
+        } else if (scroll < 0 && selectedSlot == 0) {
+            selectedSlot = slots.length-1;
+        }
+
+        setSelectedSlot(selectedSlot);
+    }
+
+    public float getScroll() {
+        return scroll;
+    }
+
+    public void setScroll(float scroll) {
+        this.scroll = scroll;
+    }
+
     public void fill() {
         for (int i = 0; i < slots.length; i++) {
-            slots[i] = new ItemSlot(slotTexture);
+            slots[i] = new ItemSlot(slotTexture, activeSlotTexture);
         }
     }
 

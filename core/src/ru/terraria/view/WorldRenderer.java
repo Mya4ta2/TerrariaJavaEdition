@@ -1,8 +1,6 @@
 package ru.terraria.view;
 
 import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.Screen;
-import com.badlogic.gdx.assets.AssetManager;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
@@ -16,9 +14,8 @@ import com.badlogic.gdx.utils.viewport.ScreenViewport;
 import ru.terraria.Vars;
 import ru.terraria.content.Blocks;
 import ru.terraria.content.Items;
-import ru.terraria.content.Walls;
 import ru.terraria.gameui.ItemPanel;
-import ru.terraria.gameui.ItemSlots;
+import ru.terraria.gameui.FastSlotBar;
 import ru.terraria.gameui.SpriteBar;
 import ru.terraria.screen.GameScreen;
 import ru.terraria.type.ItemStack;
@@ -26,8 +23,6 @@ import ru.terraria.type.Tile;
 import ru.terraria.type.World;
 
 import java.util.Arrays;
-import java.util.HashMap;
-import java.util.Map;
 
 public class WorldRenderer {
     private World world;
@@ -43,7 +38,7 @@ public class WorldRenderer {
     private Stage stage;
     private SpriteBar healthBar;
     private ItemPanel inventory;
-    private ItemSlots fastSlotBar;
+    private FastSlotBar fastSlotBar;
 
     public ShapeRenderer renderer;
 
@@ -66,8 +61,8 @@ public class WorldRenderer {
         healthBar.setInverseDraw(true);
         stage.addActor(healthBar);
 
-        inventory = new ItemPanel(10, 6, new Texture("sprite/ui/slot.png"));
-        fastSlotBar = new ItemSlots(10, new Texture("sprite/ui/slot.png"));
+        inventory = new ItemPanel(10, 6, new Texture("sprite/ui/slot.png"), new Texture("sprite/ui/selected_slot.png"));
+        fastSlotBar = new FastSlotBar(10, new Texture("sprite/ui/slot.png"), new Texture("sprite/ui/selected_slot.png"));
         ItemStack stack = new ItemStack();
         Arrays.fill(stack.getItems(), Items.test);
         stack.setItemType(Items.test);
@@ -196,5 +191,9 @@ public class WorldRenderer {
 
     public OrthographicCamera getCamera() {
         return camera;
+    }
+
+    public FastSlotBar getFastSlotBar() {
+        return fastSlotBar;
     }
 }

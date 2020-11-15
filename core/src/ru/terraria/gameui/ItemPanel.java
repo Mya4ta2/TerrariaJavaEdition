@@ -4,19 +4,19 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 
-import java.util.Arrays;
-
 public class ItemPanel extends Actor {
     private final int width;
     private final int height;
     private final Texture slotTexture;
+    private final Texture activeSlotTexture;
 
     private ItemSlot[][] slots;
 
-    public ItemPanel(int width, int height, Texture slotTexture) {
+    public ItemPanel(int width, int height, Texture slotTexture, Texture activeSlotTexture) {
         this.width = width;
         this.height = height;
         this.slotTexture = slotTexture;
+        this.activeSlotTexture = activeSlotTexture;
 
         slots = new ItemSlot[width][height];
 
@@ -38,7 +38,7 @@ public class ItemPanel extends Actor {
     public void fill() {
         for (int i = 0; i < height; i++) {
             for (int j = 0; j < width; j++) {
-                slots[j][i] = new ItemSlot(slotTexture);
+                slots[j][i] = new ItemSlot(slotTexture, activeSlotTexture);
             }
         }
     }

@@ -162,6 +162,7 @@ public class WorldController implements InputProcessor {
 
     @Override
     public boolean scrolled(float amountX, float amountY) {
+        screen.getRenderer().getFastSlotBar().setScroll(amountY);
         return false;
     }
 }
