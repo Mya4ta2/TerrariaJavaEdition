@@ -1,7 +1,9 @@
 package ru.terraria.type;
 
+import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector2;
+import ru.terraria.Vars;
 import ru.terraria.content.Blocks;
 import ru.terraria.content.Walls;
 
@@ -28,6 +30,24 @@ public class Tile {
         bounds.width = WIDTH;
 
         spriteVariant = (int) ((Math.random() * ((2 - 0) + 0)) + 0);
+    }
+
+    public void draw(SpriteBatch batch) {
+        if (block != Blocks.air) {
+            batch.draw(block.getTexture()[getVariant()][getNeighbourAir().getNum()],
+                    position.x * Vars.TILE_SIZE,
+                    position.y * Vars.TILE_SIZE,
+                    WIDTH * Vars.TILE_SIZE,
+                    HEIGHT * Vars.TILE_SIZE);
+        }
+
+        if (wall != Walls.air) {
+            batch.draw(wall.getTexture()[getVariant()],
+                    position.x * Vars.TILE_SIZE,
+                    position.y * Vars.TILE_SIZE,
+                    WIDTH * Vars.TILE_SIZE,
+                    HEIGHT * Vars.TILE_SIZE);
+        }
     }
 
     public Tile() {

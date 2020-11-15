@@ -177,21 +177,7 @@ public class WorldRenderer {
         Tile[] arr = world.getTiles().getArray();
 
         for (int i = 0; i < arr.length; i++) {
-            if (arr[i].getWall() != null && arr[i].getWall() != Walls.air) {
-                batch.draw(arr[i].getWall().getTexture()[arr[i].getVariant()],
-                        arr[i].getPosition().x * Vars.TILE_SIZE,
-                        arr[i].getPosition().y * Vars.TILE_SIZE,
-                        arr[i].getWall().getWIDTH() * Vars.TILE_SIZE,
-                        arr[i].getWall().getHEIGHT() * Vars.TILE_SIZE);
-            }
-
-            if (arr[i].getBlock() != null && arr[i].getBlock() != Blocks.air) {
-                batch.draw(arr[i].getBlock().getTexture()[arr[i].getVariant()][arr[i].getNeighbourAir().getNum()],
-                        arr[i].getPosition().x * Vars.TILE_SIZE,
-                        arr[i].getPosition().y * Vars.TILE_SIZE,
-                        arr[i].getBlock().getWIDTH() * Vars.TILE_SIZE,
-                        arr[i].getBlock().getHEIGHT() * Vars.TILE_SIZE);
-            }
+            arr[i].draw(batch);
         }
 
         batch.draw(playerTexture,
