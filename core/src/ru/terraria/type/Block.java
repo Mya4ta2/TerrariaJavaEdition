@@ -33,6 +33,7 @@ public class Block extends MappableContent {
 
     private float WIDTH;
     private float HEIGHT;
+    protected boolean hard = true;
 
     private int variants = 3;
     private TextureRegion[][] texture = new TextureRegion[variants][NeighbourAir.values().length];
@@ -86,5 +87,13 @@ public class Block extends MappableContent {
 
     public TextureRegion[][] getTexture() {
         return texture;
+    }
+
+    public Rectangle getBounds() {
+        return bounds;
+    }
+
+    public void setBounds(Rectangle bounds) {
+        this.bounds = bounds;
     }
 }

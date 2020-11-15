@@ -40,6 +40,14 @@ public class Tile {
         if (wall != Walls.air) {
             wall.draw(batch, this);
         }
+
+        if (!block.hard) {
+            bounds.width = 0;
+            bounds.height = 0;
+        } else {
+            bounds.height = HEIGHT;
+            bounds.width = WIDTH;
+        }
     }
 
     public Tile() {
@@ -115,10 +123,10 @@ public class Tile {
 
             if
             (
-                    downTile.getBlock() == Blocks.air &&
-                            upTile.getBlock() != Blocks.air &&
-                            rightTile.getBlock() != Blocks.air &&
-                            leftTile.getBlock() != Blocks.air
+                    downTile.getBlock() == Blocks.air && downTile.getBlock().hard &&
+                            upTile.getBlock() != Blocks.air && upTile.getBlock().hard &&
+                            rightTile.getBlock() != Blocks.air && rightTile.getBlock().hard &&
+                            leftTile.getBlock() != Blocks.air && leftTile.getBlock().hard
             )
             {
                 blockNeighbourAir = Block.NeighbourAir.DOWN;
@@ -126,10 +134,10 @@ public class Tile {
 
             if
             (
-                    downTile.getBlock() != Blocks.air &&
-                            upTile.getBlock() != Blocks.air &&
-                            rightTile.getBlock() == Blocks.air &&
-                            leftTile.getBlock() != Blocks.air
+                    downTile.getBlock() != Blocks.air && downTile.getBlock().hard &&
+                            upTile.getBlock() != Blocks.air && upTile.getBlock().hard &&
+                            rightTile.getBlock() == Blocks.air && rightTile.getBlock().hard &&
+                            leftTile.getBlock() != Blocks.air && leftTile.getBlock().hard
             )
             {
                 blockNeighbourAir = Block.NeighbourAir.RIGHT;
@@ -137,10 +145,10 @@ public class Tile {
 
             if
             (
-                    downTile.getBlock() != Blocks.air &&
-                            upTile.getBlock() == Blocks.air &&
-                            rightTile.getBlock() != Blocks.air &&
-                            leftTile.getBlock() != Blocks.air
+                    downTile.getBlock() != Blocks.air && downTile.getBlock().hard &&
+                            upTile.getBlock() == Blocks.air && upTile.getBlock().hard &&
+                            rightTile.getBlock() != Blocks.air && rightTile.getBlock().hard &&
+                            leftTile.getBlock() != Blocks.air && leftTile.getBlock().hard
             )
             {
                 blockNeighbourAir = Block.NeighbourAir.UP;
@@ -148,10 +156,10 @@ public class Tile {
 
             if
             (
-                    downTile.getBlock() != Blocks.air &&
-                            upTile.getBlock() != Blocks.air &&
-                            rightTile.getBlock() != Blocks.air &&
-                            leftTile.getBlock() == Blocks.air
+                    downTile.getBlock() != Blocks.air && downTile.getBlock().hard &&
+                            upTile.getBlock() != Blocks.air && upTile.getBlock().hard &&
+                            rightTile.getBlock() != Blocks.air && rightTile.getBlock().hard &&
+                            leftTile.getBlock() == Blocks.air && leftTile.getBlock().hard
             )
             {
                 blockNeighbourAir = Block.NeighbourAir.LEFT;
@@ -160,10 +168,10 @@ public class Tile {
 
             if
             (
-                    downTile.getBlock() != Blocks.air &&
-                            upTile.getBlock() == Blocks.air &&
-                            rightTile.getBlock() != Blocks.air &&
-                            leftTile.getBlock() == Blocks.air
+                    downTile.getBlock() != Blocks.air && downTile.getBlock().hard &&
+                            upTile.getBlock() == Blocks.air && upTile.getBlock().hard &&
+                            rightTile.getBlock() != Blocks.air && rightTile.getBlock().hard &&
+                            leftTile.getBlock() == Blocks.air && leftTile.getBlock().hard
             )
             {
                 blockNeighbourAir = Block.NeighbourAir.LEFT_UP;
@@ -171,10 +179,10 @@ public class Tile {
 
             if
             (
-                    downTile.getBlock() == Blocks.air &&
-                            upTile.getBlock() != Blocks.air &&
-                            rightTile.getBlock() != Blocks.air &&
-                            leftTile.getBlock() == Blocks.air
+                    downTile.getBlock() == Blocks.air && downTile.getBlock().hard &&
+                            upTile.getBlock() != Blocks.air && upTile.getBlock().hard &&
+                            rightTile.getBlock() != Blocks.air && rightTile.getBlock().hard &&
+                            leftTile.getBlock() == Blocks.air && leftTile.getBlock().hard
             )
             {
                 blockNeighbourAir = Block.NeighbourAir.LEFT_DOWN;
@@ -182,10 +190,10 @@ public class Tile {
 
             if
             (
-                    downTile.getBlock() != Blocks.air &&
-                            upTile.getBlock() == Blocks.air &&
-                            rightTile.getBlock() == Blocks.air &&
-                            leftTile.getBlock() != Blocks.air
+                    downTile.getBlock() != Blocks.air && downTile.getBlock().hard &&
+                            upTile.getBlock() == Blocks.air && upTile.getBlock().hard &&
+                            rightTile.getBlock() == Blocks.air && rightTile.getBlock().hard &&
+                            leftTile.getBlock() != Blocks.air && leftTile.getBlock().hard
             )
             {
                 blockNeighbourAir = Block.NeighbourAir.RIGHT_UP;
@@ -193,10 +201,10 @@ public class Tile {
 
             if
             (
-                    downTile.getBlock() == Blocks.air &&
-                            upTile.getBlock() != Blocks.air &&
-                            rightTile.getBlock() == Blocks.air &&
-                            leftTile.getBlock() != Blocks.air
+                    downTile.getBlock() == Blocks.air && downTile.getBlock().hard &&
+                            upTile.getBlock() != Blocks.air && upTile.getBlock().hard &&
+                            rightTile.getBlock() == Blocks.air && rightTile.getBlock().hard &&
+                            leftTile.getBlock() != Blocks.air && leftTile.getBlock().hard
             )
             {
                 blockNeighbourAir = Block.NeighbourAir.RIGHT_DOWN;
@@ -204,10 +212,10 @@ public class Tile {
 
             if
             (
-                    downTile.getBlock() == Blocks.air &&
-                            upTile.getBlock() == Blocks.air &&
-                            rightTile.getBlock() == Blocks.air &&
-                            leftTile.getBlock() == Blocks.air
+                    downTile.getBlock() == Blocks.air && downTile.getBlock().hard &&
+                            upTile.getBlock() == Blocks.air && upTile.getBlock().hard &&
+                            rightTile.getBlock() == Blocks.air && rightTile.getBlock().hard &&
+                            leftTile.getBlock() == Blocks.air && leftTile.getBlock().hard
             )
             {
                 blockNeighbourAir = Block.NeighbourAir.NONE;
@@ -215,10 +223,10 @@ public class Tile {
 
             if
             (
-                    downTile.getBlock() != Blocks.air &&
-                            upTile.getBlock() != Blocks.air &&
-                            rightTile.getBlock() != Blocks.air &&
-                            leftTile.getBlock() != Blocks.air
+                    downTile.getBlock() != Blocks.air && downTile.getBlock().hard &&
+                            upTile.getBlock() != Blocks.air && upTile.getBlock().hard &&
+                            rightTile.getBlock() != Blocks.air && rightTile.getBlock().hard &&
+                            leftTile.getBlock() != Blocks.air && leftTile.getBlock().hard
             )
             {
                 blockNeighbourAir = Block.NeighbourAir.ALL;

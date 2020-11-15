@@ -18,6 +18,8 @@ public class HighGrass extends Block {
     public HighGrass(String name) {
         super(name);
 
+        hard = false;
+
         texture = new TextureRegion[variants];
         Arrays.fill(texture, new TextureRegion(Vars.ERROR_TEXTURE));
     }
