@@ -93,38 +93,38 @@ public class FastSlotBar extends Actor {
 
     @Override
     public void setX(float x) {
-        setSlotsPosition();
         super.setX(x);
+        setSlotsPosition();
     }
 
     @Override
     public void setX(float x, int alignment) {
-        setSlotsPosition();
         super.setX(x, alignment);
+        setSlotsPosition();
     }
 
     @Override
     public void setY(float y) {
-        setSlotsPosition();
         super.setY(y);
+        setSlotsPosition();
     }
 
     @Override
     public void setY(float y, int alignment) {
-        setSlotsPosition();
         super.setY(y, alignment);
+        setSlotsPosition();
     }
 
     @Override
     public void setPosition(float x, float y) {
-        setSlotsPosition();
         super.setPosition(x, y);
+        setSlotsPosition();
     }
 
     @Override
     public void setPosition(float x, float y, int alignment) {
-        setSlotsPosition();
         super.setPosition(x, y, alignment);
+        setSlotsPosition();
     }
 
     public int getSize() {

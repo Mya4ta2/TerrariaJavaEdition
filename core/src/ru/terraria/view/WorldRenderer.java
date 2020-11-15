@@ -58,7 +58,6 @@ public class WorldRenderer {
 
         healthBar = new SpriteBar(0,100, new Texture("sprite/ui/health.png"));
         healthBar.setInverseDraw(true);
-        stage.addActor(healthBar);
 
         inventory = new ItemPanel(10, 6, new Texture("sprite/ui/slot.png"), new Texture("sprite/ui/selected_slot.png"));
         fastSlotBar = new FastSlotBar(10, new Texture("sprite/ui/slot.png"), new Texture("sprite/ui/selected_slot.png"));
@@ -79,6 +78,7 @@ public class WorldRenderer {
         stage.addActor(accessory);
         stage.addActor(inventory);
         stage.addActor(fastSlotBar);
+        stage.addActor(healthBar);
 
         renderer = new ShapeRenderer();
         font = new BitmapFont();
