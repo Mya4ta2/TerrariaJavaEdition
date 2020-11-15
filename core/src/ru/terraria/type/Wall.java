@@ -45,6 +45,15 @@ public class Wall extends MappableContent {
         Arrays.fill(texture, new TextureRegion(Vars.ERROR_TEXTURE));
     }
 
+    @Override
+    public void draw(SpriteBatch batch, Tile tile) {
+        batch.draw(texture[tile.getVariant()],
+                tile.getPosition().x * Vars.TILE_SIZE,
+                tile.getPosition().y * Vars.TILE_SIZE,
+                WIDTH * Vars.TILE_SIZE,
+                HEIGHT * Vars.TILE_SIZE);
+    }
+
     public Vector2 getPosition() {
         return position;
     }

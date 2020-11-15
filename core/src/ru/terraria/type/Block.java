@@ -8,6 +8,7 @@ import ru.terraria.Vars;
 import ru.terraria.content.Blocks;
 import ru.terraria.ctype.MappableContent;
 
+import java.awt.*;
 import java.util.Arrays;
 
 public class Block extends MappableContent {
@@ -60,6 +61,15 @@ public class Block extends MappableContent {
 
             texture[i] = region;
         }
+    }
+
+    @Override
+    public void draw(SpriteBatch batch, Tile tile) {
+        batch.draw(texture[tile.getVariant()][tile.getNeighbourAir().getNum()],
+                tile.getPosition().x * Vars.TILE_SIZE,
+                tile.getPosition().y * Vars.TILE_SIZE,
+                WIDTH * Vars.TILE_SIZE,
+                HEIGHT * Vars.TILE_SIZE);
     }
 
     public Vector2 getPosition() {

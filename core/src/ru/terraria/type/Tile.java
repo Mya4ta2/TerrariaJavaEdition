@@ -34,19 +34,11 @@ public class Tile {
 
     public void draw(SpriteBatch batch) {
         if (block != Blocks.air) {
-            batch.draw(block.getTexture()[getVariant()][getNeighbourAir().getNum()],
-                    position.x * Vars.TILE_SIZE,
-                    position.y * Vars.TILE_SIZE,
-                    WIDTH * Vars.TILE_SIZE,
-                    HEIGHT * Vars.TILE_SIZE);
+            block.draw(batch, this);
         }
 
         if (wall != Walls.air) {
-            batch.draw(wall.getTexture()[getVariant()],
-                    position.x * Vars.TILE_SIZE,
-                    position.y * Vars.TILE_SIZE,
-                    WIDTH * Vars.TILE_SIZE,
-                    HEIGHT * Vars.TILE_SIZE);
+            wall.draw(batch, this);
         }
     }
 

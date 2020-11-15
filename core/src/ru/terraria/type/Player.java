@@ -38,6 +38,11 @@ public class Player extends MappableContent {
         groundHitBox.height = Vars.TILE_SIZE;
     }
 
+    @Override
+    public void draw(SpriteBatch batch, Tile tile) {
+
+    }
+
     public Player(String name, Vector2 position) {
         this.position = position;
         this.name = name;
