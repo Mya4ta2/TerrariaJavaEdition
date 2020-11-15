@@ -2,6 +2,7 @@ package ru.terraria.content;
 
 import ru.terraria.ctype.ContentList;
 import ru.terraria.type.Block;
+import ru.terraria.type.HighGrass;
 import ru.terraria.type.Ore;
 
 public class Blocks implements ContentList {
@@ -9,6 +10,8 @@ public class Blocks implements ContentList {
     public static Block air, dirt, grass, stone;
     //ore
     public static Ore ironOre;
+
+    public static HighGrass highGrass;
 
 
     @Override
@@ -21,6 +24,13 @@ public class Blocks implements ContentList {
         };
 
         grass = new Block("grass") {
+            {
+                setWIDTH(1);
+                setHEIGHT(1);
+            }
+        };
+
+        highGrass = new HighGrass("highGrass") {
             {
                 setWIDTH(1);
                 setHEIGHT(1);

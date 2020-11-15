@@ -79,9 +79,13 @@ public class MainActivity extends Game {
 
         grass1[9] = textureRegions[0][3];
 
-        //
-        //  Влад, нужно вернуть все спрайты в игру, и также сделать им по 3 вариаций и по 100 вращений =(
-        //
+        texture = new Texture("sprite/block/block_3.png");
+        textureRegions = TextureRegion.split(texture, Vars.TILE_SIZE, Vars.TILE_SIZE);
+
+        TextureRegion[] highGrass = new TextureRegion[3];
+        highGrass[0] = textureRegions[0][0];
+        highGrass[1] = textureRegions[0][1];
+        highGrass[2] = textureRegions[0][2];
 
         TextureRegion[][] dirts = {
                 dirt1,
@@ -104,6 +108,6 @@ public class MainActivity extends Game {
         Blocks.dirt.setTexture(dirts);
         Blocks.stone.setTexture(stones);
         Blocks.grass.setTexture(grases);
-
+        Blocks.highGrass.setTexture(highGrass);
     }
 }

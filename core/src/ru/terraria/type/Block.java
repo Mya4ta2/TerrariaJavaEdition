@@ -72,40 +72,12 @@ public class Block extends MappableContent {
                 HEIGHT * Vars.TILE_SIZE);
     }
 
-    public Vector2 getPosition() {
-        return position;
-    }
-
-    public Rectangle getBounds() {
-        return bounds;
-    }
-
-    public void setBounds(Rectangle bounds) {
-        this.bounds = bounds;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public float getWIDTH() {
-        return WIDTH;
-    }
-
     public void setWIDTH(float WIDTH) {
         this.WIDTH = WIDTH;
     }
 
-    public float getHEIGHT() {
-        return HEIGHT;
-    }
-
     public void setHEIGHT(float HEIGHT) {
         this.HEIGHT = HEIGHT;
-    }
-
-    public void setPosition(Vector2 position) {
-        this.position = position;
     }
 
     public void setTexture(TextureRegion[][] texture) {

@@ -32,18 +32,9 @@ public class World {
         generateWorld(555);
         setBlocksNeighbourAir();
 
-        tiles.get(height - 5, width/2).setBlock(Blocks.dirt);
-        tiles.get(height - 6, width/2).setBlock(Blocks.dirt);
-        tiles.get(height - 5, width/2-1).setBlock(Blocks.dirt);
-        tiles.get(height - 6, width/2-1).setBlock(Blocks.dirt);
-        tiles.get(height - 7, width/2).setBlock(Blocks.dirt);
-        tiles.get(height - 5, width/2).setBlock(Blocks.dirt);
-        tiles.get(height - 7, width/2-2).setBlock(Blocks.dirt);
-        tiles.get(height - 5, width/2-2).setBlock(Blocks.dirt);
-        tiles.get(height - 7, width/2-2).setBlock(Blocks.dirt);
-        tiles.get(height - 6, width/2-2).setBlock(Blocks.dirt);
-        tiles.get(height - 7, width/2-1).setBlock(Blocks.dirt);
-        tiles.get(height - 7, width/2-1).setBlock(Blocks.dirt);
+        tiles.get(height/2 - 14, width/2 - 2).setBlock(Blocks.highGrass);
+        tiles.get(height/2 - 14, width/2 - 3).setBlock(Blocks.highGrass);
+        tiles.get(height/2 - 14, width/2 - 4).setBlock(Blocks.highGrass);
         setBlocksNeighbourAir();
 
         //spawn ore
