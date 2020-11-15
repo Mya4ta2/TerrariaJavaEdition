@@ -134,6 +134,17 @@ public class World {
             }
         }
 
+        //add high grass
+
+        for (int i = 0; i < width; i++) {
+            int num = random.nextInt(10);
+
+            if (num > 8) {
+                tiles.get(arr[i] + 1, i).setBlock(Blocks.highGrass);
+                setBlocksNeighbourAir();
+            }
+        }
+
         setBlocksNeighbourAir();
     }
 
