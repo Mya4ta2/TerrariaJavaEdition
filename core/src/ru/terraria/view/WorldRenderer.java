@@ -83,12 +83,15 @@ public class WorldRenderer {
         font = new BitmapFont();
     }
 
+    Texture bg = new Texture("sprite\\background\\Background_0.png");
+
     public void render(float deltaTime) {
         Gdx.gl20.glClear(GL20.GL_COLOR_BUFFER_BIT);
         Gdx.gl20.glClearColor(1, 1, 1, 1f);
 
         batch.setProjectionMatrix(camera.combined);
         batch.begin();
+        batch.draw(bg,-Vars.CAMERA_WIDTH,0, world.getWidth() * Vars.TILE_SIZE + Vars.CAMERA_WIDTH * 2, bg.getHeight());
         drawWorld(batch);
         font.setColor(Color.RED);
         font.draw(batch, "FPS: " + Gdx.graphics.getFramesPerSecond(),

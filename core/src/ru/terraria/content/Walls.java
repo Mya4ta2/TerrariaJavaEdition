@@ -1,7 +1,6 @@
 package ru.terraria.content;
 
 import ru.terraria.ctype.ContentList;
-import ru.terraria.type.Block;
 import ru.terraria.type.Wall;
 
 public class Walls implements ContentList {
