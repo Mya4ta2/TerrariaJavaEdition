@@ -14,9 +14,7 @@ import com.badlogic.gdx.utils.viewport.ScreenViewport;
 import ru.terraria.Vars;
 import ru.terraria.content.Blocks;
 import ru.terraria.content.Items;
-import ru.terraria.gameui.ItemPanel;
-import ru.terraria.gameui.FastSlotBar;
-import ru.terraria.gameui.SpriteBar;
+import ru.terraria.gameui.*;
 import ru.terraria.screen.GameScreen;
 import ru.terraria.type.ItemStack;
 import ru.terraria.type.Tile;
@@ -39,6 +37,7 @@ public class WorldRenderer {
     private SpriteBar healthBar;
     private ItemPanel inventory;
     private FastSlotBar fastSlotBar;
+    private AccessoryPanel accessory;
 
     public ShapeRenderer renderer;
 
@@ -71,6 +70,13 @@ public class WorldRenderer {
         inventory.getSlots()[2][0].setItemStack(stack);
         fastSlotBar.getSlots()[0].setItemStack(stack);
 
+        accessory = new AccessoryPanel(
+                1,
+                10,
+                new Texture("sprite/ui/selected_slot.png"));
+        accessory.setInverse(true);
+
+        stage.addActor(accessory);
         stage.addActor(inventory);
         stage.addActor(fastSlotBar);
 
@@ -103,6 +109,7 @@ public class WorldRenderer {
         //
 
         inventory.setVisible(screen.inventory);
+        accessory.setVisible(screen.inventory);
 
         viewport.apply();
         camera.update();
@@ -117,11 +124,12 @@ public class WorldRenderer {
     }
 
     public void resize(int width, int height) {
+        viewport.update(width,height);
+        UIViewport.update(width, height);
         healthBar.setPosition(width / 3f + width / 8f, height / 3f + height / 8f);
         fastSlotBar.setPosition(-width / 2f + 10, height / 3f + height / 9f - 10);
         inventory.setPosition(-width / 2f + 10, height / 3f + height / 22f - 10);
-        viewport.update(width,height);
-        UIViewport.update(width, height);
+        accessory.setPosition(width / 3f + width / 8f, -height / 3f + height / 2f - height / 12f);
 
         Vars.CAMERA_WIDTH = Gdx.graphics.getWidth();
         Vars.CAMERA_HEIGHT = Gdx.graphics.getHeight();
