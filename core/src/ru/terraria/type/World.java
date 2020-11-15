@@ -32,11 +32,6 @@ public class World {
         generateWorld(555);
         setBlocksNeighbourAir();
 
-        tiles.get(height/2 - 14, width/2 - 2).setBlock(Blocks.highGrass);
-        tiles.get(height/2 - 14, width/2 - 3).setBlock(Blocks.highGrass);
-        tiles.get(height/2 - 14, width/2 - 4).setBlock(Blocks.highGrass);
-        setBlocksNeighbourAir();
-
         //spawn ore
         /*int s = 0;
 
@@ -139,7 +134,7 @@ public class World {
         for (int i = 0; i < width; i++) {
             int num = random.nextInt(10);
 
-            if (num > 8) {
+            if (num > 5) {
                 tiles.get(arr[i] + 1, i).setBlock(Blocks.highGrass);
                 setBlocksNeighbourAir();
             }
