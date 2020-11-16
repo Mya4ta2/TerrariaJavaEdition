@@ -128,7 +128,7 @@ public class WorldRenderer {
         UIViewport.update(width, height);
         healthBar.setPosition(width / 3f + width / 8f, height / 3f + height / 8f);
         fastSlotBar.setPosition(-width / 2f + 10, height / 3f + height / 9f - 10);
-        inventory.setPosition(-width / 2f + 10, height / 3f + height / 22f - 10);
+        inventory.setPosition(fastSlotBar.getX(), fastSlotBar.getY() - 46);
         accessory.setPosition(width / 3f + width / 8f, -height / 3f + height / 2f - height / 12f);
 
         Vars.CAMERA_WIDTH = Gdx.graphics.getWidth();
