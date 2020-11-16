@@ -3,6 +3,7 @@ package ru.terraria;
 import com.badlogic.gdx.Game;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
+import org.w3c.dom.Text;
 import ru.terraria.content.Blocks;
 import ru.terraria.content.Items;
 import ru.terraria.content.Walls;
@@ -109,5 +110,7 @@ public class MainActivity extends Game {
         Blocks.stone.setTexture(stones);
         Blocks.grass.setTexture(grases);
         Blocks.highGrass.setTexture(highGrass);
+
+        Items.copperPickaxe.setTexture(new TextureRegion(new Texture("sprite\\items\\copper_pickaxe.png")));
     }
 }
