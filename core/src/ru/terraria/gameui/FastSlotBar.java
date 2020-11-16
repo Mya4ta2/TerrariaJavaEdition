@@ -3,6 +3,7 @@ package ru.terraria.gameui;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
+import com.badlogic.gdx.graphics.g2d.GlyphLayout;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import ru.terraria.content.Items;
 
@@ -11,6 +12,7 @@ public class FastSlotBar extends Actor {
     private final Texture slotTexture;
     private final Texture activeSlotTexture;
     private final BitmapFont font;
+    private GlyphLayout glyphLayout;
 
     private ItemSlot[] slots;
     private int selectedSlot;
@@ -23,6 +25,8 @@ public class FastSlotBar extends Actor {
 
         slots = new ItemSlot[size];
         this.activeSlotTexture = activeSlotTexture;
+
+        glyphLayout = new GlyphLayout();
 
         fill();
         setSlotsPosition();
@@ -51,8 +55,12 @@ public class FastSlotBar extends Actor {
         }
 
         if (slots[selectedSlot].getItem() != Items.air) {
+
+            float x = (getX() + slots[0].getWidth() * slots.length / 2); // center position on slots
+
             font.draw(batch,String.valueOf(slots[selectedSlot].getItem().getName()),
-                    getX() + slots[0].getWidth() * slots.length / 2, slots[slots.length-1].getTop() + 6);
+                    x + (getWidth() - glyphLayout.width) / 2,
+                    slots[slots.length-1].getTop() + 6);
         }
     }
 
@@ -82,6 +90,7 @@ public class FastSlotBar extends Actor {
         }
 
         setSelectedSlot(selectedSlot);
+        glyphLayout.setText(font, slots[selectedSlot].getItem().getName());
     }
 
     public float getScroll() {
