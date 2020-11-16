@@ -18,31 +18,32 @@ public class Items implements ContentList {
     public void load() {
         air = new Item("air") {
             {
-
+                setPlaceble(false);
             }
         };
 
         copperPickaxe = new Pickaxe("copper pickaxe") {
             {
-
+                setPlaceble(false);
             }
         };
 
         copperAxe = new Axe("copper axe") {
             {
-
+                setPlaceble(false);
             }
         };
 
         copperSword = new Sword("copper sword") {
             {
-
+                setPlaceble(false);
             }
         };
 
         test = new Item("dirt") {
             {
-
+                setPlaceble(true);
+                setPlacebleBlock(Blocks.dirt);
             }
         };
     }

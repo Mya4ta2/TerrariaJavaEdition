@@ -171,4 +171,8 @@ public class FastSlotBar extends Actor {
     public void setSlots(ItemSlot[] slots) {
         this.slots = slots;
     }
+
+    public int getSelectedSlot() {
+        return selectedSlot;
+    }
 }

@@ -11,6 +11,7 @@ import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.utils.viewport.ScreenViewport;
+import ru.terraria.Cursor;
 import ru.terraria.Vars;
 import ru.terraria.content.Blocks;
 import ru.terraria.content.Items;
@@ -122,6 +123,17 @@ public class WorldRenderer {
         //debug
         //drawHitBoxes();
         //
+
+        if (fastSlotBar.getSlots()[fastSlotBar.getSelectedSlot()].getItemStack().getItem().isPlaceble()) {
+            Cursor.itemStack = fastSlotBar.getSlots()[fastSlotBar.getSelectedSlot()].getItemStack();
+        } else {
+            Cursor.itemStack = new ItemStack(){
+                {
+                    setItem(Items.air);
+                    setItemsCount(0);
+                }
+            };
+        }
 
         inventory.setVisible(screen.inventory);
         accessory.setVisible(screen.inventory);

@@ -7,6 +7,7 @@ import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.math.Vector2;
+import ru.terraria.Cursor;
 import ru.terraria.Vars;
 import ru.terraria.content.Blocks;
 import ru.terraria.screen.GameScreen;
@@ -57,6 +58,14 @@ public class WorldController implements InputProcessor {
         if (Gdx.input.isButtonJustPressed(Input.Buttons.LEFT)) {
             if ((cX / 16) > 0 && (cY / 16) > 0 && (cX / 16) < world.getWidth() && (cY / 16) < world.getHeight()) {
                 world.getTiles().get(cY / 16, cX / 16).setBlock(Blocks.air); //need add health to block
+            }
+        }
+
+        if (Gdx.input.isButtonJustPressed(Input.Buttons.RIGHT)) {
+            if ((cX / 16) > 0 && (cY / 16) > 0 && (cX / 16) < world.getWidth() && (cY / 16) < world.getHeight()) {
+                if (Cursor.itemStack != null && Cursor.itemStack.getItem().isPlaceble()) {
+                    world.getTiles().get(cY / 16, cX / 16).setBlock(Cursor.itemStack.getItem().getPlacebleBlock());
+                }
             }
         }
     }

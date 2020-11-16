@@ -13,9 +13,9 @@ public class MainActivity extends Game {
 
     @Override
     public void create() {
+        new Blocks().load();
         new Walls().load();
         new Items().load();
-        new Blocks().load();
         loadTextures();
 
         GameScreen gameScreen = new GameScreen(this);
