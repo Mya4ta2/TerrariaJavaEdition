@@ -111,6 +111,8 @@ public class MainActivity extends Game {
         Blocks.grass.setTexture(grases);
         Blocks.highGrass.setTexture(highGrass);
 
-        Items.copperPickaxe.setTexture(new TextureRegion(new Texture("sprite\\items\\copper_pickaxe.png")));
+        Items.copperSword.setTexture(new TextureRegion(new Texture("sprite\\items\\Item_0.png")));
+        Items.copperPickaxe.setTexture(new TextureRegion(new Texture("sprite\\items\\Item_1.png")));
+        Items.copperAxe.setTexture(new TextureRegion(new Texture("sprite\\items\\Item_2.png")));
     }
 }

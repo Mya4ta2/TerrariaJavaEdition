@@ -71,7 +71,15 @@ public class WorldRenderer {
         ItemStack stack = new ItemStack();
         stack.getItems()[1] = Items.copperPickaxe;
         stack.setItemType(Items.copperPickaxe);
-        fastSlotBar.getSlots()[0].setItemStack(stack);
+        ItemStack stack1 = new ItemStack();
+        stack1.getItems()[1] = Items.copperAxe;
+        stack1.setItemType(Items.copperAxe);
+        ItemStack stack2 = new ItemStack();
+        stack2.getItems()[1] = Items.copperSword;
+        stack2.setItemType(Items.copperSword);
+        fastSlotBar.getSlots()[2].setItemStack(stack);
+        fastSlotBar.getSlots()[1].setItemStack(stack1);
+        fastSlotBar.getSlots()[0].setItemStack(stack2);
 
         accessory = new AccessoryPanel(
                 1,
