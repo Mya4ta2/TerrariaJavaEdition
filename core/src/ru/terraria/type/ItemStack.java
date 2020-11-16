@@ -3,10 +3,16 @@ package ru.terraria.type;
 import ru.terraria.Vars;
 import ru.terraria.content.Items;
 
+import java.util.Arrays;
+
 public class ItemStack {
     private Item[] items = new Item[Vars.STACK_SIZE];
     private Item itemType = Items.air;
     private int itemsContains;
+
+    public ItemStack() {
+        Arrays.fill(items,Items.air);
+    }
 
     public void checkItemsContains() {
 
