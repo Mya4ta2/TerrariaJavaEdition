@@ -49,6 +49,9 @@ public class WorldRenderer {
 
         camera = new OrthographicCamera(Vars.CAMERA_WIDTH, Vars.CAMERA_HEIGHT);
         UICamera = new OrthographicCamera(Vars.CAMERA_WIDTH, Vars.CAMERA_HEIGHT);
+        font = new BitmapFont(Gdx.files.internal("font\\as.fnt"));
+        font.setColor(Color.WHITE);
+
         batch = new SpriteBatch();
         batch.setProjectionMatrix(camera.combined);
         viewport = new ScreenViewport(camera);
@@ -59,8 +62,12 @@ public class WorldRenderer {
         healthBar = new SpriteBar(0,100, new Texture("sprite/ui/health.png"));
         healthBar.setInverseDraw(true);
 
-        inventory = new ItemPanel(10, 6, new Texture("sprite/ui/slot.png"), new Texture("sprite/ui/selected_slot.png"));
-        fastSlotBar = new FastSlotBar(10, new Texture("sprite/ui/slot.png"), new Texture("sprite/ui/selected_slot.png"));
+        inventory = new ItemPanel(10, 6,
+                new Texture("sprite/ui/slot.png"),
+                new Texture("sprite/ui/selected_slot.png"));
+        fastSlotBar = new FastSlotBar(10,
+                new Texture("sprite/ui/slot.png"),
+                new Texture("sprite/ui/selected_slot.png"), font);
         ItemStack stack = new ItemStack();
         Arrays.fill(stack.getItems(), Items.test);
         stack.setItemType(Items.test);
@@ -81,7 +88,6 @@ public class WorldRenderer {
         stage.addActor(healthBar);
 
         renderer = new ShapeRenderer();
-        font = new BitmapFont();
     }
 
     Texture bg = new Texture("sprite\\background\\Background_0.png");
@@ -94,7 +100,6 @@ public class WorldRenderer {
         batch.begin();
         batch.draw(bg,-Vars.CAMERA_WIDTH,0, world.getWidth() * Vars.TILE_SIZE + Vars.CAMERA_WIDTH * 2, bg.getHeight());
         drawWorld(batch);
-        font.setColor(Color.RED);
         font.draw(batch, "FPS: " + Gdx.graphics.getFramesPerSecond(),
                 world.getPlayer().getPosition().x * Vars.TILE_SIZE,world.getPlayer().getPosition().y * Vars.TILE_SIZE);
         batch.end();

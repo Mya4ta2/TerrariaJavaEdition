@@ -2,20 +2,38 @@ package ru.terraria.gameui;
 
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Batch;
+import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.scenes.scene2d.Actor;
+import ru.terraria.content.Items;
 
 public class FastSlotBar extends Actor {
     private final int size;
     private final Texture slotTexture;
     private final Texture activeSlotTexture;
+    private final BitmapFont font;
 
     private ItemSlot[] slots;
     private int selectedSlot;
     private float scroll;
 
+    public FastSlotBar(int size, Texture slotTexture, Texture activeSlotTexture, BitmapFont font) {
+        this.size = size;
+        this.slotTexture = slotTexture;
+        this.font = font;
+
+        slots = new ItemSlot[size];
+        this.activeSlotTexture = activeSlotTexture;
+
+        fill();
+        setSlotsPosition();
+        setDefaultPos();
+        setDefaultSize();
+    }
+
     public FastSlotBar(int size, Texture slotTexture, Texture activeSlotTexture) {
         this.size = size;
         this.slotTexture = slotTexture;
+        this.font = new BitmapFont();
 
         slots = new ItemSlot[size];
         this.activeSlotTexture = activeSlotTexture;
@@ -30,6 +48,11 @@ public class FastSlotBar extends Actor {
     public void draw(Batch batch, float parentAlpha) {
         for (int i = 0; i < slots.length; i++) {
             slots[i].draw(batch,parentAlpha);
+        }
+
+        if (slots[selectedSlot].getItem() != Items.air) {
+            font.draw(batch,String.valueOf(slots[selectedSlot].getItem().getName()),
+                    getX() + slots[0].getWidth() * slots.length / 2, slots[slots.length-1].getTop() + 6);
         }
     }
 
@@ -79,6 +102,7 @@ public class FastSlotBar extends Actor {
         for (int i = 0; i < slots.length; i++) {
             slots[i].setPosition(getX() + i * (slots[i].getWidth() + 4) ,getY());
         }
+
     }
 
     public void setDefaultPos() {
