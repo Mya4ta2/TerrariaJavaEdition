@@ -123,17 +123,7 @@ public class WorldRenderer {
         //debug
         //drawHitBoxes();
         //
-
-        if (fastSlotBar.getSlots()[fastSlotBar.getSelectedSlot()].getItemStack().getItem().isPlaceble()) {
-            Cursor.itemStack = fastSlotBar.getSlots()[fastSlotBar.getSelectedSlot()].getItemStack();
-        } else {
-            Cursor.itemStack = new ItemStack(){
-                {
-                    setItem(Items.air);
-                    setItemsCount(0);
-                }
-            };
-        }
+        Cursor.itemStack = fastSlotBar.getSlots()[fastSlotBar.getSelectedSlot()].getItemStack();
 
         inventory.setVisible(screen.inventory);
         accessory.setVisible(screen.inventory);

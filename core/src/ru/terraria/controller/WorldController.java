@@ -10,8 +10,10 @@ import com.badlogic.gdx.math.Vector2;
 import ru.terraria.Cursor;
 import ru.terraria.Vars;
 import ru.terraria.content.Blocks;
+import ru.terraria.content.Items;
 import ru.terraria.screen.GameScreen;
 import ru.terraria.type.Block;
+import ru.terraria.type.Pickaxe;
 import ru.terraria.type.Tile;
 import ru.terraria.type.World;
 
@@ -57,7 +59,9 @@ public class WorldController implements InputProcessor {
 
         if (Gdx.input.isButtonJustPressed(Input.Buttons.LEFT)) {
             if ((cX / 16) > 0 && (cY / 16) > 0 && (cX / 16) < world.getWidth() && (cY / 16) < world.getHeight()) {
-                world.getTiles().get(cY / 16, cX / 16).setBlock(Blocks.air); //need add health to block
+                if (Cursor.itemStack.getItem() instanceof Pickaxe) {
+                    world.getTiles().get(cY / 16, cX / 16).setBlock(Blocks.air); //need add health to block
+                }
             }
         }
 
