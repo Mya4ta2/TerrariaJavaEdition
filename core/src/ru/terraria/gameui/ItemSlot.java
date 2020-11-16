@@ -46,23 +46,23 @@ public class ItemSlot extends Actor {
             batch.draw(slot,getX(),getY(), getWidth(), getHeight());
         }
 
-        if (items.getItemType() != Items.air) {
-            batch.draw(items.getItemType().getTexture(),
+        if (items.getItem() != Items.air) {
+            batch.draw(items.getItem().getTexture(),
                     getX() + 4,
                     getY() + 4,
                     getWidth() - 8,
                     getHeight() - 8);
 
-            font.draw(batch,String.valueOf(items.getItemsContains()), getX() + 8, getY() + 16);
+            font.draw(batch,String.valueOf(items.getItemsCount()), getX() + 8, getY() + 16);
         }
     }
 
     public Item getItem() {
-        return items.getItemType();
+        return items.getItem();
     }
 
     public void setItem(Item item) {
-        this.items.setItemType(item);
+        this.items.setItem(item);
     }
 
     public ItemStack getItemStack() {

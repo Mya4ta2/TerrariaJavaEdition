@@ -6,51 +6,22 @@ import ru.terraria.content.Items;
 import java.util.Arrays;
 
 public class ItemStack {
-    private Item[] items = new Item[Vars.STACK_SIZE];
-    private Item itemType = Items.air;
-    private int itemsContains;
+    private Item item = Items.air;
+    private int itemsCount = 1;
 
-    public ItemStack() {
-        Arrays.fill(items,Items.air);
+    public Item getItem() {
+        return item;
     }
 
-    public void checkItemsContains() {
-
-        itemsContains = 0;
-
-        for (int i = 0; i < items.length; i++) {
-            if (items[i] != Items.air) {
-                itemsContains += 1;
-            }
-        }
+    public void setItem(Item item) {
+        this.item = item;
     }
 
-    public Item[] getItems() {
-        checkItemsContains();
-        return items;
+    public int getItemsCount() {
+        return itemsCount;
     }
 
-    public void setItems(Item[] items) {
-        this.items = items;
-        checkItemsContains();
-    }
-
-    public Item getItemType() {
-        checkItemsContains();
-        return itemType;
-    }
-
-    public void setItemType(Item itemType) {
-        checkItemsContains();
-        this.itemType = itemType;
-    }
-
-    public int getItemsContains() {
-        checkItemsContains();
-        return itemsContains;
-    }
-
-    public void setItemsContains(int itemsContains) {
-        this.itemsContains = itemsContains;
+    public void setItemsCount(int itemsCount) {
+        this.itemsCount = itemsCount;
     }
 }

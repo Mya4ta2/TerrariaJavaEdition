@@ -69,17 +69,22 @@ public class WorldRenderer {
                 new Texture("sprite/ui/slot.png"),
                 new Texture("sprite/ui/selected_slot.png"), font);
         ItemStack stack = new ItemStack();
-        stack.getItems()[1] = Items.copperPickaxe;
-        stack.setItemType(Items.copperPickaxe);
+        stack.setItem(Items.copperSword);
+        stack.setItemsCount(1);
         ItemStack stack1 = new ItemStack();
-        stack1.getItems()[1] = Items.copperAxe;
-        stack1.setItemType(Items.copperAxe);
+        stack1.setItem(Items.copperPickaxe);
+        stack1.setItemsCount(1);
         ItemStack stack2 = new ItemStack();
-        stack2.getItems()[1] = Items.copperSword;
-        stack2.setItemType(Items.copperSword);
-        fastSlotBar.getSlots()[2].setItemStack(stack);
+        stack2.setItem(Items.copperAxe);
+        stack2.setItemsCount(1);
+        ItemStack dirt = new ItemStack();
+        dirt.setItem(Items.test);
+        dirt.setItemsCount(999);
+
+        fastSlotBar.getSlots()[3].setItemStack(dirt);
+        fastSlotBar.getSlots()[2].setItemStack(stack2);
         fastSlotBar.getSlots()[1].setItemStack(stack1);
-        fastSlotBar.getSlots()[0].setItemStack(stack2);
+        fastSlotBar.getSlots()[0].setItemStack(stack);
 
         accessory = new AccessoryPanel(
                 1,
