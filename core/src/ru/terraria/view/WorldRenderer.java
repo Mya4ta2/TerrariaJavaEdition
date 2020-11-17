@@ -130,7 +130,12 @@ public class WorldRenderer {
 
         batch.setProjectionMatrix(camera.combined);
         batch.begin();
-        batch.draw(bg,-Vars.CAMERA_WIDTH,0, world.getWidth() * Vars.TILE_SIZE + Vars.CAMERA_WIDTH * 2, bg.getHeight());
+        batch.draw(
+                bg,-Vars.CAMERA_WIDTH,
+                (world.getHeight()/3 - 30) * Vars.TILE_SIZE,
+                world.getWidth() * Vars.TILE_SIZE + Vars.CAMERA_WIDTH * 2,
+                bg.getHeight()
+        );
         drawWorld(batch);
         font.draw(batch, "FPS: " + Gdx.graphics.getFramesPerSecond(),
                 world.getPlayer().getPosition().x * Vars.TILE_SIZE,world.getPlayer().getPosition().y * Vars.TILE_SIZE);

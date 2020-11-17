@@ -27,7 +27,7 @@ public class World {
 
     /* i need this only for test, after i delete this */
     public void createWorld() {
-        player = new Player("player", new Vector2(width/2,height/2));
+        player = new Player("player", new Vector2(width/2,height/3));
 
         generateWorld(555);
         setBlocksNeighbourAir();
