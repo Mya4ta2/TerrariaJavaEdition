@@ -83,7 +83,7 @@ public class WorldRenderer {
         dirt.setItemsCount(999);
         ItemStack plank = new ItemStack();
         plank.setItem(Items.woodenPlank);
-        plank.setItemsCount(1);
+        plank.setItemsCount(999);
 
         fastSlotBar.getSlots()[4].setItemStack(plank);
         fastSlotBar.getSlots()[3].setItemStack(dirt);

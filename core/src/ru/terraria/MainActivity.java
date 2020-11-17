@@ -80,6 +80,25 @@ public class MainActivity extends Game {
 
         grass1[9] = textureRegions[0][3];
 
+        texture = new Texture("sprite/block/block_4.png");
+        textureRegions = TextureRegion.split(texture, Vars.TILE_SIZE, Vars.TILE_SIZE);
+
+        TextureRegion[] plank = new TextureRegion[textureRegions.length * textureRegions.length];
+
+        plank[0] = textureRegions[0][0];
+        plank[1] = textureRegions[0][1];
+        plank[2] = textureRegions[0][2];
+
+        plank[3] = textureRegions[1][0];
+        plank[4] = textureRegions[1][1];
+        plank[5] = textureRegions[1][2];
+
+        plank[6] = textureRegions[2][0];
+        plank[7] = textureRegions[2][1];
+        plank[8] = textureRegions[2][2];
+
+        plank[9] = textureRegions[0][3];
+
         texture = new Texture("sprite/block/block_3.png");
         textureRegions = TextureRegion.split(texture, Vars.TILE_SIZE, Vars.TILE_SIZE);
 
@@ -106,13 +125,21 @@ public class MainActivity extends Game {
                 grass1,
         };
 
+        TextureRegion[][] planks = {
+                plank,
+                plank,
+                plank,
+        };
+
         Blocks.earth.setTexture(dirts);
         Blocks.stone.setTexture(stones);
         Blocks.grass.setTexture(grases);
         Blocks.highGrass.setTexture(highGrass);
+        Blocks.woodenPlank.setTexture(planks);
 
         Items.copperSword.setTexture(new TextureRegion(new Texture("sprite\\items\\Item_0.png")));
         Items.copperPickaxe.setTexture(new TextureRegion(new Texture("sprite\\items\\Item_1.png")));
         Items.copperAxe.setTexture(new TextureRegion(new Texture("sprite\\items\\Item_2.png")));
+        Items.woodenPlank.setTexture(new TextureRegion(new Texture("sprite\\items\\Item_3.png")));
     }
 }
