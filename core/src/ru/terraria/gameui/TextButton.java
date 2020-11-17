@@ -23,6 +23,17 @@ public class TextButton extends Button {
         glyphLayout.setText(font, text);
     }
 
+    public TextButton(Texture unPressedButton, Texture pressedButton, BitmapFont font) {
+        super(unPressedButton, pressedButton);
+
+        this.font = font;
+
+        setDefaultText();
+
+        glyphLayout = new GlyphLayout();
+        glyphLayout.setText(font, text);
+    }
+
     public void setDefaultText() {
         text = "defaultText";
     }

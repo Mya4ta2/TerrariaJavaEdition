@@ -8,15 +8,27 @@ import com.badlogic.gdx.scenes.scene2d.Actor;
 public class Button extends Actor {
 
     private boolean pressed = false;
+    private boolean useSound = true;
 
     private Texture unPressedButton;
     private Texture PressedButton;
     private Sound pressSound;
 
+
     public Button(Texture unPressedButton, Texture pressedButton, Sound pressSound) {
         this.unPressedButton = unPressedButton;
         PressedButton = pressedButton;
         this.pressSound = pressSound;
+
+        addListener(new ButtonInputListener(this));
+        setDefaultWH();
+        setDefaultXY();
+    }
+
+    public Button(Texture unPressedButton, Texture pressedButton) {
+        this.unPressedButton = unPressedButton;
+        PressedButton = pressedButton;
+        useSound = false;
 
         addListener(new ButtonInputListener(this));
         setDefaultWH();
@@ -36,7 +48,9 @@ public class Button extends Actor {
 
     public void press() {
         pressed = true;
-        pressSound.play();
+        if (useSound) {
+            pressSound.play();
+        }
     }
 
     public void unPress() {

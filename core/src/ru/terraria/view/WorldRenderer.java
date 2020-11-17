@@ -9,6 +9,8 @@ import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
+import com.badlogic.gdx.scenes.scene2d.InputEvent;
+import com.badlogic.gdx.scenes.scene2d.InputListener;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.utils.viewport.ScreenViewport;
 import ru.terraria.Cursor;
@@ -39,6 +41,7 @@ public class WorldRenderer {
     private ItemPanel inventory;
     private FastSlotBar fastSlotBar;
     private AccessoryPanel accessory;
+    private TextButton settingsButton;
 
     public ShapeRenderer renderer;
 
@@ -97,10 +100,24 @@ public class WorldRenderer {
                 new Texture("sprite/ui/selected_slot.png"));
         accessory.setInverse(true);
 
+        Texture buttonTexture = new Texture("sprite\\ui\\clear_texture.png");
+        Texture pressedButtonTexture = new Texture("sprite\\ui\\clear_texture.png");
+
+        settingsButton = new TextButton(buttonTexture,pressedButtonTexture,font);
+        settingsButton.setText("Settings");
+        settingsButton.addListener(new InputListener(){
+            @Override
+            public boolean touchDown(InputEvent event, float x, float y, int pointer, int button) {
+                // oh no
+                return super.touchDown(event, x, y, pointer, button);
+            }
+        });
+
         stage.addActor(accessory);
         stage.addActor(inventory);
         stage.addActor(fastSlotBar);
         stage.addActor(healthBar);
+        stage.addActor(settingsButton);
 
         renderer = new ShapeRenderer();
     }
@@ -131,6 +148,7 @@ public class WorldRenderer {
 
         inventory.setVisible(screen.inventory);
         accessory.setVisible(screen.inventory);
+        settingsButton.setVisible(screen.inventory);
 
         viewport.apply();
         camera.update();
@@ -145,12 +163,17 @@ public class WorldRenderer {
     }
 
     public void resize(int width, int height) {
+
+        float w = width / 24;
+        float h = height / 24;
+
         viewport.update(width,height);
         UIViewport.update(width, height);
         healthBar.setPosition(width / 3f + width / 8f, height / 3f + height / 8f);
         fastSlotBar.setPosition(-width / 2f + 10, height / 3f + height / 14f);
         inventory.setPosition(fastSlotBar.getX(), fastSlotBar.getY() - 46);
-        accessory.setPosition(width / 3f + width / 8f, -height / 3f + height / 2f - height / 12f);
+        accessory.setPosition(width / 3f + width / 8f, -height / 3f + height / 2f);
+        settingsButton.setPosition(w * 9 + 15, -h * 13 - 15);
 
         Vars.CAMERA_WIDTH = Gdx.graphics.getWidth();
         Vars.CAMERA_HEIGHT = Gdx.graphics.getHeight();
