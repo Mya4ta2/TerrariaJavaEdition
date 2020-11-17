@@ -67,8 +67,9 @@ public class WorldController implements InputProcessor {
 
         if (Gdx.input.isButtonJustPressed(Input.Buttons.RIGHT)) {
             if ((cX / 16) > 0 && (cY / 16) > 0 && (cX / 16) < world.getWidth() && (cY / 16) < world.getHeight()) {
-                if (Cursor.itemStack != null && Cursor.itemStack.getItem().isPlaceble()) {
+                if (Cursor.itemStack != null && Cursor.itemStack.getItem().isPlaceble() && Cursor.itemStack.getItemsCount() > 0) {
                     world.getTiles().get(cY / 16, cX / 16).setBlock(Cursor.itemStack.getItem().getPlacebleBlock());
+                    Cursor.itemStack.setItemsCount(Cursor.itemStack.getItemsCount()-1);
                 }
             }
         }
