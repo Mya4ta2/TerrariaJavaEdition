@@ -148,7 +148,7 @@ public class WorldRenderer {
         viewport.update(width,height);
         UIViewport.update(width, height);
         healthBar.setPosition(width / 3f + width / 8f, height / 3f + height / 8f);
-        fastSlotBar.setPosition(-width / 2f + 10, height / 3f + height / 9f - 10);
+        fastSlotBar.setPosition(-width / 2f + 10, height / 3f + height / 14f);
         inventory.setPosition(fastSlotBar.getX(), fastSlotBar.getY() - 46);
         accessory.setPosition(width / 3f + width / 8f, -height / 3f + height / 2f - height / 12f);
 

@@ -60,7 +60,7 @@ public class FastSlotBar extends Actor {
 
             font.draw(batch,String.valueOf(slots[selectedSlot].getItem().getName()),
                     x + (getWidth() - glyphLayout.width) / 2,
-                    slots[slots.length-1].getTop() + 6);
+                    slots[slots.length-1].getTop() + (getHeight() - glyphLayout.height) + 6);
         }
     }
 
