@@ -124,7 +124,7 @@ public class World {
                 if (j < height/4) {
                     tiles.get(j,i).setBlock(Blocks.stone);
                 } else {
-                    tiles.get(j,i).setBlock(Blocks.dirt);
+                    tiles.get(j,i).setBlock(Blocks.earth);
                 }
             }
         }

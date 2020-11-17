@@ -7,7 +7,7 @@ import ru.terraria.type.Ore;
 
 public class Blocks implements ContentList {
 
-    public static Block air, dirt, grass, stone;
+    public static Block air, earth, grass, stone, woodenPlank;
     //ore
     public static Ore ironOre;
 
@@ -30,6 +30,13 @@ public class Blocks implements ContentList {
             }
         };
 
+        woodenPlank = new Block("woodenPlank") {
+            {
+                setWIDTH(1);
+                setHEIGHT(1);
+            }
+        };
+
         highGrass = new HighGrass("highGrass") {
             {
                 setWIDTH(1);
@@ -44,7 +51,7 @@ public class Blocks implements ContentList {
             }
         };
 
-        dirt = new Block("dirt") {
+        earth = new Block("dirt") {
             {
                 setHEIGHT(1);
                 setWIDTH(1);

@@ -8,7 +8,7 @@ import ru.terraria.type.Sword;
 
 public class Items implements ContentList {
 
-    public static Item air, test;
+    public static Item air, earth, woodenPlank;
 
     public static Pickaxe copperPickaxe;
     public static Sword copperSword;
@@ -28,6 +28,13 @@ public class Items implements ContentList {
             }
         };
 
+        woodenPlank = new Item("woodenPlank") {
+            {
+                setPlaceble(true);
+                setPlacebleBlock(Blocks.woodenPlank);
+            }
+        };
+
         copperAxe = new Axe("copper axe") {
             {
                 setPlaceble(false);
@@ -40,10 +47,10 @@ public class Items implements ContentList {
             }
         };
 
-        test = new Item("dirt") {
+        earth = new Item("dirt") {
             {
                 setPlaceble(true);
-                setPlacebleBlock(Blocks.dirt);
+                setPlacebleBlock(Blocks.earth);
             }
         };
     }

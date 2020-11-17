@@ -106,7 +106,7 @@ public class MainActivity extends Game {
                 grass1,
         };
 
-        Blocks.dirt.setTexture(dirts);
+        Blocks.earth.setTexture(dirts);
         Blocks.stone.setTexture(stones);
         Blocks.grass.setTexture(grases);
         Blocks.highGrass.setTexture(highGrass);
