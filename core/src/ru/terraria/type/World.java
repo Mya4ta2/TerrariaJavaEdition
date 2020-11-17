@@ -120,12 +120,9 @@ public class World {
         // set tiles to world
         for (int i = 0; i < width; i++) {
             tiles.get(arr[i], i).setBlock(Blocks.grass);
-            for (int j = 0; j < arr[i]; j++) {
-                if (j < height/4) {
-                    tiles.get(j,i).setBlock(Blocks.stone);
-                } else {
-                    tiles.get(j,i).setBlock(Blocks.earth);
-                }
+            for (int j = 0; j < arr[i]-10; j++) {
+                tiles.get(j + 10,i).setBlock(Blocks.earth);
+                tiles.get(j,i).setBlock(Blocks.stone);
             }
         }
 
