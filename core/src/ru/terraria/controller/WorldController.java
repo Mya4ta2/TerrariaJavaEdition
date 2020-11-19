@@ -34,7 +34,7 @@ public class WorldController implements InputProcessor {
         processGravity();
         processCollisions();
 
-        world.setBlocksNeighbourAir();
+        //world.setBlocksNeighbourAir();
     }
 
     public void processInput() {

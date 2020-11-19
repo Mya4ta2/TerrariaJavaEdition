@@ -9,10 +9,14 @@ import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
+import com.badlogic.gdx.math.Rectangle;
+import com.badlogic.gdx.math.Vector3;
+import com.badlogic.gdx.math.collision.BoundingBox;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.InputListener;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.utils.viewport.ScreenViewport;
+import org.w3c.dom.css.Rect;
 import ru.terraria.Cursor;
 import ru.terraria.Vars;
 import ru.terraria.content.Blocks;
@@ -21,6 +25,7 @@ import ru.terraria.gameui.*;
 import ru.terraria.screen.GameScreen;
 import ru.terraria.type.ItemStack;
 import ru.terraria.type.Tile;
+import ru.terraria.type.Tiles;
 import ru.terraria.type.World;
 
 import java.util.Arrays;
@@ -149,6 +154,7 @@ public class WorldRenderer {
         //debug
         //drawHitBoxes();
         //
+
         Cursor.itemStack = fastSlotBar.getSlots()[fastSlotBar.getSelectedSlot()].getItemStack();
 
         inventory.setVisible(screen.inventory);
@@ -229,10 +235,17 @@ public class WorldRenderer {
 
     public void drawWorld(SpriteBatch batch) {
 
-        Tile[] arr = world.getTiles().getArray();
+        Tiles tiles = world.getTiles();
 
-        for (int i = 0; i < arr.length; i++) {
-            arr[i].draw(batch);
+        for (int i = (int) (-camera.viewportHeight / Vars.TILE_SIZE); i < camera.viewportHeight / Vars.TILE_SIZE; i++) {
+            for (int j = (int) (-camera.viewportWidth / Vars.TILE_SIZE); j < camera.viewportWidth / Vars.TILE_SIZE; j++) {
+                if (i + world.getPlayer().getPosition().y > 0 && i + world.getPlayer().getPosition().y < world.getHeight() &&
+                    j + world.getPlayer().getPosition().x > 0 && j + world.getPlayer().getPosition().x < world.getWidth()) {
+                    tiles.get(
+                            (int) (i + world.getPlayer().getPosition().y),
+                            (int) (j + world.getPlayer().getPosition().x)).draw(batch);
+                }
+            }
         }
 
         batch.draw(playerTexture,
@@ -252,5 +265,14 @@ public class WorldRenderer {
 
     public FastSlotBar getFastSlotBar() {
         return fastSlotBar;
+    }
+
+    public Rectangle getCameraBounds() {
+        Rectangle rect = new Rectangle();
+        rect.x = (camera.position.x - camera.viewportWidth/2) / Vars.TILE_SIZE;
+        rect.y = (camera.position.y - camera.viewportHeight/2) / Vars.TILE_SIZE;
+        rect.width = camera.viewportWidth / Vars.TILE_SIZE;
+        rect.height = camera.viewportHeight / Vars.TILE_SIZE;
+        return rect;
     }
 }
