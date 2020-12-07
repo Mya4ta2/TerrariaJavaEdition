@@ -36,17 +36,7 @@ public class WorldRenderer {
 
     private SpriteBatch batch;
     private OrthographicCamera camera;
-    private OrthographicCamera UICamera;
     private ScreenViewport viewport;
-    private ScreenViewport UIViewport;
-    private BitmapFont font;
-
-    private Stage stage;
-    private SpriteBar healthBar;
-    private ItemPanel inventory;
-    private FastSlotBar fastSlotBar;
-    private AccessoryPanel accessory;
-    private TextButton settingsButton;
 
     public ShapeRenderer renderer;
 
@@ -57,72 +47,8 @@ public class WorldRenderer {
         this.screen = screen;
 
         camera = new OrthographicCamera(Vars.CAMERA_WIDTH, Vars.CAMERA_HEIGHT);
-        UICamera = new OrthographicCamera(Vars.CAMERA_WIDTH, Vars.CAMERA_HEIGHT);
-        font = new BitmapFont(Gdx.files.internal("font\\as.fnt"));
-        font.setColor(Color.WHITE);
-
-        batch = new SpriteBatch();
-        batch.setProjectionMatrix(camera.combined);
         viewport = new ScreenViewport(camera);
-        UIViewport = new ScreenViewport(UICamera);
-        stage = new Stage();
-        stage.setViewport(UIViewport);
-
-        healthBar = new SpriteBar(0,100, new Texture("sprite/ui/health.png"));
-        healthBar.setInverseDraw(true);
-
-        inventory = new ItemPanel(10, 6,
-                new Texture("sprite/ui/slot.png"),
-                new Texture("sprite/ui/selected_slot.png"));
-        fastSlotBar = new FastSlotBar(10,
-                new Texture("sprite/ui/slot.png"),
-                new Texture("sprite/ui/selected_slot.png"), font);
-        ItemStack stack = new ItemStack();
-        stack.setItem(Items.copperSword);
-        stack.setItemsCount(1);
-        ItemStack stack1 = new ItemStack();
-        stack1.setItem(Items.copperPickaxe);
-        stack1.setItemsCount(1);
-        ItemStack stack2 = new ItemStack();
-        stack2.setItem(Items.copperAxe);
-        stack2.setItemsCount(1);
-        ItemStack dirt = new ItemStack();
-        dirt.setItem(Items.earth);
-        dirt.setItemsCount(999);
-        ItemStack plank = new ItemStack();
-        plank.setItem(Items.woodenPlank);
-        plank.setItemsCount(999);
-
-        fastSlotBar.getSlots()[4].setItemStack(plank);
-        fastSlotBar.getSlots()[3].setItemStack(dirt);
-        fastSlotBar.getSlots()[2].setItemStack(stack2);
-        fastSlotBar.getSlots()[1].setItemStack(stack1);
-        fastSlotBar.getSlots()[0].setItemStack(stack);
-
-        accessory = new AccessoryPanel(
-                1,
-                10,
-                new Texture("sprite/ui/selected_slot.png"));
-        accessory.setInverse(true);
-
-        Texture buttonTexture = new Texture("sprite\\ui\\clear_texture.png");
-        Texture pressedButtonTexture = new Texture("sprite\\ui\\clear_texture.png");
-
-        settingsButton = new TextButton(buttonTexture,pressedButtonTexture,font);
-        settingsButton.setText("Settings");
-        settingsButton.addListener(new InputListener(){
-            @Override
-            public boolean touchDown(InputEvent event, float x, float y, int pointer, int button) {
-                // oh no
-                return super.touchDown(event, x, y, pointer, button);
-            }
-        });
-
-        stage.addActor(accessory);
-        stage.addActor(inventory);
-        stage.addActor(fastSlotBar);
-        stage.addActor(healthBar);
-        stage.addActor(settingsButton);
+        batch = new SpriteBatch();
 
         renderer = new ShapeRenderer();
     }
@@ -142,49 +68,23 @@ public class WorldRenderer {
                 bg.getHeight()
         );
         drawWorld(batch);
-        font.draw(batch, "FPS: " + Gdx.graphics.getFramesPerSecond(),
-                world.getPlayer().getPosition().x * Vars.TILE_SIZE,world.getPlayer().getPosition().y * Vars.TILE_SIZE);
         batch.end();
 
         drawCursorHitbox();
 
-        stage.act();
-        stage.draw();
-
         //debug
         //drawHitBoxes();
         //
-
-        Cursor.itemStack = fastSlotBar.getSlots()[fastSlotBar.getSelectedSlot()].getItemStack();
-
-        inventory.setVisible(screen.inventory);
-        accessory.setVisible(screen.inventory);
-        settingsButton.setVisible(screen.inventory);
 
         viewport.apply();
         camera.update();
         camera.position.set(
                 world.getPlayer().getPosition().x * Vars.TILE_SIZE,
                 world.getPlayer().getPosition().y * Vars.TILE_SIZE, 0);
-
-        // update UI
-        UICamera.update();
-        UIViewport.apply();
-        healthBar.setValue(world.getPlayer().getHealth() / 20);
     }
 
     public void resize(int width, int height) {
-
-        float w = width / 24;
-        float h = height / 24;
-
         viewport.update(width,height);
-        UIViewport.update(width, height);
-        healthBar.setPosition(width / 3f + width / 8f, height / 3f + height / 8f);
-        fastSlotBar.setPosition(-width / 2f + 10, height / 3f + height / 14f);
-        inventory.setPosition(fastSlotBar.getX(), fastSlotBar.getY() - 46);
-        accessory.setPosition(width / 3f + width / 8f, -height / 3f + height / 2f);
-        settingsButton.setPosition(w * 9 + 15, -h * 13 - 15);
 
         Vars.CAMERA_WIDTH = Gdx.graphics.getWidth();
         Vars.CAMERA_HEIGHT = Gdx.graphics.getHeight();
@@ -255,16 +155,8 @@ public class WorldRenderer {
                 world.getPlayer().getHEIGHT() * Vars.TILE_SIZE);
     }
 
-    public Stage getStage() {
-        return stage;
-    }
-
     public OrthographicCamera getCamera() {
         return camera;
-    }
-
-    public FastSlotBar getFastSlotBar() {
-        return fastSlotBar;
     }
 
     public Rectangle getCameraBounds() {

@@ -142,16 +142,16 @@ public class WorldController implements InputProcessor {
     @Override
     public boolean keyDown(int keycode) {
         switch (keycode) {
-            case Input.Keys.NUM_0: screen.getRenderer().getFastSlotBar().setSelectedSlot(9); break;
-            case Input.Keys.NUM_1: screen.getRenderer().getFastSlotBar().setSelectedSlot(0); break;
-            case Input.Keys.NUM_2: screen.getRenderer().getFastSlotBar().setSelectedSlot(1); break;
-            case Input.Keys.NUM_3: screen.getRenderer().getFastSlotBar().setSelectedSlot(2); break;
-            case Input.Keys.NUM_4: screen.getRenderer().getFastSlotBar().setSelectedSlot(3); break;
-            case Input.Keys.NUM_5: screen.getRenderer().getFastSlotBar().setSelectedSlot(4); break;
-            case Input.Keys.NUM_6: screen.getRenderer().getFastSlotBar().setSelectedSlot(5); break;
-            case Input.Keys.NUM_7: screen.getRenderer().getFastSlotBar().setSelectedSlot(6); break;
-            case Input.Keys.NUM_8: screen.getRenderer().getFastSlotBar().setSelectedSlot(7); break;
-            case Input.Keys.NUM_9: screen.getRenderer().getFastSlotBar().setSelectedSlot(8); break;
+            case Input.Keys.NUM_0: screen.getUiRenderer().getFastSlotBar().setSelectedSlot(9); break;
+            case Input.Keys.NUM_1: screen.getUiRenderer().getFastSlotBar().setSelectedSlot(0); break;
+            case Input.Keys.NUM_2: screen.getUiRenderer().getFastSlotBar().setSelectedSlot(1); break;
+            case Input.Keys.NUM_3: screen.getUiRenderer().getFastSlotBar().setSelectedSlot(2); break;
+            case Input.Keys.NUM_4: screen.getUiRenderer().getFastSlotBar().setSelectedSlot(3); break;
+            case Input.Keys.NUM_5: screen.getUiRenderer().getFastSlotBar().setSelectedSlot(4); break;
+            case Input.Keys.NUM_6: screen.getUiRenderer().getFastSlotBar().setSelectedSlot(5); break;
+            case Input.Keys.NUM_7: screen.getUiRenderer().getFastSlotBar().setSelectedSlot(6); break;
+            case Input.Keys.NUM_8: screen.getUiRenderer().getFastSlotBar().setSelectedSlot(7); break;
+            case Input.Keys.NUM_9: screen.getUiRenderer().getFastSlotBar().setSelectedSlot(8); break;
 
             //this code is 'oh no' =( in future i remake this =)
 
@@ -191,7 +191,7 @@ public class WorldController implements InputProcessor {
 
     @Override
     public boolean scrolled(float amountX, float amountY) {
-        screen.getRenderer().getFastSlotBar().setScroll(amountY);
+        screen.getUiRenderer().getFastSlotBar().setScroll(amountY);
         return false;
     }
 }

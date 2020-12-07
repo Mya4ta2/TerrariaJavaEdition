@@ -5,8 +5,8 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.InputMultiplexer;
 import com.badlogic.gdx.Screen;
 import ru.terraria.controller.WorldController;
-import ru.terraria.type.Tile;
 import ru.terraria.type.World;
+import ru.terraria.view.UIRenderer;
 import ru.terraria.view.WorldRenderer;
 
 public class GameScreen implements Screen {
@@ -15,6 +15,7 @@ public class GameScreen implements Screen {
     private World world;
     private WorldController controller;
     private WorldRenderer renderer;
+    private UIRenderer uiRenderer;
 
     //public Tile downTile; debug
 
@@ -29,19 +30,24 @@ public class GameScreen implements Screen {
         world = new World(500, 250); // test world
         controller = new WorldController(world, this);
         renderer = new WorldRenderer(world, this);
+        uiRenderer = new UIRenderer(this);
 
-        Gdx.input.setInputProcessor(new InputMultiplexer(controller, renderer.getStage()));
+        uiRenderer.init();
+
+        Gdx.input.setInputProcessor(new InputMultiplexer(controller, uiRenderer.getStage()));
     }
 
     @Override
     public void render(float delta) {
         renderer.render(delta);
+        uiRenderer.render(delta);
         controller.update(delta);
     }
 
     @Override
     public void resize(int width, int height) {
         renderer.resize(width, height);
+        uiRenderer.resize(width,height);
     }
 
     @Override
@@ -74,5 +80,9 @@ public class GameScreen implements Screen {
 
     public WorldRenderer getRenderer() {
         return renderer;
+    }
+
+    public UIRenderer getUiRenderer() {
+        return uiRenderer;
     }
 }
