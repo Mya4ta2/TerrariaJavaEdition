@@ -8,7 +8,6 @@ public class AccessoryPanel extends Actor {
     private final int width;
     private final int height;
     private final Texture slotTexture;
-    private boolean inverse = false;
 
     private AccessorySlot[][] accessories;
 
@@ -27,9 +26,9 @@ public class AccessoryPanel extends Actor {
 
     @Override
     public void draw(Batch batch, float parentAlpha) {
-        for (int i = 0; i < width; i++) {
-            for (int j = 0; j < height; j++) {
-                accessories[i][j].draw(batch,parentAlpha);
+        for (int i = 0; i < height; i++) {
+            for (int j = 0; j < width; j++) {
+                accessories[j][i].draw(batch, parentAlpha);
             }
         }
     }
@@ -42,16 +41,23 @@ public class AccessoryPanel extends Actor {
         }
     }
 
+    @Override
+    public void act(float delta) {
+        setSlotsPosition();
+        super.act(delta);
+    }
+
     public void setSlotsPosition() {
         for (int i = 0; i < height; i++) {
             for (int j = 0; j < width; j++) {
-                if (!inverse) {
-                    accessories[j][i].setPosition(getX() + j * (accessories[j][i].getWidth() + 4) ,getY() - i * (accessories[j][i].getHeight() + 4));
-                } else {
-                    accessories[j][i].setPosition(getX() - j * (accessories[j][i].getWidth() + 4) ,getY() - i * (accessories[j][i].getHeight() + 4));
-                }
+                accessories[j][i].setPosition(
+                        getX() + j * (accessories[j][i].getWidth() + 4),
+                        (getY() + getHeight()) - i * (accessories[j][i].getHeight() + 4));
             }
         }
+
+        setWidth((accessories[0][0].getWidth() + 4) * width);
+        setHeight(accessories[0][0].getHeight() * height);
     }
 
     public void setDefaultPos() {
@@ -98,13 +104,5 @@ public class AccessoryPanel extends Actor {
     public void setPosition(float x, float y, int alignment) {
         super.setPosition(x, y, alignment);
         setSlotsPosition();
-    }
-
-    public boolean isInverse() {
-        return inverse;
-    }
-
-    public void setInverse(boolean inverse) {
-        this.inverse = inverse;
     }
 }

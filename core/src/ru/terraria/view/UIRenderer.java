@@ -9,6 +9,7 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.InputListener;
 import com.badlogic.gdx.scenes.scene2d.Stage;
+import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.utils.viewport.ScreenViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
 import ru.terraria.Cursor;
@@ -32,6 +33,8 @@ public class UIRenderer {
     private TextButton settingsButton;
     private BitmapFont font;
     private SpriteBatch batch;
+    private Table leftTable;
+    private Table rightTable;
 
     public UIRenderer(GameScreen gameScreen) {
         this.gameScreen = gameScreen;
@@ -40,6 +43,9 @@ public class UIRenderer {
     public void init() {
         camera = new OrthographicCamera();
         viewport = new ScreenViewport(camera);
+
+        rightTable = new Table();
+        leftTable = new Table();
 
         font = new BitmapFont(Gdx.files.internal("font\\as.fnt"));
         font.setColor(Color.WHITE);
@@ -50,7 +56,6 @@ public class UIRenderer {
         stage.setViewport(viewport);
 
         healthBar = new SpriteBar(0,100, new Texture("sprite/ui/health.png"));
-        healthBar.setInverseDraw(true);
 
         inventory = new ItemPanel(10, 6,
                 new Texture("sprite/ui/slot.png"),
@@ -84,7 +89,6 @@ public class UIRenderer {
                 1,
                 10,
                 new Texture("sprite/ui/selected_slot.png"));
-        accessory.setInverse(true);
 
         Texture buttonTexture = new Texture("sprite\\ui\\clear_texture.png");
         Texture pressedButtonTexture = new Texture("sprite\\ui\\clear_texture.png");
@@ -99,11 +103,16 @@ public class UIRenderer {
             }
         });
 
-        stage.addActor(accessory);
-        stage.addActor(inventory);
-        stage.addActor(fastSlotBar);
-        stage.addActor(healthBar);
-        stage.addActor(settingsButton);
+        leftTable.top().left().add(new Separator(40)).row();
+        leftTable.top().left().add(fastSlotBar).row();
+        leftTable.top().left().add(new Separator(45)).row();
+        leftTable.top().left().add(inventory).row();
+        rightTable.top().right().add(healthBar).row();
+        rightTable.top().right().add(accessory).row();
+        rightTable.top().right().add(settingsButton).row();
+
+        stage.addActor(leftTable);
+        stage.addActor(rightTable);
     }
 
     public void render(float delta) {
@@ -124,14 +133,10 @@ public class UIRenderer {
     public void resize(int width, int height) {
         viewport.update(width,height);
 
-        float pixelX = width / 480f;
-        float pixelY = height / 480f;
-
-        healthBar.setPosition(pixelX * 467,pixelY * 460);
-        fastSlotBar.setPosition(pixelX,pixelY * 435);
-        inventory.setPosition(pixelX, pixelY * 404);
-        accessory.setPosition(pixelX * 462, pixelY * 340);
-        settingsButton.setPosition(pixelX * 430, 0);
+        leftTable.setSize(width/2,height);
+        leftTable.setPosition(0,0);
+        rightTable.setSize(width/2,height);
+        rightTable.setPosition(width/2, 0);
 
         camera.position.set(width / 2, height / 2,0); // set camera to screen center
     }

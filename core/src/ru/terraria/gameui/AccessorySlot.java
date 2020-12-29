@@ -35,7 +35,7 @@ public class AccessorySlot extends Actor {
 
     @Override
     public void draw(Batch batch, float parentAlpha) {
-        batch.draw(slot,getX(),getY(), getWidth(), getHeight());
+        batch.draw(slot, getX(), getY(), getWidth(), getHeight());
 
         if (accessory != Items.air) {
             batch.draw(accessory.getTexture(),

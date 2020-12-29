@@ -37,7 +37,6 @@ public class SpriteBar extends Actor {
 
     @Override
     public void draw(Batch batch, float parentAlpha) {
-
         if (value > max) value = max;
 
         if (!inverseDraw) {
@@ -49,6 +48,13 @@ public class SpriteBar extends Actor {
                 batch.draw(texture, getX() - i * spriteSize * scale, getY(), spriteSize * scale, spriteSize * scale);
             }
         }
+    }
+
+    @Override
+    public void act(float delta) {
+        setWidth(max/(spriteSize*scale) * (spriteSize * scale));
+        setHeight(spriteSize * scale);
+        super.act(delta);
     }
 
     public int getMax() {

@@ -91,6 +91,7 @@ public class FastSlotBar extends Actor {
 
         setSelectedSlot(selectedSlot);
         glyphLayout.setText(font, slots[selectedSlot].getItem().getName());
+        setSlotsPosition();
     }
 
     public float getScroll() {
@@ -111,7 +112,8 @@ public class FastSlotBar extends Actor {
         for (int i = 0; i < slots.length; i++) {
             slots[i].setPosition(getX() + i * (slots[i].getWidth() + 4) ,getY());
         }
-
+        setWidth((slots[0].getWidth() + 4) * slots.length-1);
+        setHeight(slots[0].getHeight());
     }
 
     public void setDefaultPos() {

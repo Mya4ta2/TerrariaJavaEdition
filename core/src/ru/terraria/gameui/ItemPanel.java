@@ -27,6 +27,12 @@ public class ItemPanel extends Actor {
     }
 
     @Override
+    public void act(float delta) {
+        setSlotsPosition();
+        super.act(delta);
+    }
+
+    @Override
     public void draw(Batch batch, float parentAlpha) {
         for (int i = 0; i < width; i++) {
             for (int j = 0; j < height; j++) {
@@ -46,9 +52,12 @@ public class ItemPanel extends Actor {
     public void setSlotsPosition() {
         for (int i = 0; i < height; i++) {
             for (int j = 0; j < width; j++) {
-                slots[j][i].setPosition(getX() + j * (slots[j][i].getWidth() + 4) ,getY() - i * (slots[j][i].getHeight() + 4));
+                slots[j][i].setPosition(getX() + j * (slots[j][i].getWidth() + 4) ,(getY() + getHeight()) - i * (slots[j][i].getHeight() + 4));
             }
         }
+
+        setWidth((slots[0][0].getWidth() + 4) * width);
+        setHeight(slots[0][0].getHeight() * height);
     }
 
     public void setDefaultPos() {

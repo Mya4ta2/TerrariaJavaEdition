@@ -17,9 +17,7 @@ public class GameScreen implements Screen {
     private WorldRenderer renderer;
     private UIRenderer uiRenderer;
 
-    //public Tile downTile; debug
-
-    public boolean inventory;
+    public boolean inventory = true;
 
     public GameScreen(Game game) {
         this.game = game;
