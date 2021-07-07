@@ -142,4 +142,10 @@ public class MainActivity extends Game {
         Items.copperAxe.setTexture(new TextureRegion(new Texture("sprite\\items\\Item_2.png")));
         Items.woodenPlank.setTexture(new TextureRegion(new Texture("sprite\\items\\Item_3.png")));
     }
+
+    @Override
+    public void resize(int width, int height) {
+        super.resize(width, height);
+        Event.fire(Events.ResizeEvent.class);
+    }
 }
