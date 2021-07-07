@@ -84,11 +84,15 @@ public class WorldController implements InputProcessor {
         int count = 0;
 
         Vector2 pos = world.getPlayer().getPosition();
+        if (pos.x - 1 <= -1 || pos.y - 1 <= -1 ||
+                pos.x + 1 > world.getWidth() || pos.y + 1 > world.getHeight()) {
+            return;
+        }
 
         Tile[] nearTiles = {
-                world.getTiles().get((int) pos.y, (int) pos.x),
-                world.getTiles().get((int) pos.y, (int) pos.x - 1),
-                world.getTiles().get((int) pos.y, (int) pos.x + 1)
+                world.getTiles().get((int) pos.y - 1, (int) pos.x),
+                world.getTiles().get((int) pos.y - 1, (int) pos.x - 1),
+                world.getTiles().get((int) pos.y - 1, (int) pos.x + 1)
         };
 
         for (int i = 0; i < nearTiles.length; i++) {
@@ -97,11 +101,7 @@ public class WorldController implements InputProcessor {
             }
         }
 
-        if (count > 0) {
-            world.getPlayer().setGrounded(true);
-        } else {
-            world.getPlayer().setGrounded(false);
-        }
+        world.getPlayer().setGrounded(count > 0);
     }
 
     public void processCollisions() {
@@ -141,6 +141,7 @@ public class WorldController implements InputProcessor {
     public void processGravity() {
         if (!world.getPlayer().isGrounded()) {
             world.getPlayer().getPosition().y -= 0.5f;
+            world.getPlayer().getGroundHitBox().y = world.getPlayer().getPosition().y - 0.5f;
         }
     }
 

@@ -100,7 +100,7 @@ public class Player extends MappableContent {
         bounds.x = position.x;
         bounds.y = position.y;
         groundHitBox.x = position.x;
-        groundHitBox.y = position.y;
+        groundHitBox.y = position.y - 0.5f;
     }
 
     public Vector2 getVelocity() {
