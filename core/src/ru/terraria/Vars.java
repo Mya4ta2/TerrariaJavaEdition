@@ -5,6 +5,7 @@ import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
+import ru.terraria.view.UIRenderer;
 
 public class Vars {
     public static float CAMERA_WIDTH = Gdx.graphics.getWidth();
@@ -13,6 +14,9 @@ public class Vars {
     public static final int TILE_SIZE = 16;
 
     public static final int STACK_SIZE = 999;
+
+    public static UIRenderer uiRenderer;
+    public static UI ui;
 
     public static final Texture ERROR_TEXTURE = new Texture("sprite/error.png");
 

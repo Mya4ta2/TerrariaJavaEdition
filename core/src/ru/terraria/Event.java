@@ -14,6 +14,7 @@ public class Event {
     }
 
     public static <T> void fire(Class<T> type) {
+        if (!tasks.containsKey(type)) tasks.put(type, new ArrayList<Runnable>());
         ArrayList<Runnable> runnables = tasks.get(type);
         for (int i = 0; i < runnables.size(); i++) {
             runnables.get(i).run();

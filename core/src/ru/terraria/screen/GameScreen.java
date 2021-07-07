@@ -4,6 +4,8 @@ import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.InputMultiplexer;
 import com.badlogic.gdx.Screen;
+import com.badlogic.gdx.scenes.scene2d.Group;
+import ru.terraria.Vars;
 import ru.terraria.controller.WorldController;
 import ru.terraria.type.World;
 import ru.terraria.view.UIRenderer;
@@ -28,9 +30,12 @@ public class GameScreen implements Screen {
         world = new World(500, 250); // test world
         controller = new WorldController(world, this);
         renderer = new WorldRenderer(world, this);
-        uiRenderer = new UIRenderer(this);
-
+        uiRenderer = new UIRenderer();
         uiRenderer.init();
+
+        Group group = new Group();
+        Vars.ui.gameFragment.build(group);
+        uiRenderer.getStage().addActor(group);
 
         Gdx.input.setInputProcessor(new InputMultiplexer(controller, uiRenderer.getStage()));
     }

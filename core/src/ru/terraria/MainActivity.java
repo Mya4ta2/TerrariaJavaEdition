@@ -18,6 +18,8 @@ public class MainActivity extends Game {
         new Items().load();
         loadTextures();
 
+        Vars.ui = new UI();
+
         GameScreen gameScreen = new GameScreen(this);
         setScreen(gameScreen);
     }

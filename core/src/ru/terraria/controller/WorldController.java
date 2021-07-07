@@ -7,10 +7,12 @@ import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.math.Vector2;
+import com.badlogic.gdx.scenes.scene2d.Group;
 import ru.terraria.Cursor;
 import ru.terraria.Vars;
 import ru.terraria.content.Blocks;
 import ru.terraria.content.Items;
+import ru.terraria.gameui.FastSlotBar;
 import ru.terraria.screen.GameScreen;
 import ru.terraria.type.Block;
 import ru.terraria.type.Pickaxe;
@@ -20,6 +22,7 @@ import ru.terraria.type.World;
 public class WorldController implements InputProcessor {
     private World world;
     private GameScreen screen;
+    private FastSlotBar fastSlotBar;
 
     public WorldController(World world, GameScreen screen) {
         this.world = world;
@@ -34,6 +37,8 @@ public class WorldController implements InputProcessor {
         processGravity();
         processCollisions();
 
+        //temp
+        fastSlotBar = ((Group) screen.getUiRenderer().getStage().getActors().get(0)).findActor("hotbar");
         //world.setBlocksNeighbourAir();
     }
 
@@ -142,16 +147,16 @@ public class WorldController implements InputProcessor {
     @Override
     public boolean keyDown(int keycode) {
         switch (keycode) {
-            case Input.Keys.NUM_0: screen.getUiRenderer().getFastSlotBar().setSelectedSlot(9); break;
-            case Input.Keys.NUM_1: screen.getUiRenderer().getFastSlotBar().setSelectedSlot(0); break;
-            case Input.Keys.NUM_2: screen.getUiRenderer().getFastSlotBar().setSelectedSlot(1); break;
-            case Input.Keys.NUM_3: screen.getUiRenderer().getFastSlotBar().setSelectedSlot(2); break;
-            case Input.Keys.NUM_4: screen.getUiRenderer().getFastSlotBar().setSelectedSlot(3); break;
-            case Input.Keys.NUM_5: screen.getUiRenderer().getFastSlotBar().setSelectedSlot(4); break;
-            case Input.Keys.NUM_6: screen.getUiRenderer().getFastSlotBar().setSelectedSlot(5); break;
-            case Input.Keys.NUM_7: screen.getUiRenderer().getFastSlotBar().setSelectedSlot(6); break;
-            case Input.Keys.NUM_8: screen.getUiRenderer().getFastSlotBar().setSelectedSlot(7); break;
-            case Input.Keys.NUM_9: screen.getUiRenderer().getFastSlotBar().setSelectedSlot(8); break;
+            case Input.Keys.NUM_0: fastSlotBar.setSelectedSlot(9); break;
+            case Input.Keys.NUM_1: fastSlotBar.setSelectedSlot(0); break;
+            case Input.Keys.NUM_2: fastSlotBar.setSelectedSlot(1); break;
+            case Input.Keys.NUM_3: fastSlotBar.setSelectedSlot(2); break;
+            case Input.Keys.NUM_4: fastSlotBar.setSelectedSlot(3); break;
+            case Input.Keys.NUM_5: fastSlotBar.setSelectedSlot(4); break;
+            case Input.Keys.NUM_6: fastSlotBar.setSelectedSlot(5); break;
+            case Input.Keys.NUM_7: fastSlotBar.setSelectedSlot(6); break;
+            case Input.Keys.NUM_8: fastSlotBar.setSelectedSlot(7); break;
+            case Input.Keys.NUM_9: fastSlotBar.setSelectedSlot(8); break;
 
             //this code is 'oh no' =( in future i remake this =)
 
@@ -191,7 +196,7 @@ public class WorldController implements InputProcessor {
 
     @Override
     public boolean scrolled(float amountX, float amountY) {
-        screen.getUiRenderer().getFastSlotBar().setScroll(amountY);
+        fastSlotBar.setScroll(amountY);
         return false;
     }
 }
