@@ -40,7 +40,7 @@ public class WorldRenderer {
 
     public ShapeRenderer renderer;
 
-    private TextureRegion playerTexture = TextureRegion.split(new Texture("sprite/block/block_0.png"), Vars.TILE_SIZE, Vars.TILE_SIZE)[1][1];
+    private TextureRegion playerTexture = new TextureRegion(new Texture("sprite/mob/player.png"));
 
     public WorldRenderer(World world, GameScreen screen) {
         this.world = world;
