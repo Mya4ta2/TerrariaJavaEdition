@@ -96,4 +96,8 @@ public class Block extends MappableContent {
     public void setBounds(Rectangle bounds) {
         this.bounds = bounds;
     }
+
+    public boolean isRounding() {
+        return this instanceof RoundingBlock;
+    }
 }
