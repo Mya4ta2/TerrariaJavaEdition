@@ -21,7 +21,7 @@ public class HighGrass extends Block {
         hard = false;
 
         texture = new TextureRegion[variants];
-        Arrays.fill(texture, new TextureRegion(Vars.ERROR_TEXTURE));
+        Arrays.fill(texture, new TextureRegion(Vars.atlas.errorTexture));
     }
 
     @Override

@@ -4,6 +4,7 @@ import ru.terraria.ctype.ContentList;
 import ru.terraria.type.Block;
 import ru.terraria.type.HighGrass;
 import ru.terraria.type.Ore;
+import ru.terraria.type.RoundingBlock;
 
 public class Blocks implements ContentList {
 
@@ -23,7 +24,7 @@ public class Blocks implements ContentList {
             }
         };
 
-        grass = new Block("grass") {
+        grass = new RoundingBlock("grass") {
             {
                 setWIDTH(1);
                 setHEIGHT(1);

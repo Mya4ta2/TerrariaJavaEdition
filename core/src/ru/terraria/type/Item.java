@@ -12,7 +12,7 @@ public class Item {
     private boolean placeble;
     private Block placebleBlock;
 
-    private TextureRegion texture = new TextureRegion(Vars.ERROR_TEXTURE);
+    private TextureRegion texture = new TextureRegion(Vars.atlas.errorTexture);
 
     public Item(String name) {
         this.name = name;

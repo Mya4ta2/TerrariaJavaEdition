@@ -48,16 +48,16 @@ public class Block extends MappableContent {
 
         for (int i = 0; i < texture.length; i++) {
             TextureRegion[] region = {
-                    new TextureRegion(Vars.ERROR_TEXTURE),
-                    new TextureRegion(Vars.ERROR_TEXTURE),
-                    new TextureRegion(Vars.ERROR_TEXTURE),
-                    new TextureRegion(Vars.ERROR_TEXTURE),
-                    new TextureRegion(Vars.ERROR_TEXTURE),
-                    new TextureRegion(Vars.ERROR_TEXTURE),
-                    new TextureRegion(Vars.ERROR_TEXTURE),
-                    new TextureRegion(Vars.ERROR_TEXTURE),
-                    new TextureRegion(Vars.ERROR_TEXTURE),
-                    new TextureRegion(Vars.ERROR_TEXTURE),
+                    new TextureRegion(Vars.atlas.errorTexture),
+                    new TextureRegion(Vars.atlas.errorTexture),
+                    new TextureRegion(Vars.atlas.errorTexture),
+                    new TextureRegion(Vars.atlas.errorTexture),
+                    new TextureRegion(Vars.atlas.errorTexture),
+                    new TextureRegion(Vars.atlas.errorTexture),
+                    new TextureRegion(Vars.atlas.errorTexture),
+                    new TextureRegion(Vars.atlas.errorTexture),
+                    new TextureRegion(Vars.atlas.errorTexture),
+                    new TextureRegion(Vars.atlas.errorTexture),
             };
 
             texture[i] = region;
@@ -99,5 +99,9 @@ public class Block extends MappableContent {
 
     public boolean isRounding() {
         return this instanceof RoundingBlock;
+    }
+
+    public String getName() {
+        return name;
     }
 }

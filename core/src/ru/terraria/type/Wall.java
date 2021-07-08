@@ -42,7 +42,7 @@ public class Wall extends MappableContent {
         bounds.width = WIDTH;
         bounds.height = HEIGHT;
 
-        Arrays.fill(texture, new TextureRegion(Vars.ERROR_TEXTURE));
+        Arrays.fill(texture, new TextureRegion(Vars.atlas.errorTexture));
     }
 
     @Override

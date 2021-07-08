@@ -13,14 +13,14 @@ public class MainActivity extends Game {
 
     @Override
     public void create() {
+        Vars.ui = new UI();
+        Vars.atlas = new Atlas();
+        Vars.atlas.errorTexture = new Texture("sprite/error.png");
+
         new Blocks().load();
         new Walls().load();
         new Items().load();
         loadTextures();
-
-        Vars.ui = new UI();
-        Vars.atlas = new Atlas();
-        Vars.atlas.errorTexture = new Texture("sprite/error.png");
 
         GameScreen gameScreen = new GameScreen(this);
         setScreen(gameScreen);

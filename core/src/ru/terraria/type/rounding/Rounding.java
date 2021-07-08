@@ -12,7 +12,7 @@ public class Rounding {
 
     public Rounding(RoundingAtlas roundingAtlas, Tiles tiles, Tile tile) {
         this.roundingAtlas = roundingAtlas;
-        currentTexture = roundingAtlas.getTextures().get("up");
+        currentTexture = roundingAtlas.getTextures().get("up"); // maybe need to add other default value
         this.tiles = tiles;
         this.tile = tile;
     }
