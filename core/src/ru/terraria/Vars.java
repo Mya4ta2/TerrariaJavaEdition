@@ -18,7 +18,7 @@ public class Vars {
     public static UIRenderer uiRenderer;
     public static UI ui;
 
-    public static final Texture ERROR_TEXTURE = new Texture("sprite/error.png");
+    public static Atlas atlas;
 
     public static final int SMALL_WORLD_HEIGHT = 1200;
     public static final int SMALL_WORLD_WIDTH = 2400;

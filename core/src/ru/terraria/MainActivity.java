@@ -19,6 +19,8 @@ public class MainActivity extends Game {
         loadTextures();
 
         Vars.ui = new UI();
+        Vars.atlas = new Atlas();
+        Vars.atlas.errorTexture = new Texture("sprite/error.png");
 
         GameScreen gameScreen = new GameScreen(this);
         setScreen(gameScreen);
