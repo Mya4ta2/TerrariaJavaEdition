@@ -31,6 +31,7 @@ public class GameFragment extends Fragment{
         final Table rightTable;
         rightTable = new Table();
         leftTable = new Table();
+        final Table rightDownTable = new Table();
 
         healthBar = new SpriteBar(0,100, new Texture("sprite/ui/health.png"));
 
@@ -67,11 +68,15 @@ public class GameFragment extends Fragment{
                 10,
                 new Texture("sprite/ui/selected_slot.png"));
 
+        accessory.setWidth(80);
+
         Texture buttonTexture = new Texture("sprite\\ui\\clear_texture.png");
         Texture pressedButtonTexture = new Texture("sprite\\ui\\clear_texture.png");
 
         settingsButton = new TextButton(buttonTexture,pressedButtonTexture, Vars.uiRenderer.getFont());
         settingsButton.setText("Settings");
+        settingsButton.setHeight(64);
+        settingsButton.setWidth(128);
         settingsButton.addListener(new InputListener(){
             @Override
             public boolean touchDown(InputEvent event, float x, float y, int pointer, int button) {
@@ -83,8 +88,9 @@ public class GameFragment extends Fragment{
         Event.on(Events.ResizeEvent.class, new Runnable() {
             @Override
             public void run() {
-                leftTable.setSize(Gdx.graphics.getWidth(),Gdx.graphics.getHeight());
-                rightTable.setSize(Gdx.graphics.getWidth(),Gdx.graphics.getHeight());
+                leftTable.setSize(Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
+                rightTable.setSize(Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
+                rightDownTable.setSize(Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
             }
         });
 
@@ -95,10 +101,11 @@ public class GameFragment extends Fragment{
         leftTable.top().left().add(new Separator(45)).row();
         leftTable.top().left().add(inventory).row();
         rightTable.top().right().add(healthBar).row();
-        rightTable.top().right().add(accessory).row();
-        rightTable.top().right().add(settingsButton).row();
+        rightDownTable.bottom().right().add(accessory).row();
+        rightDownTable.bottom().right().add(settingsButton).row();
 
         group.addActor(leftTable);
         group.addActor(rightTable);
+        group.addActor(rightDownTable);
     }
 }
