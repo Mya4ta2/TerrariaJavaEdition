@@ -17,11 +17,11 @@ public class Atlas {
         return new Texture(name);
     }
 
-    public void fillRoundingAtlas(RoundingAtlas roundingAtlas, RoundingBlock.RoundingType roundingType, String name) {
+    public void fillRoundingAtlas(RoundingAtlas roundingAtlas, RoundingBlock.RoundingType roundingType, String name, String dir) {
         for (int i = 0; i < roundingType.names.size; i++) {
             roundingAtlas.getTextures().put(
-                    name + "-" + roundingType.names.get(i),
-                    find(name + "-" + roundingType.names.get(i))
+                    roundingType.names.get(i),
+                    find(dir + name + "-" + roundingType.names.get(i))
             );
         }
     }

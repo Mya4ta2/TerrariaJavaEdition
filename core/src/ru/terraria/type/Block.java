@@ -12,23 +12,6 @@ import java.awt.*;
 import java.util.Arrays;
 
 public class Block extends MappableContent {
-
-    public enum NeighbourAir {
-        LEFT_UP(0), UP(1), RIGHT_UP(2),
-        LEFT(3), ALL(4), RIGHT(5),
-        LEFT_DOWN(6), DOWN(7), RIGHT_DOWN(8),
-        NONE(9);
-
-        int a;
-        NeighbourAir(int i) {
-            a = i;
-        }
-
-        public int getNum() {
-            return a;
-        }
-    }
-
     private final String name;
 
     private float WIDTH;
@@ -36,7 +19,7 @@ public class Block extends MappableContent {
     protected boolean hard = true;
 
     private int variants = 3;
-    private TextureRegion[][] texture = new TextureRegion[variants][NeighbourAir.values().length];
+    private TextureRegion[] texture;
 
     private Vector2 position = new Vector2();
     private Rectangle bounds = new Rectangle();
@@ -46,27 +29,23 @@ public class Block extends MappableContent {
         bounds.width = WIDTH;
         bounds.height = HEIGHT;
 
-        for (int i = 0; i < texture.length; i++) {
-            TextureRegion[] region = {
-                    new TextureRegion(Vars.atlas.errorTexture),
-                    new TextureRegion(Vars.atlas.errorTexture),
-                    new TextureRegion(Vars.atlas.errorTexture),
-                    new TextureRegion(Vars.atlas.errorTexture),
-                    new TextureRegion(Vars.atlas.errorTexture),
-                    new TextureRegion(Vars.atlas.errorTexture),
-                    new TextureRegion(Vars.atlas.errorTexture),
-                    new TextureRegion(Vars.atlas.errorTexture),
-                    new TextureRegion(Vars.atlas.errorTexture),
-                    new TextureRegion(Vars.atlas.errorTexture),
-            };
-
-            texture[i] = region;
-        }
+        texture = new TextureRegion[]{
+                new TextureRegion(Vars.atlas.errorTexture),
+                new TextureRegion(Vars.atlas.errorTexture),
+                new TextureRegion(Vars.atlas.errorTexture),
+                new TextureRegion(Vars.atlas.errorTexture),
+                new TextureRegion(Vars.atlas.errorTexture),
+                new TextureRegion(Vars.atlas.errorTexture),
+                new TextureRegion(Vars.atlas.errorTexture),
+                new TextureRegion(Vars.atlas.errorTexture),
+                new TextureRegion(Vars.atlas.errorTexture),
+                new TextureRegion(Vars.atlas.errorTexture),
+        };
     }
 
     @Override
     public void draw(SpriteBatch batch, Tile tile) {
-        batch.draw(texture[tile.getVariant()][tile.getNeighbourAir().getNum()],
+        batch.draw(texture[tile.getVariant()],
                 tile.getPosition().x * Vars.TILE_SIZE,
                 tile.getPosition().y * Vars.TILE_SIZE,
                 WIDTH * Vars.TILE_SIZE,
@@ -81,12 +60,12 @@ public class Block extends MappableContent {
         this.HEIGHT = HEIGHT;
     }
 
-    public void setTexture(TextureRegion[][] texture) {
-        this.texture = texture;
+    public TextureRegion[] getTexture() {
+        return texture;
     }
 
-    public TextureRegion[][] getTexture() {
-        return texture;
+    public void setTexture(TextureRegion[] texture) {
+        this.texture = texture;
     }
 
     public Rectangle getBounds() {

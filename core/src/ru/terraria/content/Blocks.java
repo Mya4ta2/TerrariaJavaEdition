@@ -45,14 +45,14 @@ public class Blocks implements ContentList {
             }
         };
 
-        stone = new Block("stone") {
+        stone = new RoundingBlock("stone") {
             {
                 setHEIGHT(1);
                 setWIDTH(1);
             }
         };
 
-        earth = new Block("dirt") {
+        earth = new RoundingBlock("dirt") {
             {
                 setHEIGHT(1);
                 setWIDTH(1);

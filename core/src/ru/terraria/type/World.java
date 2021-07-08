@@ -2,6 +2,7 @@ package ru.terraria.type;
 
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.bullet.collision._btMprSimplex_t;
+import ru.terraria.Vars;
 import ru.terraria.content.Blocks;
 import ru.terraria.content.Walls;
 
@@ -27,6 +28,7 @@ public class World {
 
     /* i need this only for test, after i delete this */
     public void createWorld() {
+        Vars.world = this;
         player = new Player("player", new Vector2(width/2,height/3));
 
         generateWorld(555);
@@ -142,21 +144,25 @@ public class World {
 
     public void setBlocksNeighbourAir() {
         for (int i = 0; i < getTiles().getArray().length; i++) {
-            if (tiles.getArray()[i].getPosition().x > 0 && tiles.getArray()[i].getPosition().y > 0 &&
-                    tiles.getArray()[i].getPosition().x < width - 1 && tiles.getArray()[i].getPosition().y < height - 1) {
-                Tile downTile = tiles.get((int) tiles.getArray()[i].getPosition().y - 1,
-                        (int) tiles.getArray()[i].getPosition().x);
-                Tile upTile = tiles.get((int) tiles.getArray()[i].getPosition().y + 1,
-                        (int) tiles.getArray()[i].getPosition().x);
-                Tile leftTile = tiles.get((int) tiles.getArray()[i].getPosition().y,
-                        (int) tiles.getArray()[i].getPosition().x - 1);
-                Tile rightTile = tiles.get((int) tiles.getArray()[i].getPosition().y,
-                        (int) tiles.getArray()[i].getPosition().x + 1);
-                tiles.getArray()[i].setNeighbourAir(downTile, upTile, rightTile, leftTile);
-            } else if (tiles.getArray()[i].getPosition().y == 0) {
-                tiles.getArray()[i].setBlockNeighbourAir(Block.NeighbourAir.ALL);
-            } else if (tiles.getArray()[i].getPosition().x == 0 || tiles.getArray()[i].getPosition().x == width - 1) {
-                tiles.getArray()[i].setBlockNeighbourAir(Block.NeighbourAir.ALL);
+            if (getTiles().getArray()[i].getBlock().isRounding()) {
+                if (tiles.getArray()[i].getPosition().x > 0 && tiles.getArray()[i].getPosition().y > 0 &&
+                        tiles.getArray()[i].getPosition().x < width - 1 && tiles.getArray()[i].getPosition().y < height - 1) {
+                    Tile downTile = tiles.get((int) tiles.getArray()[i].getPosition().y - 1,
+                            (int) tiles.getArray()[i].getPosition().x);
+                    Tile upTile = tiles.get((int) tiles.getArray()[i].getPosition().y + 1,
+                            (int) tiles.getArray()[i].getPosition().x);
+                    Tile leftTile = tiles.get((int) tiles.getArray()[i].getPosition().y,
+                            (int) tiles.getArray()[i].getPosition().x - 1);
+                    Tile rightTile = tiles.get((int) tiles.getArray()[i].getPosition().y,
+                            (int) tiles.getArray()[i].getPosition().x + 1);
+                    tiles.getArray()[i].setNeighbourAir(downTile, upTile, rightTile, leftTile);
+                } else if (tiles.getArray()[i].getPosition().y == 0) {
+                    tiles.getArray()[i].getBlockRounding().setCurrentTexture(
+                            tiles.getArray()[i].getBlockRounding().getAtlas().getTextures().get("all"));
+                } else if (tiles.getArray()[i].getPosition().x == 0 || tiles.getArray()[i].getPosition().x == width - 1) {
+                    tiles.getArray()[i].getBlockRounding().setCurrentTexture(
+                            tiles.getArray()[i].getBlockRounding().getAtlas().getTextures().get("all"));
+                }
             }
         }
     }

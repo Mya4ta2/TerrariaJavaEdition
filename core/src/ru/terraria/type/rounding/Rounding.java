@@ -36,4 +36,8 @@ public class Rounding {
     public void setCurrentTexture(Texture currentTexture) {
         this.currentTexture = currentTexture;
     }
+
+    public RoundingAtlas getAtlas() {
+        return roundingAtlas;
+    }
 }

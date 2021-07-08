@@ -6,13 +6,14 @@ import com.badlogic.gdx.math.Vector2;
 import ru.terraria.Vars;
 import ru.terraria.content.Blocks;
 import ru.terraria.content.Walls;
+import ru.terraria.type.rounding.Rounding;
 
 public class Tile {
     private Vector2 position = new Vector2();
     private Rectangle bounds = new Rectangle();
     private Block block = Blocks.air;
     private Wall wall = Walls.air;
-    private Block.NeighbourAir blockNeighbourAir = Block.NeighbourAir.NONE;
+    private Rounding blockRounding;
 
     private Tile downTile;
     private Tile upTile;
@@ -73,7 +74,15 @@ public class Tile {
     public void setBlock(Block block) {
         this.block = block;
 
-        setNeighbourAir(downTile,upTile,rightTile,leftTile);
+        if (block.isRounding()) {
+            blockRounding = new Rounding(
+                    ((RoundingBlock) block).getRoundingAtlas(),
+                    Vars.world.getTiles(),
+                    this
+            );
+
+            setNeighbourAir(downTile, upTile, rightTile, leftTile);
+        }
     }
 
     public Wall getWall() {
@@ -98,12 +107,12 @@ public class Tile {
         this.spriteVariant = spriteVariant;
     }
 
-    public Block.NeighbourAir getNeighbourAir() {
-        return blockNeighbourAir;
+    public Rounding getBlockRounding() {
+        return blockRounding;
     }
 
-    public void setBlockNeighbourAir(Block.NeighbourAir blockNeighbourAir) {
-        this.blockNeighbourAir = blockNeighbourAir;
+    public void setBlockRounding(Rounding blockRounding) {
+        this.blockRounding = blockRounding;
     }
 
     public void setTiles(Tile downTile, Tile upTile, Tile rightTile, Tile leftTile) {
@@ -129,7 +138,7 @@ public class Tile {
                             leftTile.getBlock() != Blocks.air && leftTile.getBlock().hard
             )
             {
-                blockNeighbourAir = Block.NeighbourAir.DOWN;
+                blockRounding.setCurrentTexture(blockRounding.getAtlas().getTextures().get("down"));
             }
 
             if
@@ -140,7 +149,7 @@ public class Tile {
                             leftTile.getBlock() != Blocks.air && leftTile.getBlock().hard
             )
             {
-                blockNeighbourAir = Block.NeighbourAir.RIGHT;
+                blockRounding.setCurrentTexture(blockRounding.getAtlas().getTextures().get("right"));
             }
 
             if
@@ -151,7 +160,7 @@ public class Tile {
                             leftTile.getBlock() != Blocks.air && leftTile.getBlock().hard
             )
             {
-                blockNeighbourAir = Block.NeighbourAir.UP;
+                blockRounding.setCurrentTexture(blockRounding.getAtlas().getTextures().get("up"));
             }
 
             if
@@ -162,7 +171,7 @@ public class Tile {
                             leftTile.getBlock() == Blocks.air && leftTile.getBlock().hard
             )
             {
-                blockNeighbourAir = Block.NeighbourAir.LEFT;
+                blockRounding.setCurrentTexture(blockRounding.getAtlas().getTextures().get("left"));
             }
 
 
@@ -174,7 +183,7 @@ public class Tile {
                             leftTile.getBlock() == Blocks.air && leftTile.getBlock().hard
             )
             {
-                blockNeighbourAir = Block.NeighbourAir.LEFT_UP;
+                blockRounding.setCurrentTexture(blockRounding.getAtlas().getTextures().get("leftUp"));
             }
 
             if
@@ -185,7 +194,7 @@ public class Tile {
                             leftTile.getBlock() == Blocks.air && leftTile.getBlock().hard
             )
             {
-                blockNeighbourAir = Block.NeighbourAir.LEFT_DOWN;
+                blockRounding.setCurrentTexture(blockRounding.getAtlas().getTextures().get("leftDown"));
             }
 
             if
@@ -196,7 +205,7 @@ public class Tile {
                             leftTile.getBlock() != Blocks.air && leftTile.getBlock().hard
             )
             {
-                blockNeighbourAir = Block.NeighbourAir.RIGHT_UP;
+                blockRounding.setCurrentTexture(blockRounding.getAtlas().getTextures().get("rightUp"));
             }
 
             if
@@ -207,7 +216,7 @@ public class Tile {
                             leftTile.getBlock() != Blocks.air && leftTile.getBlock().hard
             )
             {
-                blockNeighbourAir = Block.NeighbourAir.RIGHT_DOWN;
+                blockRounding.setCurrentTexture(blockRounding.getAtlas().getTextures().get("rightDown"));
             }
 
             if
@@ -218,7 +227,7 @@ public class Tile {
                             leftTile.getBlock() == Blocks.air && leftTile.getBlock().hard
             )
             {
-                blockNeighbourAir = Block.NeighbourAir.NONE;
+                blockRounding.setCurrentTexture(blockRounding.getAtlas().getTextures().get("all"));
             }
 
             if
@@ -229,7 +238,7 @@ public class Tile {
                             leftTile.getBlock() != Blocks.air && leftTile.getBlock().hard
             )
             {
-                blockNeighbourAir = Block.NeighbourAir.ALL;
+                blockRounding.setCurrentTexture(blockRounding.getAtlas().getTextures().get("none"));
             }
         }
     }

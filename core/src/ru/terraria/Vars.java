@@ -5,6 +5,7 @@ import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
+import ru.terraria.type.World;
 import ru.terraria.view.UIRenderer;
 
 public class Vars {
@@ -19,6 +20,7 @@ public class Vars {
     public static UI ui;
 
     public static Atlas atlas;
+    public static World world;
 
     public static final int SMALL_WORLD_HEIGHT = 1200;
     public static final int SMALL_WORLD_WIDTH = 2400;
