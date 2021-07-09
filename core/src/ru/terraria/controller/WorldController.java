@@ -65,7 +65,7 @@ public class WorldController implements InputProcessor {
         if (Gdx.input.isButtonJustPressed(Input.Buttons.LEFT)) {
             if ((cX / 16) > 0 && (cY / 16) > 0 && (cX / 16) < world.getWidth() && (cY / 16) < world.getHeight()) {
                 if (Cursor.itemStack.getItem() instanceof Pickaxe) {
-                    world.getTiles().get(cY / 16, cX / 16).setBlock(Blocks.air); //need add health to block
+                    world.getTiles().get(cX / 16, cY / 16).setBlock(Blocks.air); //need add health to block
                 }
             }
         }
@@ -73,7 +73,7 @@ public class WorldController implements InputProcessor {
         if (Gdx.input.isButtonJustPressed(Input.Buttons.RIGHT)) {
             if ((cX / 16) > 0 && (cY / 16) > 0 && (cX / 16) < world.getWidth() && (cY / 16) < world.getHeight()) {
                 if (Cursor.itemStack != null && Cursor.itemStack.getItem().isPlaceble() && Cursor.itemStack.getItemsCount() > 0) {
-                    world.getTiles().get(cY / 16, cX / 16).setBlock(Cursor.itemStack.getItem().getPlacebleBlock());
+                    world.getTiles().get(cX / 16, cY / 16).setBlock(Cursor.itemStack.getItem().getPlacebleBlock());
                     Cursor.itemStack.setItemsCount(Cursor.itemStack.getItemsCount()-1);
                 }
             }
@@ -90,9 +90,9 @@ public class WorldController implements InputProcessor {
         }
 
         Tile[] nearTiles = {
-                world.getTiles().get((int) pos.y - 1, (int) pos.x),
-                world.getTiles().get((int) pos.y - 1, (int) pos.x - 1),
-                world.getTiles().get((int) pos.y - 1, (int) pos.x + 1)
+                world.getTiles().get((int) pos.x, (int) pos.y - 1),
+                world.getTiles().get((int) pos.x - 1, (int) pos.y - 1),
+                world.getTiles().get((int) pos.x + 1, (int) pos.y - 1)
         };
 
         for (int i = 0; i < nearTiles.length; i++) {
@@ -109,12 +109,12 @@ public class WorldController implements InputProcessor {
 
         Vector2 pos = world.getPlayer().getPosition();
 
-        Tile left1Tile = world.getTiles().get((int) pos.y, (int) pos.x);
-        Tile left2Tile = world.getTiles().get((int) pos.y + 1, (int) pos.x);
-        Tile left3Tile = world.getTiles().get((int) pos.y + 2, (int) pos.x);
-        Tile right1Tile = world.getTiles().get((int) pos.y, (int) pos.x + 1);
-        Tile right2Tile = world.getTiles().get((int) pos.y + 1, (int) pos.x + 1);
-        Tile right3Tile = world.getTiles().get((int) pos.y + 2, (int) pos.x + 1);
+        Tile left1Tile = world.getTiles().get((int) pos.x, (int) pos.y);
+        Tile left2Tile = world.getTiles().get((int) pos.x, (int) pos.y + 1);
+        Tile left3Tile = world.getTiles().get((int) pos.x, (int) pos.y + 2);
+        Tile right1Tile = world.getTiles().get((int) pos.x + 1, (int) pos.y);
+        Tile right2Tile = world.getTiles().get((int) pos.x + 1, (int) pos.y + 1);
+        Tile right3Tile = world.getTiles().get((int) pos.x + 1, (int) pos.y + 2);
 
         collision =
         (

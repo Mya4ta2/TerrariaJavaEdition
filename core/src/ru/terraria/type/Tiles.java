@@ -14,7 +14,7 @@ public class Tiles {
         fill();
     }
 
-    public Tile get(int y, int x) {
+    public Tile get(int x, int y) {
         return array[y * width + x];
     }
 

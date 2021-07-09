@@ -121,10 +121,10 @@ public class World {
 
         // set tiles to world
         for (int i = 0; i < width; i++) {
-            tiles.get(arr[i], i).setBlock(Blocks.grass);
+            tiles.get(i, arr[i]).setBlock(Blocks.grass);
             for (int j = 0; j < arr[i]-10; j++) {
-                tiles.get(j + 10,i).setBlock(Blocks.earth);
-                tiles.get(j,i).setBlock(Blocks.stone);
+                tiles.get(i,j + 10).setBlock(Blocks.earth);
+                tiles.get(i, j).setBlock(Blocks.stone);
             }
         }
 
@@ -134,7 +134,7 @@ public class World {
             int num = random.nextInt(10);
 
             if (num > 5) {
-                tiles.get(arr[i] + 1, i).setBlock(Blocks.highGrass);
+                tiles.get(i, arr[i] + 1).setBlock(Blocks.highGrass);
                 setBlocksNeighbourAir();
             }
         }
@@ -147,14 +147,14 @@ public class World {
             if (getTiles().getArray()[i].getBlock().isRounding()) {
                 if (tiles.getArray()[i].getPosition().x > 0 && tiles.getArray()[i].getPosition().y > 0 &&
                         tiles.getArray()[i].getPosition().x < width - 1 && tiles.getArray()[i].getPosition().y < height - 1) {
-                    Tile downTile = tiles.get((int) tiles.getArray()[i].getPosition().y - 1,
-                            (int) tiles.getArray()[i].getPosition().x);
-                    Tile upTile = tiles.get((int) tiles.getArray()[i].getPosition().y + 1,
-                            (int) tiles.getArray()[i].getPosition().x);
-                    Tile leftTile = tiles.get((int) tiles.getArray()[i].getPosition().y,
-                            (int) tiles.getArray()[i].getPosition().x - 1);
-                    Tile rightTile = tiles.get((int) tiles.getArray()[i].getPosition().y,
-                            (int) tiles.getArray()[i].getPosition().x + 1);
+                    Tile downTile = tiles.get((int) tiles.getArray()[i].getPosition().x,
+                            (int) tiles.getArray()[i].getPosition().y - 1);
+                    Tile upTile = tiles.get((int) tiles.getArray()[i].getPosition().x,
+                            (int) tiles.getArray()[i].getPosition().y + 1);
+                    Tile leftTile = tiles.get((int) tiles.getArray()[i].getPosition().x - 1,
+                                (int) tiles.getArray()[i].getPosition().y);
+                    Tile rightTile = tiles.get((int) tiles.getArray()[i].getPosition().x + 1,
+                            (int) tiles.getArray()[i].getPosition().y);
                     tiles.getArray()[i].setNeighbourAir(downTile, upTile, rightTile, leftTile);
                 } else if (tiles.getArray()[i].getPosition().y == 0) {
                     tiles.getArray()[i].getBlockRounding().setCurrentTexture(

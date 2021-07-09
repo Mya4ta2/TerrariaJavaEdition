@@ -142,8 +142,8 @@ public class WorldRenderer {
                 if (i + world.getPlayer().getPosition().y > 0 && i + world.getPlayer().getPosition().y < world.getHeight() &&
                     j + world.getPlayer().getPosition().x > 0 && j + world.getPlayer().getPosition().x < world.getWidth()) {
                     tiles.get(
-                            (int) (i + world.getPlayer().getPosition().y),
-                            (int) (j + world.getPlayer().getPosition().x)).draw(batch);
+                            (int) (j + world.getPlayer().getPosition().x),
+                            (int) (i + world.getPlayer().getPosition().y)).draw(batch);
                 }
             }
         }
