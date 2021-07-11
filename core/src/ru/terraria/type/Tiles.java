@@ -28,7 +28,20 @@ public class Tiles {
         }
     }
 
+    public boolean inBounds(Vector2 position) {
+        if (position.x < 0 || position.y < 0) return false;
+        return !(position.x > width - 1) && !(position.y > height - 1);
+    }
+
     public Tile[] getArray() {
         return array;
+    }
+
+    public int getWidth() {
+        return width;
+    }
+
+    public int getHeight() {
+        return height;
     }
 }

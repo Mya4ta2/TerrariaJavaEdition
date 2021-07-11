@@ -139,31 +139,21 @@ public class World {
             }
         }
 
+        for (int i = 0; i < 3; i++) {
+            for (int j = 0; j < 3; j++) {
+                tiles.get(i + 50,j + (height/3 + 5)).setBlock(Blocks.stone);
+            }
+        }
+
+        tiles.get(1 + 50,5 + (height/3 + 5)).setBlock(Blocks.stone);
+
         setBlocksNeighbourAir();
     }
 
     public void setBlocksNeighbourAir() {
         for (int i = 0; i < getTiles().getArray().length; i++) {
-            if (getTiles().getArray()[i].getBlock().isRounding()) {
-                if (tiles.getArray()[i].getPosition().x > 0 && tiles.getArray()[i].getPosition().y > 0 &&
-                        tiles.getArray()[i].getPosition().x < width - 1 && tiles.getArray()[i].getPosition().y < height - 1) {
-                    Tile downTile = tiles.get((int) tiles.getArray()[i].getPosition().x,
-                            (int) tiles.getArray()[i].getPosition().y - 1);
-                    Tile upTile = tiles.get((int) tiles.getArray()[i].getPosition().x,
-                            (int) tiles.getArray()[i].getPosition().y + 1);
-                    Tile leftTile = tiles.get((int) tiles.getArray()[i].getPosition().x - 1,
-                                (int) tiles.getArray()[i].getPosition().y);
-                    Tile rightTile = tiles.get((int) tiles.getArray()[i].getPosition().x + 1,
-                            (int) tiles.getArray()[i].getPosition().y);
-                    tiles.getArray()[i].setNeighbourAir(downTile, upTile, rightTile, leftTile);
-                } else if (tiles.getArray()[i].getPosition().y == 0) {
-                    tiles.getArray()[i].getBlockRounding().setCurrentTexture(
-                            tiles.getArray()[i].getBlockRounding().getAtlas().getTextures().get("all"));
-                } else if (tiles.getArray()[i].getPosition().x == 0 || tiles.getArray()[i].getPosition().x == width - 1) {
-                    tiles.getArray()[i].getBlockRounding().setCurrentTexture(
-                            tiles.getArray()[i].getBlockRounding().getAtlas().getTextures().get("all"));
-                }
-            }
+            if (getTiles().getArray()[i].getBlock().isRounding())
+                getTiles().getArray()[i].setNeighbourAir();
         }
     }
 

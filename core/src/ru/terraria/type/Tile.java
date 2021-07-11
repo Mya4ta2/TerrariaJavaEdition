@@ -76,12 +76,12 @@ public class Tile {
 
         if (block.isRounding()) {
             blockRounding = new Rounding(
-                    ((RoundingBlock) block).getRoundingAtlas(),
+                    ((RoundingBlock) block).getRoundingType(),
                     Vars.world.getTiles(),
                     this
             );
 
-            setNeighbourAir(downTile, upTile, rightTile, leftTile);
+            setNeighbourAir();
         }
     }
 
@@ -122,124 +122,7 @@ public class Tile {
         this.downTile = downTile;
     }
 
-    public void setNeighbourAir(Tile downTile, Tile upTile, Tile rightTile, Tile leftTile) {
-        if (downTile != null && upTile != null && rightTile != null & leftTile != null) {
-
-            this.rightTile = rightTile;
-            this.leftTile = leftTile;
-            this.upTile = upTile;
-            this.downTile = downTile;
-
-            if
-            (
-                    downTile.getBlock() == Blocks.air && downTile.getBlock().hard &&
-                            upTile.getBlock() != Blocks.air && upTile.getBlock().hard &&
-                            rightTile.getBlock() != Blocks.air && rightTile.getBlock().hard &&
-                            leftTile.getBlock() != Blocks.air && leftTile.getBlock().hard
-            )
-            {
-                blockRounding.setCurrentTexture(blockRounding.getAtlas().getTextures().get("down"));
-            }
-
-            if
-            (
-                    downTile.getBlock() != Blocks.air && downTile.getBlock().hard &&
-                            upTile.getBlock() != Blocks.air && upTile.getBlock().hard &&
-                            rightTile.getBlock() == Blocks.air && rightTile.getBlock().hard &&
-                            leftTile.getBlock() != Blocks.air && leftTile.getBlock().hard
-            )
-            {
-                blockRounding.setCurrentTexture(blockRounding.getAtlas().getTextures().get("right"));
-            }
-
-            if
-            (
-                    downTile.getBlock() != Blocks.air && downTile.getBlock().hard &&
-                            upTile.getBlock() == Blocks.air && upTile.getBlock().hard &&
-                            rightTile.getBlock() != Blocks.air && rightTile.getBlock().hard &&
-                            leftTile.getBlock() != Blocks.air && leftTile.getBlock().hard
-            )
-            {
-                blockRounding.setCurrentTexture(blockRounding.getAtlas().getTextures().get("up"));
-            }
-
-            if
-            (
-                    downTile.getBlock() != Blocks.air && downTile.getBlock().hard &&
-                            upTile.getBlock() != Blocks.air && upTile.getBlock().hard &&
-                            rightTile.getBlock() != Blocks.air && rightTile.getBlock().hard &&
-                            leftTile.getBlock() == Blocks.air && leftTile.getBlock().hard
-            )
-            {
-                blockRounding.setCurrentTexture(blockRounding.getAtlas().getTextures().get("left"));
-            }
-
-
-            if
-            (
-                    downTile.getBlock() != Blocks.air && downTile.getBlock().hard &&
-                            upTile.getBlock() == Blocks.air && upTile.getBlock().hard &&
-                            rightTile.getBlock() != Blocks.air && rightTile.getBlock().hard &&
-                            leftTile.getBlock() == Blocks.air && leftTile.getBlock().hard
-            )
-            {
-                blockRounding.setCurrentTexture(blockRounding.getAtlas().getTextures().get("leftUp"));
-            }
-
-            if
-            (
-                    downTile.getBlock() == Blocks.air && downTile.getBlock().hard &&
-                            upTile.getBlock() != Blocks.air && upTile.getBlock().hard &&
-                            rightTile.getBlock() != Blocks.air && rightTile.getBlock().hard &&
-                            leftTile.getBlock() == Blocks.air && leftTile.getBlock().hard
-            )
-            {
-                blockRounding.setCurrentTexture(blockRounding.getAtlas().getTextures().get("leftDown"));
-            }
-
-            if
-            (
-                    downTile.getBlock() != Blocks.air && downTile.getBlock().hard &&
-                            upTile.getBlock() == Blocks.air && upTile.getBlock().hard &&
-                            rightTile.getBlock() == Blocks.air && rightTile.getBlock().hard &&
-                            leftTile.getBlock() != Blocks.air && leftTile.getBlock().hard
-            )
-            {
-                blockRounding.setCurrentTexture(blockRounding.getAtlas().getTextures().get("rightUp"));
-            }
-
-            if
-            (
-                    downTile.getBlock() == Blocks.air && downTile.getBlock().hard &&
-                            upTile.getBlock() != Blocks.air && upTile.getBlock().hard &&
-                            rightTile.getBlock() == Blocks.air && rightTile.getBlock().hard &&
-                            leftTile.getBlock() != Blocks.air && leftTile.getBlock().hard
-            )
-            {
-                blockRounding.setCurrentTexture(blockRounding.getAtlas().getTextures().get("rightDown"));
-            }
-
-            if
-            (
-                    downTile.getBlock() == Blocks.air && downTile.getBlock().hard &&
-                            upTile.getBlock() == Blocks.air && upTile.getBlock().hard &&
-                            rightTile.getBlock() == Blocks.air && rightTile.getBlock().hard &&
-                            leftTile.getBlock() == Blocks.air && leftTile.getBlock().hard
-            )
-            {
-                blockRounding.setCurrentTexture(blockRounding.getAtlas().getTextures().get("all"));
-            }
-
-            if
-            (
-                    downTile.getBlock() != Blocks.air && downTile.getBlock().hard &&
-                            upTile.getBlock() != Blocks.air && upTile.getBlock().hard &&
-                            rightTile.getBlock() != Blocks.air && rightTile.getBlock().hard &&
-                            leftTile.getBlock() != Blocks.air && leftTile.getBlock().hard
-            )
-            {
-                blockRounding.setCurrentTexture(blockRounding.getAtlas().getTextures().get("none"));
-            }
-        }
+    public void setNeighbourAir() {
+        blockRounding.update();
     }
 }
